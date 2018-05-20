@@ -1,14 +1,32 @@
 ---
 layout: default
 title: {{ site.name }}
+itunes: https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001
 ---
 
 <div id="home">
-  <!-- <h1>Programas</h1>
-  {% for post in site.posts %}
-  <div>
-    <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-    <span>{{ post.date | date_to_string }}</span>
+  <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span class="rss"></span></a></sup></h1>
+  {% for post in paginator.posts %}
+  <div class="programa">
+    <span class="programa__playback playback" data-src="/episodios/{{ post.file }}" data-title="{{ post.title }}"></span>
+    <h2 class="programa__titulo">{{ post.title }}</h2>
+    <!-- <span>{ { post.date | date_to_string } }</span> -->
+    {{ post.content }}
+    <!-- a href="/episodios/{{ post.file }}">(?response-content-disposition=attachment) Descargar</a -->
   </div>
-  {% endfor %} -->
+  {% endfor %}
+
+<!-- <div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div> -->
 </div>
