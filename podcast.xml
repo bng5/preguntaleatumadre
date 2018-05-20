@@ -1,6 +1,7 @@
 ---
 ---
 <?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/assets/podcast.xsl"?>
 <rss version="2.0"
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
@@ -19,7 +20,8 @@
   <itunes:type>episodic</itunes:type>
   <itunes:category text="Comedy" />
   <itunes:explicit>clean</itunes:explicit>
-  <itunes:author>Mediarte</itunes:author>{% for post in site.posts %}
+  <itunes:author>Mediarte</itunes:author>
+  {%- for post in site.posts %}
   <item>
    <title>{{ post.title }}</title>
    <link>{{ site.url }}/episodios/{{ post.file }}</link>
@@ -32,6 +34,7 @@
    <itunes:episodeType>full</itunes:episodeType>
    <itunes:duration>{{ post.duration }}</itunes:duration>
    <itunes:explicit>clean</itunes:explicit>
-  </item>{% endfor %}
+  </item>
+  {%- endfor %}
  </channel>
 </rss>
