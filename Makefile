@@ -5,4 +5,4 @@ build:
 	docker run --rm -it -v "$$PWD:/srv/jekyll" -v "$$PWD/vendor/bundle:/usr/local/bundle" jekyll/jekyll:latest jekyll build
 
 sync:
-	aws s3 sync _site s3://preguntaleatumadre.com/ --profile personal --exclude "_site/2018"
+	aws s3 sync _deploy s3://preguntaleatumadre.com/ --profile personal

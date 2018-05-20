@@ -4,6 +4,7 @@ baseurl:      ""
 paginate:     20
 locale:       "es-UY"
 
+s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
 # author:
 #   name:       Author name
 #   url:        http://yourhomepage.com
@@ -17,14 +18,11 @@ locale:       "es-UY"
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 url: "http://www.preguntaleatumadre.com"
-
 markdown: kramdown
-
 plugins:
   - jekyll-paginate
-
+destination: _deploy
 timezone: America/Montevideo
-
 exclude:
   - Makefile
   - CNAME
