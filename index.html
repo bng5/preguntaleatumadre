@@ -6,15 +6,17 @@ itunes: https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001
 
 <div id="home">
   <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span class="rss"></span></a></sup></h1>
-  {% for post in paginator.posts %}
-  <div class="programa">
-    <span class="programa__playback playback" data-src="/episodios/{{ post.file }}" data-title="{{ post.title }}"></span>
-    <h2 class="programa__titulo">{{ post.title }}</h2>
-    <!-- <span>{ { post.date | date_to_string } }</span> -->
-    {{ post.content }}
-    <!-- a href="/episodios/{{ post.file }}">(?response-content-disposition=attachment) Descargar</a -->
+  <div id="programas">
+    {% for post in paginator.posts %}
+    <div class="programa">
+      <span class="programa__playback playback" data-src="/episodios/{{ post.file }}" data-title="{{ post.title }}"></span>
+      <h2 class="programa__titulo">{{ post.title }}</h2>
+      <!-- <span>{ { post.date | date_to_string } }</span> -->
+      {{ post.content }}
+      <!-- a href="/episodios/{{ post.file }}">(?response-content-disposition=attachment) Descargar</a -->
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 
 <!-- <div class="pagination">
   {% if paginator.previous_page %}

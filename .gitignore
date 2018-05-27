@@ -7,3 +7,6 @@ Gemfile.lock
 _posts
 episodios
 /_deploy
+/vendor
+/node_modules/
+/assets/bundle.js
