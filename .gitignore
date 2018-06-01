@@ -3,9 +3,8 @@ _site
 .sass-cache
 Gemfile.lock
 .DS_Store
-.vendor
-_posts
-episodios
+vendor/
+episodios/
 /_deploy
 _build/
 assets/webfonts/
