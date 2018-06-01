@@ -21,14 +21,17 @@ url: "http://www.preguntaleatumadre.com"
 markdown: kramdown
 plugins:
   - jekyll-paginate
-destination: _deploy
+# destination: _build
 timezone: America/Montevideo
 exclude:
   - Makefile
   - CNAME
+  - node_modules
+  - webpack.config.js
+  - package.json
+  - package-lock.json
 #   - Gemfile
 #   - Gemfile.lock
-#   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
 #   - vendor/gems/

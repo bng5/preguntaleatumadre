@@ -1,7 +1,6 @@
 ---
 layout: default
 title: {{ site.name }}
-itunes: https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001
 ---
 
 <div id="home">
@@ -11,14 +10,19 @@ itunes: https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001
     <div class="programa">
       <span class="programa__playback playback" data-src="/episodios/{{ post.file }}" data-title="{{ post.title }}"></span>
       <h2 class="programa__titulo">{{ post.title }}</h2>
-      <!-- <span>{ { post.date | date_to_string } }</span> -->
+      <span>Emitido: {{ post.date | date_to_string }}</span>
       {{ post.content }}
-      <!-- a href="/episodios/{{ post.file }}">(?response-content-disposition=attachment) Descargar</a -->
+      <a href="/episodios/{{ post.file }}?response-content-disposition=attachment">Descargar</a>
     </div>
     {% endfor %}
   </div>
+  
+  <div id="programas-react"></div>
 
-<!-- <div class="pagination">
+  <script id="data" type="application/json">{{ paginator.posts | posts_collection | jsonify }}</script>
+
+{% comment %}
+<div class="pagination">
   {% if paginator.previous_page %}
     <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
   {% else %}
@@ -30,5 +34,6 @@ itunes: https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001
   {% else %}
     <span class="next ">Next</span>
   {% endif %}
-</div> -->
+</div>
+{% endcomment %}
 </div>

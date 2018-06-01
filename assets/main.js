@@ -8,6 +8,7 @@ var Player = (function () {
   var volumeIcon = function (value) {
     return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
   };
+  
 
   var player = document.getElementById('player');
   var playerControls = document.getElementById('player-controls');
