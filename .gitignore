@@ -7,3 +7,6 @@ Gemfile.lock
 _posts
 episodios
 /_deploy
+_build/
+assets/webfonts/
+node_modules/
