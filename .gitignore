@@ -1,4 +1,10 @@
-_site
+_site/
+_build/
+_deploy/
+episodios/
+assets/webfonts/
+node_modules/
+assets/bundle.js
 .bundle
 .sass-cache
 Gemfile.lock
