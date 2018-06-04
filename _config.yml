@@ -21,7 +21,7 @@ url: "http://www.preguntaleatumadre.com"
 markdown: kramdown
 plugins:
   - jekyll-paginate
-# destination: _build
+destination: _build
 timezone: America/Montevideo
 exclude:
   - Makefile

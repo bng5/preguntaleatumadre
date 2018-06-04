@@ -26,7 +26,7 @@
    <title>{{ post.title }}</title>
    <link>{{ site.url }}/episodios/{{ post.file }}</link>
    <description>{{ post.content | rstrip | xml_escape }}</description>
-   <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+   <pubDate>{{ post.pubDate | date_to_rfc822 }}</pubDate>
    <category>Podcast</category>
    <guid isPermaLink="true">{{ site.url }}/episodios/{{ post.file }}</guid>
    <enclosure url="{{ site.url }}/episodios/{{ post.file }}" length="{{ post.length }}" type="audio/mpeg" />
