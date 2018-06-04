@@ -1,4 +1,5 @@
 var Player = (function () {
+  return;
   var toTime = function (seconds) {
     var minutes = '0' + Math.floor(seconds / 60);
     var seconds = '0' + Math.floor(seconds - minutes * 60);
@@ -91,13 +92,13 @@ var Player = (function () {
   };
 })();
 
-(function () {
-  var playButtons = document.getElementsByClassName('programa__playback');
-  for (var i = 0; i < playButtons.length; i++) {
-    playButtons.item(i).addEventListener('click', function (ev) {
-      ev.preventDefault();
-      var file = this.dataset.src;
-      Player.play(file, this);
-    });
-  }
-})();
+// (function () {
+//   var playButtons = document.getElementsByClassName('programa__playback');
+//   for (var i = 0; i < playButtons.length; i++) {
+//     playButtons.item(i).addEventListener('click', function (ev) {
+//       ev.preventDefault();
+//       var file = this.dataset.src;
+//       Player.play(file, this);
+//     });
+//   }
+// })();

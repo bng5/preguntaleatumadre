@@ -1,65 +1,139 @@
 import React from 'react';
 
+const toTime = function (seconds) {
+  var minutes = '0' + Math.floor(seconds / 60);
+  var seconds = '0' + Math.floor(seconds - minutes * 60);
+  return minutes.substr(-2) + ':' + seconds.substr(-2);
+};
+
+const volumeIcon = function (value) {
+  return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
+};
+
 class Player extends React.Component {
   constructor(props) {
     super(props);
-    this.player = null;
+    this.playerEl = null;
     this.state = {
       currentTime: '0:00',
       endTime: '0:00',
       playerState: 0,
       playerSrc: '',
       title: '',
+      progress: 0,
+      volume: 0,
     };
+    this.timeUpdate = this.timeUpdate.bind(this);
+    this.togglePlay = this.togglePlay.bind(this);
   }
-  
+
+  componentDidMount() {
+    this.setState({
+      volume: (this.playerEl.volume * 100),
+    });
+  }
+
   togglePlay(filename, title, duration) {
     // playerControls.classList.add('show');
-    if (filename === this.state.playerSrc) {
-      this.player.paused ? this.player.play() : this.player.pause();
+    if (!filename || filename === this.state.playerSrc) {
+      this.playerEl.paused ? this.playerEl.play() : this.playerEl.pause();
       return;
     }
     this.setState({
+      playerState: 1,
       playerSrc: filename,
       title: title,
       endTime: duration,
+    }, () => {
+      this.playerEl.play();
     });
-    return;
-    if (toggleButton) {
-      toggleButton.classList.remove('pause');
-    }
-    toggleButton = button;
-    document.getElementById('player-track-title').innerText = button.dataset.title;
-    player.src = src;
-    player.play();
+    // if (toggleButton) {
+    //   toggleButton.classList.remove('pause');
+    // }
+    // toggleButton = button;
+    // document.getElementById('player-track-title').innerText = button.dataset.title;
+    // player.src = src;
+  }
 
+  timeUpdate() {
+    this.setState({
+      currentTime: toTime(this.playerEl.currentTime),
+      progress: Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration),
+    });
+    // var value = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
+    // positionControl.value = value;
+    // positionControlBar.style.width = value + '%';
+  }
+
+  ended() {
+    
+  }
+
+  volumeControl(event) {
+    const val = event.target.value;
+    this.setState({
+      volume: val
+    });
+    this.playerEl.volume = (val / 100);
+  }
+
+  positionControl(event) {
+    this.playerEl.currentTime = Math.round(event.target.value * this.playerEl.duration / 100);
   }
 
   render() {
+    const playerClass = this.state.playerState !== 0 ? 'show' : '';
+    const toggleClass = ['playback'];
+    if (this.playerEl && !this.playerEl.paused) {
+      toggleClass.push('pause');
+    }
+// playerVolumeIndicator.classList.add(volumeIcon(vol));
     return (
-      <div>
+      <div id="player-controls" className={playerClass}>
         <div className="player-controls__buttons">
-          <button id="player-toggle" className="playback" onClick={ this.props.clickHandler }> </button>
+          <button id="player-toggle" className={toggleClass.join(' ')} onClick={() => this.togglePlay() }> </button>
         </div>
         <div>
           <em id="player-track-title" className="player-controls__title">{ this.state.title }</em>
           <span id="player-currentTime" className="player-time">{ this.state.currentTime }</span>
           <div className="range-slider range-slider--position">
             <div className="bar-holder">
-              <div id="player-position-bar" className="bar"></div>
+              <div id="player-position-bar" className="bar" style={{ width: this.state.progress + '%' }}></div>
             </div>
-            <input type="range" min="0" max="100" value="0" readOnly className="slider" id="player-position" />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={this.state.progress}
+              className="slider"
+              onInput={this.positionControl.bind(this)}
+              id="player-position"
+            />
           </div>
           <span id="player-endTime" className="player-time">{ this.state.endTime }</span>
-          <span id="player-volume-indicator" className="player-volume-indicator"></span>
+          <span id="player-volume-indicator" className={"player-volume-indicator " + volumeIcon(this.state.volume)}></span>
           <div className="range-slider range-slider--volume">
             <div className="bar-holder">
-              <div id="player-volume-bar" className="bar"></div>
+              <div id="player-volume-bar" className="bar" style={{ width: this.state.volume + '%' }}></div>
             </div>
-            <input type="range" min="0" max="100" value="100" className="slider" readOnly id="player-volume" />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={this.state.volume}
+              className="slider"
+              onInput={this.volumeControl.bind(this)}
+            />
           </div>
         </div>
-        <audio id="player" src={this.state.playerSrc} type="audio/mpeg" ref={audio => this.player = audio}></audio>
+        <audio
+          src={this.state.playerSrc}
+          type="audio/mpeg"
+          ref={audio => this.playerEl = audio}
+          onError={(error) => console.log(error)}
+          onTimeUpdate={this.timeUpdate}
+          onEnded={this.ended}
+        ></audio>
       </div>
     );
   }
