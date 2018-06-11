@@ -10,6 +10,10 @@ const volumeIcon = function (value) {
   return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
 };
 
+const IDDLE   = 0;
+const PLAYING = 1;
+const PAUSED  = 2;
+
 class Player extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +29,7 @@ class Player extends React.Component {
     };
     this.timeUpdate = this.timeUpdate.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
+    this.callback = null;
   }
 
   componentDidMount() {
@@ -33,20 +38,22 @@ class Player extends React.Component {
     });
   }
 
-  togglePlay(filename, title, duration) {
+  togglePlay(episode, callback) {
     // playerControls.classList.add('show');
-    if (!filename || filename === this.state.playerSrc) {
+    if (!episode || !episode.filename || episode.filename === this.state.playerSrc) {
       this.playerEl.paused ? this.playerEl.play() : this.playerEl.pause();
       return;
     }
     this.setState({
       playerState: 1,
-      playerSrc: filename,
-      title: title,
-      endTime: duration,
+      playerSrc: episode.filename,
+      title: episode.title,
+      endTime: episode.duration,
+      progress: 0,
     }, () => {
       this.playerEl.play();
     });
+    this.callback = callback;
     // if (toggleButton) {
     //   toggleButton.classList.remove('pause');
     // }
@@ -56,9 +63,14 @@ class Player extends React.Component {
   }
 
   timeUpdate() {
+    const progress = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
     this.setState({
       currentTime: toTime(this.playerEl.currentTime),
-      progress: Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration),
+      progress,
+    });
+    this.callback(null, {
+      type: 'progress',
+      progress
     });
     // var value = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
     // positionControl.value = value;
@@ -66,7 +78,7 @@ class Player extends React.Component {
   }
 
   ended() {
-    
+    console.log('ended');
   }
 
   volumeControl(event) {
@@ -130,9 +142,14 @@ class Player extends React.Component {
           src={this.state.playerSrc}
           type="audio/mpeg"
           ref={audio => this.playerEl = audio}
-          onError={(error) => console.log(error)}
+          onError={(error) => console.log(this.playerEl.error)}
           onTimeUpdate={this.timeUpdate}
           onEnded={this.ended}
+          onWaiting={() => console.log('waiting')}
+          onSeeking={() => console.log('seeking')}
+          onPlay={() => console.log('play')}
+          onPause={() => this.callback(null, {type: 'stateChange', state: PAUSED})}
+          onPlaying={() => this.callback(null, {type: 'stateChange', state: PLAYING})}
         ></audio>
       </div>
     );

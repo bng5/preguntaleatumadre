@@ -7,18 +7,44 @@ class EpisodesList extends React.Component {
     this.state = {
       episodes: props.episodes,
       playerState: 0,
+      playing: null,
+      progress: 0,
     };
+    this.playing = null;
   }
 
-  togglePlay(file, title, duration) {
-    console.log('EpisodesList togglePlay');
-    this.props.player.togglePlay('/episodios/' + file, title, duration);
+  togglePlay(key) {
+    const episode = this.state.episodes[key];
+    const ep = {
+      filename: `/episodios/${episode.file}`,
+      title: episode.title,
+      duration: episode.duration,
+    };
+    this.props.player.togglePlay(ep, (err, data) => {
+      if (err) {
+        console.log('Error!');
+      }
+      if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
+        this.setState({
+          playing: key,
+          progress: data.progress,
+        });
+      } else if (data.type === 'stateChange') {
+        console.log(`stateChange ${data.state}`);
+        this.setState({
+          playing: key,
+          playerState: data.state,
+        });
+      }
+    });
   }
 
   render() {
-    return this.state.episodes.map(episode => (
+    return this.state.episodes.map((episode, i) => (
       <Episode
-        key={ episode.date }
+        key={ i }
+        playerState={ this.state.playing === i ? this.state.playerState : 0 }
+        progress={ this.state.playing === i ? this.state.progress : 0 }
         title={ episode.title }
         file={ episode.file }
         date={ episode.date }
@@ -26,7 +52,7 @@ class EpisodesList extends React.Component {
         episode={ episode.episode }
         fecha={ episode.fecha }
         length={ episode.length }
-        playHandler={this.togglePlay.bind(this, episode.file, episode.title, episode.duration)}
+        playHandler={this.togglePlay.bind(this, i)}
       ></Episode>
     ));
   }

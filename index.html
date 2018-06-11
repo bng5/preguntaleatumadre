@@ -8,17 +8,14 @@ title: {{ site.name }}
   <div id="programas">
     {% for post in paginator.posts %}
     <div class="programa">
-      <span class="programa__playback playback" data-src="/episodios/{{ post.file }}" data-title="{{ post.title }}"></span>
       <h2 class="programa__titulo">{{ post.title }}</h2>
-      <span>Emitido: {{ post.date | date_to_string }}</span>
+      <p>Emitido: <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.fecha }}</time></p>
       {{ post.content }}
-      <a href="/episodios/{{ post.file }}?response-content-disposition=attachment">Descargar</a>
+      <a href="/episodios/{{ post.file }}">{{ post.file }}</a>
     </div>
     {% endfor %}
   </div>
   
-  <div id="programas-react"></div>
-
   <script id="data" type="application/json">{{ paginator.posts | posts_collection | jsonify }}</script>
 
 {% comment %}
