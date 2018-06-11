@@ -1,11 +1,8 @@
-_site
-.bundle
-.sass-cache
-Gemfile.lock
-.DS_Store
+_site/
+.sass-cache/
 vendor/
 episodios/
-/_deploy
+assets/bundle.js
 _build/
 assets/webfonts/
 node_modules/

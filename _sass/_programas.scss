@@ -31,20 +31,28 @@
 }
 
 .programa {
+  clear: both;
+
   &__titulo {
-    margin-left: 2em;
+    margin-bottom: 0 !important;
 
     a {
       color: inherit;
     }
   }
 
+  &__info {
+    margin-top: 0;
+  }
+
   &__playback {
-    float: left;
+    // float: left;
+    color: #bfbfbf;
 
     &::before {
       @include fa-icon();
       @extend .fas;
+      // @extend .fa-fw;
       content: fa-content($fa-var-play);
       font-size: 2em;
       // border-radius: 50%;
