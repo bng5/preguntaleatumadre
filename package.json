@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode development -w"
+    "webpack": "webpack --mode development -w",
+    "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts assets/"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/bng5/preguntaleatumadre#readme",
   "devDependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",

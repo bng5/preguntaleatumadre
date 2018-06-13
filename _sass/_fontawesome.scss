@@ -1,0 +1,17 @@
+$fa-font-path: "./webfonts";
+
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/variables';
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/mixins';
+// @import 'core';
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/larger';
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fixed-width';
+// @import 'list';
+// @import 'bordered-pulled';
+// @import 'animated';
+// @import 'rotated-flipped';
+// @import 'stacked';
+// @import 'icons';
+// @import 'screen-reader';
+
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid';
+@import '../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands';
