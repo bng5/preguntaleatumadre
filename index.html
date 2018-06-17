@@ -4,11 +4,33 @@ title: {{ site.name }}
 ---
 
 <div id="home">
-  <!-- <h1>Programas</h1>
-  {% for post in site.posts %}
-  <div>
-    <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-    <span>{{ post.date | date_to_string }}</span>
+  <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span class="rss"></span></a></sup></h1>
+  <div id="programas">
+    {% for post in paginator.posts %}
+    <div class="programa">
+      <h2 class="programa__titulo">{{ post.title }}</h2>
+      <p>Emitido: <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.fecha }}</time></p>
+      {{ post.content }}
+      <a href="/episodios/{{ post.file }}">{{ post.file }}</a>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %} -->
+  
+  <script id="data" type="application/json">{{ paginator.posts | posts_collection | jsonify }}</script>
+
+{% comment %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div>
+{% endcomment %}
 </div>

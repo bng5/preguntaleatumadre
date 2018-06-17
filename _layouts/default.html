@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ site.locale }}">
-  {% include head.html %}
-  <body>
-    {% include page-header.html %}
-    <section class="main-content">
-      {{ content }}
-      <!-- {% include page-footer.html %} -->
-    </section>
-    <!-- {% include player.html %} -->
-  </body>
+{% include head.html %}
+<body>
+  {% include page-header.html %}
+  <section class="main-content">
+    {{ content }}
+    <div class="sidebar">
+      <a class="twitter-timeline" href="https://twitter.com/preguntaleatum?ref_src=twsrc%5Etfw">Tweets de Preguntale a tu Madre</a>
+    </div>
+    {% include page-footer.html %}
+  </section>
+  <div id="player-container"></div>
+  {% comment %}{% include player.html %}{% endcomment %}
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <!-- <script type="text/javascript" src="/assets/main.js" charset="utf-8"></script> -->
+  <script type="text/javascript" src="/assets/bundle.js" charset="utf-8"></script>
+</body>
 </html>

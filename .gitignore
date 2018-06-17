@@ -10,3 +10,4 @@ assets/bundle.js
 Gemfile.lock
 .DS_Store
 .vendor
+vendor/

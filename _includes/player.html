@@ -1,5 +1,29 @@
-<div id="player-controls">
-  <audio id="player" src="http://radio.tallerderadio.com:8050/;listen.pls&amp;type=mp3" type="audio/mpeg" controls>
+<div id="player-controls" class="show">
+  <div class="player-controls__buttons">
+    <!-- <button>Saltar a anterior</button> -->
+    <button id="player-toggle" class="playback"> </button>
+    <!-- <button>Saltar a siguiente</button> -->
+  </div>
+  <div>
+    <em id="player-track-title" class="player-controls__title">Título</em>
+    <span id="player-currentTime" class="player-time">0:00</span>
+    <div class="range-slider range-slider--position">
+      <div class="bar-holder">
+        <div id="player-position-bar" class="bar"></div>
+      </div>
+      <input type="range" min="0" max="100" value="0" class="slider" id="player-position" />
+    </div>
+    <span id="player-endTime" class="player-time">0:00</span>
+    <span id="player-volume-indicator" class="player-volume-indicator"></span>
+    <div class="range-slider range-slider--volume">
+      <div class="bar-holder">
+        <div id="player-volume-bar" class="bar"></div>
+      </div>
+      <input type="range" min="0" max="100" value="100" class="slider" id="player-volume" />
+    </div>
+  </div>
+  <audio id="player" src="" type="audio/mpeg">
     Tu navegador no soporta reproducción de audio.
   </audio>
 </div>
+{% comment %}http://radio.tallerderadio.com:8050/;listen.pls&amp;type=mp3{% endcomment %}
