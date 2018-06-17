@@ -23,7 +23,10 @@ const Episode = (props) => {
       </div>
     </div>
     <h2 className="programa__titulo">{ props.title }</h2>
-    <p className="programa__info">Emitido: <time>{ props.fecha }</time></p>
+    <p className="programa__info">
+      Programa { props.episode }<br />
+      Emitido: <time>{ props.fecha }</time>
+    </p>
     { props.children }
   </div>
 };

@@ -13,6 +13,7 @@ const volumeIcon = function (value) {
 const IDDLE   = 0;
 const PLAYING = 1;
 const PAUSED  = 2;
+const SEEKING = 3;
 
 class Player extends React.Component {
   constructor(props) {
