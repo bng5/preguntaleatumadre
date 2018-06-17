@@ -1,8 +1,13 @@
 _site/
-.sass-cache/
-vendor/
-episodios/
-assets/bundle.js
 _build/
+_deploy/
+episodios/
 assets/webfonts/
 node_modules/
+assets/bundle.js
+.bundle
+.sass-cache
+Gemfile.lock
+.DS_Store
+.vendor
+vendor/
