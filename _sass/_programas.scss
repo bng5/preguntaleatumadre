@@ -48,6 +48,7 @@
   &__playback {
     // float: left;
     color: #bfbfbf;
+    cursor: pointer;
 
     &::before {
       @include fa-icon();
@@ -60,7 +61,10 @@
     }
     &.pause::before {
       content: fa-content($fa-var-pause);
-      // background-color: $main-color;
+    }
+    &.loading::before {
+      content: fa-content($fa-var-circle-notch);
+      @extend .fa-spin;
     }
   }
 }

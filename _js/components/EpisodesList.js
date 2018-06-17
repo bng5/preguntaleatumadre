@@ -1,5 +1,6 @@
 import React from 'react';
 import Episode from './Episode';
+import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
 class EpisodesList extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class EpisodesList extends React.Component {
   togglePlay(key) {
     const episode = this.state.episodes[key];
     const ep = {
-      filename: `/episodios/${episode.file}`,
+      filename: `https://www.preguntaleatumadre.com/episodios/${episode.file}`,// FIXME
       title: episode.title,
       duration: episode.duration,
     };

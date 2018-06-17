@@ -1,9 +1,12 @@
 import React from 'react';
+import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
 const Episode = (props) => {
   let buttonClass = ['programa__playback', 'playback'];
-  if (props.playerState === 1) {
+  if (props.playerState === PLAYING) {
     buttonClass.push('pause');
+  } else if (props.playerState === SEEKING) {
+    buttonClass.push('loading');
   }
   const progress = (1.8 * props.progress);
   return <div className="programa">
