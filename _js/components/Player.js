@@ -1,4 +1,5 @@
 import React from 'react';
+import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
 const toTime = function (seconds) {
   var minutes = '0' + Math.floor(seconds / 60);
@@ -9,10 +10,6 @@ const toTime = function (seconds) {
 const volumeIcon = function (value) {
   return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
 };
-
-const IDDLE   = 0;
-const PLAYING = 1;
-const PAUSED  = 2;
 
 class Player extends React.Component {
   constructor(props) {
@@ -30,6 +27,7 @@ class Player extends React.Component {
     this.timeUpdate = this.timeUpdate.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
     this.callback = null;
+    this.stateChange = this.stateChange.bind(this);
   }
 
   componentDidMount() {
@@ -90,14 +88,28 @@ class Player extends React.Component {
   }
 
   positionControl(event) {
+    this.setState({
+      progress: event.target.value
+    });
     this.playerEl.currentTime = Math.round(event.target.value * this.playerEl.duration / 100);
+  }
+
+  stateChange (state) {
+    this.callback(null, {
+      type: 'stateChange',
+      state,
+    });
   }
 
   render() {
     const playerClass = this.state.playerState !== 0 ? 'show' : '';
     const toggleClass = ['playback'];
-    if (this.playerEl && !this.playerEl.paused) {
-      toggleClass.push('pause');
+    if (this.playerEl) {
+      if (!this.playerEl.paused) {
+        toggleClass.push('pause');
+      } else if (this.playerEl.seeking) {
+        toggleClass.push('loading');
+      }
     }
 // playerVolumeIndicator.classList.add(volumeIcon(vol));
     return (
@@ -145,11 +157,11 @@ class Player extends React.Component {
           onError={(error) => console.log(this.playerEl.error)}
           onTimeUpdate={this.timeUpdate}
           onEnded={this.ended}
-          onWaiting={() => console.log('waiting')}
-          onSeeking={() => console.log('seeking')}
+          onWaiting={() => this.stateChange(SEEKING)}
+          onSeeking={() => this.stateChange(SEEKING)}
           onPlay={() => console.log('play')}
-          onPause={() => this.callback(null, {type: 'stateChange', state: PAUSED})}
-          onPlaying={() => this.callback(null, {type: 'stateChange', state: PLAYING})}
+          onPause={() => this.stateChange(PAUSED)}
+          onPlaying={() => this.stateChange(PLAYING)}
         ></audio>
       </div>
     );

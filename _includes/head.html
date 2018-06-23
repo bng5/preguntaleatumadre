@@ -1,6 +1,6 @@
 <head>
   <meta charset="UTF-8">
-  <title>{{ site.title }}</title>
+  <title>{%- if page.title %}{{ page.title }} - {%- endif %}{{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#157878" />
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" />
@@ -11,7 +11,9 @@
   <meta name="twitter:title" content="{{ site.title }}" />
   <meta name="twitter:description" content="{{ site.tagline }}" />
   <meta name="twitter:image" content="https://www.preguntaleatumadre.com/assets/images/patum.png" />
-  <!-- meta property="og:title" content="" / -->
+  {%- if page.title %}
+  <meta property="og:title" content="{{ page.title }}" />
+  {%- endif %}
   <meta property="og:url" content="{{ site.url }}" />
   <meta property="og:site_name" content="{{ site.title }}" />
   <meta property="og:description" content="{{ site.tagline }}" />

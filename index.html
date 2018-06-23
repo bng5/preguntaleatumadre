@@ -1,12 +1,11 @@
 ---
 layout: default
-title: {{ site.name }}
 ---
 
 <div id="home">
   <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span class="rss"></span></a></sup></h1>
   <div id="programas">
-    {% for post in paginator.posts %}
+    {% for post in site.programas %}
     <div class="programa">
       <h2 class="programa__titulo">{{ post.title }}</h2>
       <p>Emitido: <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.fecha }}</time></p>
