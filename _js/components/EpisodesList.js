@@ -17,7 +17,7 @@ class EpisodesList extends React.Component {
   togglePlay(key) {
     const episode = this.state.episodes[key];
     const ep = {
-      filename: `https://www.preguntaleatumadre.com/episodios/${episode.file}`,// FIXME
+      filename: `/episodios/${episode.file}`,// FIXME https://www.preguntaleatumadre.com
       title: episode.title,
       duration: episode.duration,
     };
