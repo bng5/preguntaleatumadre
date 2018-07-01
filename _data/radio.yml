@@ -1,0 +1,161 @@
+programas:
+  5_sentidos: &5_sentidos
+    nombre: 5 Sentidos
+    web: https://www.facebook.com/cincosentidosenradio/
+
+  conga_radio: &conga_radio
+    nombre: Conga radio
+
+  como_es_la_vaina: &como_es_la_vaina
+    nombre: ¿Cómo es la vaina?
+    web: https://www.facebook.com/lavainaonline/
+
+  corren_las_damas_gratis: &corren_las_damas_gratis
+    nombre: Corren las damas gratis
+    web: https://www.facebook.com/damas.grathis.7
+
+  el_zapato_de_cenicienta: &el_zapato_de_cenicienta
+    nombre: El Zapato de Cenicienta
+    web: https://www.facebook.com/programaelzapatodc/
+
+  hijos_de_nadie: &hijos_de_nadie
+    nombre: Hijos de nadie
+    web: https://www.facebook.com/HdN2018/
+
+  impresentables: &impresentables
+    nombre: Impresentables
+    web: https://www.facebook.com/impresentablesradio/
+
+  la_sede: &la_sede
+    nombre: La Sede
+    web: https://www.facebook.com/lasederadio/
+
+  libre: &libre
+    nombre: Libre
+
+  los_4_sarcasticos: &los_4_sarcasticos
+    nombre: Los Cuatro Sarcásticos
+    web: https://twitter.com/los4sarcasticos
+
+  musica: &musica
+    nombre: Música
+
+  ojo_al_gol: &ojo_al_gol
+    nombre: Ojo al Gol
+    web: http://laligauy.com.uy/
+
+  orsai_radio: &orsai_radio
+    nombre: Orsai radio
+
+  perjudicados: &perjudicados
+    nombre: Perjudicados
+    web: https://www.facebook.com/perjudicate/
+
+  pitazo_inicial: &pitazo_inicial
+    nombre: Pitazo Inicial
+    web: https://www.facebook.com/pinicialm/
+
+  preguntale_a_tu_madre: &preguntale_a_tu_madre
+    nombre: Preguntale a tu madre
+    web: https://www.preguntaleatumadre.com/
+
+  primer_tiempo: &primer_tiempo
+    nombre: Primer Tiempo
+
+  tampoco_es_tan_asi: &tampoco_es_tan_asi
+    nombre: Tampoco es tan así
+    web: https://www.facebook.com/tampocoradio/
+
+  tarde_para_arrepentirse: &tarde_para_arrepentirse
+    nombre: Tarde para arrepentirse
+    web: https://www.facebook.com/estardepara/
+
+grilla:
+  # Domingo
+  - []
+  # Lunes
+  - - hora: 1900
+      programa: pitazo_inicial
+    - hora: 2000
+      programa: primer_tiempo
+    - hora: 2130
+      programa: null
+    - hora: 2200
+      programa: libre
+    - hora: 2300
+      programa: el_zapato_de_cenicienta
+  # Martes
+  - - hora: 0
+      programa: el_zapato_de_cenicienta
+    - hora: 30
+      programa: musica
+    - hora: 100
+      programa: impresentables
+    - hora: 200
+      programa: los_4_sarcasticos
+    - hora: 300
+      programa: null
+    - hora: 1730
+      programa: conga_radio
+    - hora: 1900
+      programa: null
+    - hora: 2000
+      programa: corren_las_damas_gratis
+    - hora: 2100
+      programa: libre
+    - hora: 2200
+      programa: orsai_radio
+    - hora: 2330
+      programa: la_sede
+  # Miércoles
+  - - hora: 0
+      programa: la_sede
+    - hora: 30
+      programa: musica
+    - hora: 100
+      programa: hijos_de_nadie
+    - hora: 300
+      programa: null
+    - hora: 2000
+      programa: primer_tiempo
+    - hora: 2130
+      programa: null
+    - hora: 2200
+      programa: ojo_al_gol
+  # Jueves
+  - - hora: 100
+      programa: perjudicados
+    - hora: 200
+      programa: preguntale_a_tu_madre
+    - hora: 300
+      programa: null
+    - hora: 1730
+      programa: conga_radio
+    - hora: 1900
+      programa: null
+    - hora: 2200
+      programa: como_es_la_vaina
+  # Viernes
+  - - hora: 0
+      programa: tampoco_es_tan_asi
+    - hora: 2
+      programa: libre
+    - hora: 3
+      programa: null
+    - hora: 1900
+      programa: pitazo_inicial
+    - hora: 2000
+      programa: primer_tiempo
+    - hora: 2130
+      programa: null
+    - hora: 2200
+      programa: tarde_para_arrepentirse
+  # Sábado
+  - - hora: 0
+      programa: orsai_radio
+    - hora: 100
+      programa: 5_sentidos
+    - hora: 200
+      programa: libre
+    - hora: 300
+      programa: null

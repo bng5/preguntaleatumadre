@@ -33,11 +33,11 @@ timezone: America/Montevideo
 
 exclude:
   - Makefile
-  - CNAME
-  - node_modules
+  - node_modules/
   - webpack.config.js
   - package.json
   - package-lock.json
+  - scripts/
 #   - Gemfile
 #   - Gemfile.lock
 #   - vendor/bundle/

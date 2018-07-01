@@ -1,0 +1,229 @@
+[
+  [
+    null,
+    {
+      "nombre": "Lunes",
+      "duracion": 0.5
+    },
+    {
+      "nombre": "Martes",
+      "duracion": 0.5
+    },
+    {
+      "nombre": "Miercoles",
+      "duracion": 0.5
+    },
+    {
+      "nombre": "Jueves",
+      "duracion": 0.5
+    },
+    {
+      "nombre": "Viernes",
+      "duracion": 0.5
+    },
+    null
+  ],
+  [
+    1730,
+    null,
+    {
+      "nombre": "Conga radio",
+      "duracion": 1.5
+    },
+    null,
+    {
+      "nombre": "Conga radio",
+      "duracion": 1.5
+    },
+    null,
+    null
+  ],
+  [
+    1900,
+    {
+      "nombre": "Pitazo Inicial",
+      "duracion": 1,
+      "web": "https://www.facebook.com/pinicialm/"
+    },
+    null,
+    null,
+    null,
+    {
+      "nombre": "Pitazo Inicial",
+      "duracion": 1,
+      "web": "https://www.facebook.com/pinicialm/"
+    },
+    null
+  ],
+  [
+    2000,
+    {
+      "nombre": "Primer Tiempo",
+      "duracion": 1.5,
+      "web": "https://www.facebook.com/primertiempo.com.mx/?hc_ref=ARQ5tPhI9DtTfBjVSSRvTt7DkX1GkCqq97eot7OHQaKUnbB3on9zM3E3ITTnXH0oIJw&fref=nf"
+    },
+    {
+      "nombre": "Corren las damas gratis",
+      "duracion": 1,
+      "web": "https://www.facebook.com/damas.grathis.7"
+    },
+    {
+      "nombre": "Primer Tiempo",
+      "duracion": 1.5,
+      "web": "https://www.facebook.com/primertiempo.com.mx/?hc_ref=ARQ5tPhI9DtTfBjVSSRvTt7DkX1GkCqq97eot7OHQaKUnbB3on9zM3E3ITTnXH0oIJw&fref=nf"
+    },
+    null,
+    {
+      "nombre": "Primer Tiempo",
+      "duracion": 1.5,
+      "web": "https://www.facebook.com/primertiempo.com.mx/?hc_ref=ARQ5tPhI9DtTfBjVSSRvTt7DkX1GkCqq97eot7OHQaKUnbB3on9zM3E3ITTnXH0oIJw&fref=nf"
+    },
+    null
+  ],
+  [
+    2100,
+    null,
+    {
+      "nombre": "Libre",
+      "duracion": 1
+    },
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    2200,
+    {
+      "nombre": "Libre",
+      "duracion": 1
+    },
+    {
+      "nombre": "Orsai radio",
+      "duracion": 1.5,
+      "web": "https://www.facebook.com/OrsaiTV/"
+    },
+    {
+      "nombre": "Ojo al Gol",
+      "duracion": 2,
+      "web": "https://www.facebook.com/LALIGAUY/"
+    },
+    {
+      "nombre": "Como es la vaina",
+      "duracion": 2,
+      "web": "https://www.facebook.com/lavainaonline/"
+    },
+    {
+      "nombre": "Tarde para arrepentirse",
+      "duracion": 2,
+      "web": "https://www.facebook.com/estardepara/"
+    },
+    null
+  ],
+  [
+    2300,
+    {
+      "nombre": "El Zapato de Cenicienta",
+      "duracion": 1.5,
+      "web": "https://www.facebook.com/programaelzapatodc/"
+    },
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    2330,
+    null,
+    {
+      "nombre": "La Sede",
+      "duracion": 1,
+      "web": "https://www.facebook.com/lasederadio/"
+    },
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    0,
+    null,
+    null,
+    null,
+    null,
+    {
+      "nombre": "Tampoco es tan así",
+      "duracion": 2,
+      "web": "https://www.facebook.com/tampocoradio/?ref=br_rs"
+    },
+    {
+      "nombre": "Orsai radio",
+      "duracion": 1,
+      "web": "https://www.facebook.com/OrsaiTV/"
+    }
+  ],
+  [
+    30,
+    null,
+    {
+      "nombre": "Música",
+      "duracion": 0.5
+    },
+    {
+      "nombre": "Música",
+      "duracion": 0.5
+    },
+    null,
+    null,
+    null
+  ],
+  [
+    100,
+    null,
+    {
+      "nombre": "Impresentables",
+      "duracion": 1,
+      "web": "https://www.facebook.com/impresentablesradio/"
+    },
+    {
+      "nombre": "Hijos de nadie",
+      "duracion": 2,
+      "web": "https://www.facebook.com/Hijos-De-Nadie-HdN-2098001537104685/"
+    },
+    {
+      "nombre": "Perjudicados",
+      "duracion": 1,
+      "web": "https://www.facebook.com/perjudicate/"
+    },
+    null,
+    {
+      "nombre": "5 Sentidos",
+      "duracion": 1,
+      "web": "https://www.facebook.com/cincosentidosenradio/?ref=all_category_pyml_rhc"
+    }
+  ],
+  [
+    200,
+    null,
+    {
+      "nombre": "Los 4 sarcasticos",
+      "duracion": 1,
+      "web": "https://twitter.com/los4sarcasticos"
+    },
+    null,
+    {
+      "nombre": "Preguntale a tu madre",
+      "duracion": 1,
+      "web": "http://www.preguntaleatumadre.com/"
+    },
+    {
+      "nombre": "Libre",
+      "duracion": 1
+    },
+    {
+      "nombre": "Libre",
+      "duracion": 1
+    }
+  ]
+]

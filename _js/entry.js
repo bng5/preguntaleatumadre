@@ -23,3 +23,31 @@ ReactDOM.render(<EpisodesList player={playerInstance} episodes={episodes} />, do
 //   // var file = this.dataset.src;
 //   // Player.play(file, this);
 // });
+
+var radio;
+
+fetch('/grilla.json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function (data) {
+    radio = data;
+  })
+  .catch(err => console.log(err));
+
+window. prog = function (dia, hora, minuto) {
+  hora *= 100;
+  hora += (Math.floor(minuto / 30) * 30);
+  for (let i = radio.grilla[dia].length - 1; i >= 0 ; i--) {
+    console.log(hora, radio.grilla[dia][i].hora, radio.grilla[dia][i].programa);
+    if (hora >= radio.grilla[dia][i].hora) {
+      return radio.programas[radio.grilla[dia][i].programa];
+    }
+  }
+  return false;
+}
+
+// var date = new Date();
+// console.log(date.getUTCDay());
+// console.log(date.getUTCHours());
+// console.log(date.getUTCMinutes());

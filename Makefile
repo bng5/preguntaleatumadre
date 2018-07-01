@@ -6,3 +6,6 @@ build:
 
 sync:
 	aws s3 sync _build s3://preguntaleatumadre.com/ --profile personal
+
+updateGrid:
+	phantomjs scripts/check_grid.js > _data/mediarte_grilla.json
