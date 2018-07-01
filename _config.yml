@@ -1,8 +1,11 @@
 title:        Preguntale a tu Madre
-tagline:      El programa de irreverencia social que nadie quiere que escuches.
+tagline:      "Donde no existen preguntas estúpidas…"
 baseurl:      ""
 paginate:     20
+paginate_path: "/pagina:num/"
 locale:       "es-UY"
+
+permalink: /programas/:title
 
 s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
 # author:
@@ -24,9 +27,9 @@ plugins:
 
 timezone: America/Montevideo
 
-collections:
-  programas:
-    output: true
+# collections:
+#   programas:
+#     output: true
 
 exclude:
   - Makefile
