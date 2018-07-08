@@ -5,7 +5,7 @@ paginate:     20
 paginate_path: "/pagina:num/"
 locale:       "es-UY"
 
-permalink: /programas/:title
+permalink: programas/:year/:month/:day/:title:output_ext
 
 s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
 # author:
