@@ -7,10 +7,7 @@ layout: default
   <div id="programas">
     {% for post in paginator.posts %}
     <div class="programa">
-      <h2 class="programa__titulo">{{ post.title }}</h2>
-      {% comment %}
-      {{ post.url }}
-      {% endcomment %}
+      <h2 class="programa__titulo"><a href="{{ post.url }}">{{ post.title }}</a></h2>
       <p class="programa__info">
         Programa {{ post.episode }}<br />
         Emitido: <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.fecha }}</time>
