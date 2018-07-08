@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Podcast" href="/podcast.xml" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="{%- if page.file %}player{%- else %}summary{%- endif %}" />
   <meta name="twitter:site" content="@preguntaleatum" />
-  <meta name="twitter:title" content="{{ site.title }}" />
+  <meta name="twitter:creator" content="@bng5" />
+  <meta name="twitter:title" content="{%- if page.title %}{{ page.title }}{%- else %}{{ site.title }}{%- endif %}" />
   <meta name="twitter:description" content="{{ site.tagline }}" />
   <meta name="twitter:image" content="https://www.preguntaleatumadre.com/assets/images/patum.png" />
   {%- if page.title %}
