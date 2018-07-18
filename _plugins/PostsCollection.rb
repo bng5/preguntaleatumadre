@@ -10,6 +10,7 @@ module Jekyll
           "length" => post.length,
           "episode" => post.episode,
           "duration" => post.duration,
+          "url" => post.url,
         ]
       end
     end

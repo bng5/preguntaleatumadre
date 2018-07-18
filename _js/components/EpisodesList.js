@@ -40,6 +40,16 @@ class EpisodesList extends React.Component {
     });
   }
 
+  share(path, site) {
+    const { protocol, host } = document.location;
+    const url = encodeURIComponent(`${protocol}//${host}${path}`);
+    const sites = {
+      twitter: `https://twitter.com/intent/tweet?url=${url}`,
+      facebook: `http://www.facebook.com/sharer.php?u=${url}`,
+    };
+    window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
+  }
+
   render() {
     return this.state.episodes.map((episode, i) => (
       <Episode
@@ -54,6 +64,7 @@ class EpisodesList extends React.Component {
         fecha={ episode.fecha }
         length={ episode.length }
         playHandler={this.togglePlay.bind(this, i)}
+        sharer={this.share.bind(this, episode.url)}
       ></Episode>
     ));
   }
