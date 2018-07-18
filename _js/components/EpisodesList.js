@@ -40,11 +40,11 @@ class EpisodesList extends React.Component {
     });
   }
 
-  share(path, site) {
+  share(path, title, site) {
     const { protocol, host } = document.location;
     const url = encodeURIComponent(`${protocol}//${host}${path}`);
     const sites = {
-      twitter: `https://twitter.com/intent/tweet?url=${url}`,
+      twitter: `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`,
       facebook: `http://www.facebook.com/sharer.php?u=${url}`,
     };
     window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
@@ -64,7 +64,7 @@ class EpisodesList extends React.Component {
         fecha={ episode.fecha }
         length={ episode.length }
         playHandler={this.togglePlay.bind(this, i)}
-        sharer={this.share.bind(this, episode.url)}
+        sharer={this.share.bind(this, episode.url, episode.title)}
       ></Episode>
     ));
   }
