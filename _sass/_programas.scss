@@ -43,6 +43,41 @@
 
   &__info {
     margin-top: 0;
+    margin-bottom: 0.5em !important;
+  }
+
+  &__share {
+    margin-top: 0;
+    font-size: 85%;
+
+    a {
+      cursor: pointer;
+      margin-left: 0.3em;
+
+      &::before {
+        @include fa-icon();
+        @extend .fab;
+        font-size: 1.5em;
+      }
+
+      &.twitter {
+        &::before {
+          content: fa-content($fa-var-twitter);
+        }
+        &:hover {
+          color: #55acee;
+        }
+      }
+
+      &.facebook {
+        &::before {
+          content: fa-content($fa-var-facebook);
+        }
+        &:hover {
+          color: #3b5998;
+        }
+      }
+    }
   }
 
   &__playback {
