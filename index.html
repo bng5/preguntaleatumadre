@@ -1,5 +1,7 @@
 ---
 layout: default
+pagination:
+  enabled: true
 ---
 <div id="home">
   <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span class="rss"></span></a></sup></h1>
@@ -11,21 +13,18 @@ layout: default
         Emitido: <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.fecha }}</time>
       </p>
       {{ post.content }}
-      <a href="/episodios/{{ post.file }}">{{ post.file }}</a>
+      <a href="{{ post.file }}">{{ post.file }}</a>
     </div>
     {% endfor %}
+    <div class="pagination">
+      {%- if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="previous">Anterior</a>
+      {% endif %}
+      <span class="page_number">Página {{ paginator.page }} de {{ paginator.total_pages }}</span>
+      {%- if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="next">Siguiente</a>
+      {% endif %}
+    </div>
   </div>
-  <script id="data" type="application/json">{"load_more": {%- if paginator.total_posts > paginator.per_page %}true{% else %}false{% endif %}, "programas": {{ paginator.posts | posts_collection | jsonify }} }</script>
-
-<!--
-<div class="pagination">
-  {%- if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path }}" class="previous">Anterior</a>
-  {% endif %}
-  <span class="page_number">Página {{ paginator.page }} de {{ paginator.total_pages }}</span>
-  {%- if paginator.next_page %}
-  <a href="{{ paginator.next_page_path }}" class="next">Siguiente</a>
-  {% endif %}
-</div>
--->
+  <script id="data" type="application/json">{"next_page": {%- if paginator.total_posts > paginator.per_page %}"/feed/podcast-{{ paginator.next_page }}.xml"{% else %}false{% endif %}, "programas":{{ paginator.posts | posts_collection | jsonify }} }</script>
 </div>

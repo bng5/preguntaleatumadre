@@ -1,6 +1,27 @@
 import React from 'react';
 import Episode from './Episode';
-import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
+import { IDDLE, PLAYING, PAUSED, SEEKING } from '../constants';
+
+const xmlns = {
+  ATOM: 'http://www.w3.org/2005/Atom',
+  ITUNES: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
+  PATUM: 'http://www.preguntaleatumadre.com/Feed',
+};
+
+const meses = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'setiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
 
 class EpisodesList extends React.Component {
   constructor(props) {
@@ -10,58 +31,79 @@ class EpisodesList extends React.Component {
       playerState: 0,
       playing: null,
       progress: 0,
-      loadMore: true//props.loadMore,
+      // loadMore: true,//props.loadMore,
+      nextPage: props.nextPage,
+      replaceList: props.replaceList,
+      loading: false,
     };
     this.playing = null;
     this.load = this.load.bind(this);
   }
 
   load() {
-    fetch('/podcast.xml')
-    .then(response => response.text())
-    .then(text => (new window.DOMParser()).parseFromString(text, "text/xml"))
-    .then(data => {
-      window.rdata = data;
-      let episodes = this.state.episodes;
+    this.setState({ loading: true });
+    var req = new XMLHttpRequest();
+    req.addEventListener('load', evt => {
+      const data = evt.target.responseXML;
+      if (!data) {
+        this.setState({ loading: false });
+        return;
+      }
+      if (this.state.replaceList) {
+        const historyState = this.state.episodes[0];
+        window.history.replaceState(historyState, document.title, document.location.pathname);
+        const title = 'Preguntale a tu Madre';
+        window.history.pushState({}, title, '/');
+        document.title = title;
+      }
+      let newState = {
+        loading: false,
+        episodes: this.state.replaceList ? [] : this.state.episodes,
+        nextPage: null,
+        replaceList: false,
+      };
       const items = data.getElementsByTagName('item');
       for (let i = 0; i < items.length; i++) {
         let rssItem = items.item(i);
-        let enclosure = rssItem.getElementsByTagName('enclosure')[0];
-        window.idata = rssItem;
-        episodes.push({
-          title: rssItem.getElementsByTagName('title')[0].firstChild.nodeValue,
-          date: "2018-01-01 00:00:00 -0300",
-          duration: rssItem.getElementsByTagNameNS('http://www.itunes.com/dtds/podcast-1.0.dtd', 'duration'),
-          episode: rssItem.getElementsByTagNameNS('http://www.itunes.com/dtds/podcast-1.0.dtd', 'episode'),
-          fecha: "0 de julio, 2018",
-          file: "file",
-          length: enclosure.getAttribute('length'),
-          url: enclosure.getAttribute('url'),
+        let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
+        let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
+        newState.episodes.push({
+          title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
+          duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
+          episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
+          fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
+          file: enclosure.getAttribute('url'),
+          length: parseInt(enclosure.getAttribute('length')),
+          url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
         });
-  // <item>
-  //  <pubDate>Wed, 18 Jul 2018 10:40:00 -0300</pubDate>
-  //  <category>Podcast</category>
-  //  <guid isPermaLink="true">http://0.0.0.0:4000/episodios/patum-2018-07-11.mp3</guid>
-  //  <enclosure url="http://0.0.0.0:4000/episodios/patum-2018-07-11.mp3" length="51649877" type="audio/mpeg" />
-  //  <itunes:duration>53:48</itunes:duration>
-  //  <itunes:explicit>clean</itunes:explicit>
-  // </item>
       }
-      this.setState({ episodes });
-    })
-    .catch(err => console.error(err));
+      const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
+      for (let i = 0; i < links.length; i++) {
+        let link = links.item(i);
+        if (link.getAttribute('rel') === 'next') {
+          newState.nextPage = link.getAttribute('href');
+          break;
+        }
+      }
+      this.setState(newState);
+    });
+    req.addEventListener('error', evt => {
+      this.setState({ loading: false });
+    });
+    req.open('GET', this.state.nextPage);
+    req.send();
   }
 
   togglePlay(key) {
     const episode = this.state.episodes[key];
     const ep = {
-      filename: `/episodios/${episode.file}`,// FIXME https://www.preguntaleatumadre.com
+      filename: episode.file,
       title: episode.title,
       duration: episode.duration,
     };
     this.props.player.togglePlay(ep, (err, data) => {
       if (err) {
-        console.log('Error!');
+        console.error('Error!');
       }
       if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
         this.setState({
@@ -88,7 +130,15 @@ class EpisodesList extends React.Component {
     window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
   }
 
+  setEpisodes(episodes) {
+    this.setState({ episodes });
+  }
+
   render() {
+    let loadMoreClassName = ['load-more'];
+    if (this.state.loading) {
+      loadMoreClassName.push('loading');
+    }
     return (
       <div>
         {this.state.episodes.map((episode, i) => (
@@ -108,8 +158,12 @@ class EpisodesList extends React.Component {
           ></Episode>
         ))}
         {
-          this.state.loadMore
-            ? <div className="pagination" onClick={ this.load }><button>pagination</button></div>
+          this.state.nextPage
+            ? (
+              <div className="pagination">
+                <button className={ loadMoreClassName.join(' ') } disabled={ this.state.loading } onClick={ this.load }>{ this.state.replaceList ? 'Volver al listado' : 'Programas anteriores' }</button>
+              </div>
+            )
             : null
         }
       </div>);
