@@ -30,6 +30,7 @@ class EpisodesList extends React.Component {
       episodes: props.episodes,
       playerState: 0,
       playing: null,
+      playingEpisode: null,
       progress: 0,
       // loadMore: true,//props.loadMore,
       nextPage: props.nextPage,
@@ -50,7 +51,11 @@ class EpisodesList extends React.Component {
         return;
       }
       if (this.state.replaceList) {
-        const historyState = this.state.episodes[0];
+        const historyState = {
+          episodes: this.state.episodes[0],
+          nextPage: this.state.nextPage,
+          playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
+        };
         window.history.replaceState(historyState, document.title, document.location.pathname);
         const title = 'Preguntale a tu Madre';
         window.history.pushState({}, title, '/');
@@ -85,7 +90,11 @@ class EpisodesList extends React.Component {
           break;
         }
       }
-      this.setState(newState);
+      this.setState(newState, () => {
+        if (this.state.playingEpisode !== null) {
+          this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
+        }
+      });
     });
     req.addEventListener('error', evt => {
       this.setState({ loading: false });
@@ -94,8 +103,14 @@ class EpisodesList extends React.Component {
     req.send();
   }
 
+  findIndex () {
+    this.setState({
+      playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode)
+    });
+  }
+
   togglePlay(key) {
-    const episode = this.state.episodes[key];
+    const episode = this.state.episodes.find(element => element.episode === key);
     const ep = {
       filename: episode.file,
       title: episode.title,
@@ -107,13 +122,14 @@ class EpisodesList extends React.Component {
       }
       if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
         this.setState({
-          playing: key,
+          playing: this.state.episodes.findIndex(element => element.episode === key),//key,
+          playingEpisode: key,
           progress: data.progress,
         });
       } else if (data.type === 'stateChange') {
-        console.log(`stateChange ${data.state}`);
         this.setState({
-          playing: key,
+          playing: this.state.episodes.findIndex(element => element.episode === key),//key,
+          playingEpisode: key,
           playerState: data.state,
         });
       }
@@ -143,7 +159,7 @@ class EpisodesList extends React.Component {
       <div>
         {this.state.episodes.map((episode, i) => (
           <Episode
-            key={ i }
+            key={ episode.episode }
             playerState={ this.state.playing === i ? this.state.playerState : 0 }
             progress={ this.state.playing === i ? this.state.progress : 0 }
             title={ episode.title }
@@ -153,7 +169,7 @@ class EpisodesList extends React.Component {
             episode={ episode.episode }
             fecha={ episode.fecha }
             length={ episode.length }
-            playHandler={this.togglePlay.bind(this, i)}
+            playHandler={this.togglePlay.bind(this, episode.episode)}
             sharer={this.share.bind(this, episode.url, episode.title)}
           ></Episode>
         ))}
@@ -161,7 +177,7 @@ class EpisodesList extends React.Component {
           this.state.nextPage
             ? (
               <div className="pagination">
-                <button className={ loadMoreClassName.join(' ') } disabled={ this.state.loading } onClick={ this.load }>{ this.state.replaceList ? 'Volver al listado' : 'Programas anteriores' }</button>
+                <button className={ loadMoreClassName.join(' ') } disabled={ this.state.loading } onClick={ this.load }>{ this.state.replaceList ? 'Listado de programas' : 'Programas anteriores' }</button>
               </div>
             )
             : null
