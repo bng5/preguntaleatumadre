@@ -150,8 +150,8 @@ class EpisodesList extends React.Component {
   }
 
   share(path, title, site) {
-    const { protocol, host } = document.location;
-    const url = encodeURIComponent(`${protocol}//${host}${path}`);
+    const { host } = document.location;
+    const url = encodeURIComponent(`https://${host}${path}`);
     const sites = {
       twitter: `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`,
       facebook: `http://www.facebook.com/sharer.php?u=${url}`,

@@ -5,7 +5,14 @@
   <meta name="theme-color" content="#aaddd6" />
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Podcast" href="/podcast.xml" />
-  <meta name="twitter:card" content="{%- if page.file %}player{%- else %}summary{%- endif %}" />
+  {%- if page.file %}
+  <meta name="twitter:card" content="player" />
+  <meta property="twitter:player" content="{{ site.url }}/player.html#{{ page.file | append: '|' | append: page.title | append: '|' | append: page.duration | uri_escape }}" />
+  <meta property="twitter:player:width" content="682" />
+  <meta property="twitter:player:height" content="68" />
+  {%- else %}
+  <meta name="twitter:card" content="summary" />
+  {%- endif %}
   <meta name="twitter:site" content="@preguntaleatum" />
   <meta name="twitter:creator" content="@bng5" />
   <meta name="twitter:title" content="{%- if page.title %}{{ page.title }}{%- else %}{{ site.title }}{%- endif %}" />
