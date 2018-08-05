@@ -25,6 +25,7 @@ class Player extends React.Component {
       volume: 0,
     };
     this.timeUpdate = this.timeUpdate.bind(this);
+    this.ended = this.ended.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
     this.callback = null;
     this.stateChange = this.stateChange.bind(this);
@@ -76,7 +77,10 @@ class Player extends React.Component {
   }
 
   ended() {
-    console.log('ended');
+    this.callback(null, {
+      type: 'end',
+      progress: 0,
+    });
   }
 
   volumeControl(event) {

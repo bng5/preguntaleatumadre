@@ -39,6 +39,7 @@ class EpisodesList extends React.Component {
     };
     this.playing = null;
     this.load = this.load.bind(this);
+    this.playNext = this.playNext.bind(this);
   }
 
   load() {
@@ -109,6 +110,16 @@ class EpisodesList extends React.Component {
     });
   }
 
+  playNext () {
+    let key = this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode);
+    if (key >= 0) {
+      key++;
+      if (this.state.episodes[key]) {
+        this.togglePlay(this.state.episodes[key].episode);
+      }
+    }
+  }
+
   togglePlay(key) {
     const episode = this.state.episodes.find(element => element.episode === key);
     const ep = {
@@ -122,16 +133,18 @@ class EpisodesList extends React.Component {
       }
       if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
         this.setState({
-          playing: this.state.episodes.findIndex(element => element.episode === key),//key,
+          playing: this.state.episodes.findIndex(element => element.episode === key),
           playingEpisode: key,
           progress: data.progress,
         });
       } else if (data.type === 'stateChange') {
         this.setState({
-          playing: this.state.episodes.findIndex(element => element.episode === key),//key,
+          playing: this.state.episodes.findIndex(element => element.episode === key),
           playingEpisode: key,
           playerState: data.state,
         });
+      } else if (data.type === 'end') {
+        this.playNext();
       }
     });
   }
