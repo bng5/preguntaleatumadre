@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  padding: 0;
+  padding: 0 0 60px;
   margin: 0;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -12,7 +14,7 @@ body {
 }
 
 a {
-  color: #1e6bb8;
+  //color: #1e6bb8;
   text-decoration: none;
 
   &:hover {
@@ -191,6 +193,11 @@ a {
 .main-content dl dt { padding: 0; margin-top: 1rem; font-size: 1rem; font-weight: bold; }
 .main-content dl dd { padding: 0; margin-bottom: 1rem; }
 .main-content hr { height: 2px; padding: 0; margin: 1rem 0; background-color: #eff0f1; border: 0; }
+
+.twitter-timeline-wrapper {
+  max-height: 1024px;
+  overflow: auto;
+}
 
 .site-footer { padding-top: 2rem; margin-top: 2rem; border-top: solid 1px #eff0f1; }
 @media screen and (min-width: 64em) { .site-footer { font-size: 1rem; } }

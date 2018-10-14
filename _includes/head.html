@@ -1,18 +1,21 @@
 <head>
   <meta charset="UTF-8">
-  <title>{%- if page.title %}{{ page.title }} - {%- endif %}{{ site.title }}</title>
+  <title>{%- if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#157878" />
+  <meta name="theme-color" content="#aaddd6" />
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css" />
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
-  <link rel="alternate" type="application/rss+xml" title="Preguntale a tu Madre - Podcast" href="/podcast.xml" />
-  <meta name="twitter:card" content="summary" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Podcast" href="/podcast.xml" />
+  <meta name="twitter:card" content="{%- if page.file %}player{%- else %}summary{%- endif %}" />
   <meta name="twitter:site" content="@preguntaleatum" />
-  <meta name="twitter:title" content="{{ site.title }}" />
+  <meta name="twitter:creator" content="@bng5" />
+  <meta name="twitter:title" content="{%- if page.title %}{{ page.title }}{%- else %}{{ site.title }}{%- endif %}" />
   <meta name="twitter:description" content="{{ site.tagline }}" />
   <meta name="twitter:image" content="https://www.preguntaleatumadre.com/assets/images/patum.png" />
   {%- if page.title %}
   <meta property="og:title" content="{{ page.title }}" />
+  {%- endif %}
+  {%- if page.file %}
+  <meta property="og:audio" content="{{ page.file | prepend: "episodios/" | absolute_url }}" />
   {%- endif %}
   <meta property="og:url" content="{{ site.url }}" />
   <meta property="og:site_name" content="{{ site.title }}" />

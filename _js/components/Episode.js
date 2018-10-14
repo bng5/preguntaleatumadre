@@ -27,8 +27,10 @@ const Episode = (props) => {
     </div>
     <h2 className="programa__titulo">{ props.title }</h2>
     <p className="programa__info">
-      Programa { props.episode }<br />
       Emitido: <time>{ props.fecha }</time>
+    </p>
+    <p className="programa__share">
+      Compartir en <a className="twitter" title="Twitter" onClick={() => props.sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => props.sharer('facebook')}></a>
     </p>
     { props.children }
   </div>
