@@ -1,6 +1,6 @@
 ---
 layout:   post
-title:    "3 de octubre de 2018"
+title:    "Medias y siliconas"
 fecha:    3 de octubre, 2018
 date:     "2018-10-03T23:07:00-0300"
 pubDate:  "2018-10-07T14:32:00-0300"

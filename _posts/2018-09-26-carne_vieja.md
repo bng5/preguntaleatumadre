@@ -1,6 +1,6 @@
 ---
 layout:   post
-title:    "26 de setiembre de 2018"
+title:    "Carne vieja"
 fecha:    26 de setiembre, 2018
 date:     "2018-09-26T23:07:00-0300"
 pubDate:  "2018-10-07T14:31:00-0300"
