@@ -41,6 +41,7 @@ timezone: America/Montevideo
 
 exclude:
   - Makefile
+  - CNAME
   - node_modules/
   - webpack.config.js
   - package.json

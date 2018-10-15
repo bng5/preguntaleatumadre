@@ -35,8 +35,13 @@ a {
   transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 }
 
-.btn:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
-.btn + .btn { margin-left: 1rem; }
+.btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+// .btn + .btn { margin-left: 1rem; }
 @media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; font-size: 0.9rem; } }
 @media screen and (max-width: 42em) {
@@ -55,7 +60,15 @@ a {
     }
   }
 
+  &__ctas {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2em;
+  }
+
   &__cta {
+    padding: 0.75rem 3rem;
+
     &::before {
       @include fa-icon();
       @extend .fas;
@@ -79,6 +92,12 @@ a {
       color: inherit;
     }
   }
+}
+
+.header-title__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (min-width: 64em) {

@@ -19,7 +19,7 @@ class Player extends React.Component {
       currentTime: '0:00',
       endTime: '0:00',
       playerState: 0,
-      playerSrc: '',
+      playerSrc: null,
       title: '',
       progress: 0,
       volume: 0,
@@ -43,10 +43,14 @@ class Player extends React.Component {
       this.playerEl.paused ? this.playerEl.play() : this.playerEl.pause();
       return;
     }
+    console.log('togglePlay')
+    console.log(episode, callback)
+    console.log(episode.filename, this.state.playerSrc)
     this.setState({
       playerState: 1,
       playerSrc: episode.filename,
       title: episode.title,
+      currentTime: episode.duration ? '0:00' : '-:--',
       endTime: episode.duration,
       progress: 0,
     }, () => {
@@ -62,6 +66,9 @@ class Player extends React.Component {
   }
 
   timeUpdate() {
+    if (!this.state.endTime) {
+      return;
+    }
     const progress = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
     this.setState({
       currentTime: toTime(this.playerEl.currentTime),
@@ -115,7 +122,7 @@ class Player extends React.Component {
         toggleClass.push('loading');
       }
     }
-// playerVolumeIndicator.classList.add(volumeIcon(vol));
+    // playerVolumeIndicator.classList.add(volumeIcon(vol));
     return (
       <div id="player-controls" className={playerClass}>
         <div className="player-controls__buttons">
@@ -123,22 +130,24 @@ class Player extends React.Component {
         </div>
         <div>
           <em id="player-track-title" className="player-controls__title">{ this.state.title }</em>
-          <span id="player-currentTime" className="player-time">{ this.state.currentTime }</span>
-          <div className="range-slider range-slider--position">
-            <div className="bar-holder">
-              <div id="player-position-bar" className="bar" style={{ width: this.state.progress + '%' }}></div>
+            <span id="player-currentTime" className="player-time">{ this.state.currentTime }</span>
+            <div className="range-slider range-slider--position">
+              <div className="bar-holder">
+                <div id="player-position-bar" className="bar" style={{ width: (this.state.endTime ? this.state.progress + '%' : 0) }}></div>
+              </div>
+              {this.state.endTime &&
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={this.state.progress}
+                  className="slider"
+                  onInput={this.positionControl.bind(this)}
+                  id="player-position"
+                />
+              }
             </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={this.state.progress}
-              className="slider"
-              onInput={this.positionControl.bind(this)}
-              id="player-position"
-            />
-          </div>
-          <span id="player-endTime" className="player-time">{ this.state.endTime }</span>
+            <span id="player-endTime" className="player-time">{ this.state.endTime ? this.state.endTime : '-:--' }</span>
           <span id="player-volume-indicator" className={"player-volume-indicator " + volumeIcon(this.state.volume)}></span>
           <div className="range-slider range-slider--volume">
             <div className="bar-holder">
