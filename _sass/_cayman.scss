@@ -35,7 +35,12 @@ a {
   transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 }
 
-.btn:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+.btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
 .btn + .btn { margin-left: 1rem; }
 @media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; font-size: 0.9rem; } }
@@ -98,7 +103,7 @@ a {
     a {
       color: $main-color;
       padding: 0.5em 1em;
-      border-radius: 10px;
+      border-radius: 4px;
       text-decoration: none;
       
       &::before {
@@ -113,7 +118,7 @@ a {
       &:hover {
         background-color: #ff5c5c;
         box-shadow: 6px 8px 0px rgba(168, 168, 168, 0.5);
-        color: #606c71;
+        color: rgba(255, 255, 255, 0.7);//#606c71;
       }
     }
 
