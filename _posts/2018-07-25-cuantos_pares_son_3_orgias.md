@@ -7,5 +7,6 @@ pubDate:  "2018-07-28T00:35:00-0300"
 file:     /episodios/patum-2018-07-25.mp3
 length:   57847822
 episode:  11
+season: 1
 duration: "1:00:15"
 ---

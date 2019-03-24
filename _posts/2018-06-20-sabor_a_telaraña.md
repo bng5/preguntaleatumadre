@@ -7,5 +7,6 @@ pubDate:  "2018-06-23T17:05:00-0300"
 file:     /episodios/patum-2018-06-20.mp3
 length:   52815155
 episode:  7
+season: 1
 duration: "55:00"
 ---

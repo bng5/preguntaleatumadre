@@ -7,5 +7,6 @@ pubDate:  "2018-09-03T22:20:00-0300"
 file:     /episodios/patum-2018-08-29.mp3
 length:   49103678
 episode:  15
+season: 1
 duration: "51:08"
 ---

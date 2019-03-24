@@ -31,6 +31,7 @@
    <guid isPermaLink="true">{{ site.url }}/episodios/{{ post.file }}</guid>
    <enclosure url="{{ site.url }}{{ post.file }}" length="{{ post.length }}" type="audio/mpeg" />
    <itunes:episode>{{ post.episode }}</itunes:episode>
+   <itunes:season>{{ post.season }}</itunes:season>
    <itunes:episodeType>full</itunes:episodeType>
    <itunes:duration>{{ post.duration }}</itunes:duration>
    <itunes:explicit>clean</itunes:explicit>

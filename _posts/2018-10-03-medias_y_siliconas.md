@@ -7,5 +7,6 @@ pubDate:  "2018-10-07T14:32:00-0300"
 file:     /episodios/patum-2018-10-03.mp3
 length:   12502138
 episode:  20
+season: 1
 duration: "52:05"
 ---

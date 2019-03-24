@@ -7,5 +7,6 @@ pubDate:  2018-05-25T23:55:00-0300
 file:     /episodios/patum-2018-05-23.mp3
 length:   56934915
 episode:  3
+season: 1
 duration: "59:18"
 ---

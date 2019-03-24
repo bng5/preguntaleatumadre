@@ -7,5 +7,6 @@ pubDate:  "2018-10-07T14:31:00-0300"
 file:     /episodios/patum-2018-09-26.mp3
 length:   13757275
 episode:  19
+season: 1
 duration: "57:19"
 ---
