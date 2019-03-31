@@ -9,4 +9,6 @@ length:   55342997
 episode:  12
 season: 1
 duration: "57:38"
+categories:
+  - season1
 ---

@@ -9,4 +9,6 @@ length:   53353825
 episode:  2
 season: 1
 duration: "55:34"
+categories:
+  - season1
 ---

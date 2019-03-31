@@ -9,4 +9,6 @@ length:   48808572
 episode:  16
 season: 1
 duration: "50:50"
+categories:
+  - season1
 ---

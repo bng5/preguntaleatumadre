@@ -9,4 +9,6 @@ length:   57847822
 episode:  11
 season: 1
 duration: "1:00:15"
+categories:
+  - season1
 ---

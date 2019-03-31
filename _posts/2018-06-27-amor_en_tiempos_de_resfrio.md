@@ -9,4 +9,6 @@ length:   54714381
 episode:  8
 season: 1
 duration: "56:59"
+categories:
+  - season1
 ---

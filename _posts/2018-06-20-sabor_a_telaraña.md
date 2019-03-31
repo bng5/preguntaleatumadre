@@ -9,4 +9,6 @@ length:   52815155
 episode:  7
 season: 1
 duration: "55:00"
+categories:
+  - season1
 ---

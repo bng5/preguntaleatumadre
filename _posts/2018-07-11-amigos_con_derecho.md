@@ -9,4 +9,6 @@ length:   51649877
 episode:  10
 season: 1
 duration: "53:48"
+categories:
+  - season1
 ---

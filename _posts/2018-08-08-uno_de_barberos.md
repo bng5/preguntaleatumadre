@@ -9,4 +9,6 @@ length:   52398428
 episode:  13
 season: 1
 duration: "54:34"
+categories:
+  - season1
 ---

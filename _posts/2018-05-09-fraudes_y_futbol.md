@@ -9,4 +9,6 @@ length:   50368383
 episode:  1
 season: 1
 duration: "52:27"
+categories:
+  - season1
 ---

@@ -9,4 +9,6 @@ length:   49103678
 episode:  15
 season: 1
 duration: "51:08"
+categories:
+  - season1
 ---
