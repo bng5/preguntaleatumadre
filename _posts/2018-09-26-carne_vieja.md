@@ -9,4 +9,6 @@ length:   13757275
 episode:  19
 season: 1
 duration: "57:19"
+categories:
+  - season1
 ---

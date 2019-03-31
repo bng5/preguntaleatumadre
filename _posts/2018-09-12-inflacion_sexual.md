@@ -9,4 +9,6 @@ length:   46606786
 episode:  17
 season: 1
 duration: "48:32"
+categories:
+  - season1
 ---

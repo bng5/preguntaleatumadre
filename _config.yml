@@ -35,9 +35,11 @@ plugins:
 
 timezone: America/Montevideo
 
-# collections:
-#   programas:
-#     output: true
+collections:
+  - temporada1
+  - temporada2
+  # programas:
+  #   output: true
 
 exclude:
   - Makefile

@@ -9,4 +9,6 @@ length:   56803676
 episode:  4
 season: 1
 duration: "59:10"
+categories:
+  - season1
 ---

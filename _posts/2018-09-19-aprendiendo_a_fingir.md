@@ -9,4 +9,6 @@ length:   12537144
 episode:  18
 season: 1
 duration: "52:14"
+categories:
+  - season1
 ---

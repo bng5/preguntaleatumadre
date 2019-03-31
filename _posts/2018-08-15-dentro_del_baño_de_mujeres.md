@@ -9,4 +9,6 @@ length:   48385226
 episode:  14
 season: 1
 duration: "50:24"
+categories:
+  - season1
 ---

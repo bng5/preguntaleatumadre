@@ -9,4 +9,6 @@ length:   53289537
 episode:  9
 season: 1
 duration: "55:30"
+categories:
+  - season1
 ---

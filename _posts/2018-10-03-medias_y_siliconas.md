@@ -9,4 +9,6 @@ length:   12502138
 episode:  20
 season: 1
 duration: "52:05"
+categories:
+  - season1
 ---

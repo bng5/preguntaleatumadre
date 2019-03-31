@@ -9,4 +9,6 @@ length:   56934915
 episode:  3
 season: 1
 duration: "59:18"
+categories:
+  - season1
 ---

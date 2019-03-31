@@ -9,4 +9,6 @@ length:   52642950
 episode:  5
 season: 1
 duration: "54:50"
+categories:
+  - season1
 ---

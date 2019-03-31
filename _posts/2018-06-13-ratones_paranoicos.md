@@ -9,4 +9,6 @@ length:   50997442
 episode:  6
 season: 1
 duration: "53:07"
+categories:
+  - season1
 ---
