@@ -1,5 +1,4 @@
 var Player = (function () {
-  return;
   var toTime = function (seconds) {
     var minutes = '0' + Math.floor(seconds / 60);
     var seconds = '0' + Math.floor(seconds - minutes * 60);
@@ -9,7 +8,7 @@ var Player = (function () {
   var volumeIcon = function (value) {
     return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
   };
-  
+
 
   var player = document.getElementById('player');
   var playerControls = document.getElementById('player-controls');
