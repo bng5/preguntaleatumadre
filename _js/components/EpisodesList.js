@@ -38,71 +38,71 @@ class EpisodesList extends React.Component {
       loading: false,
     };
     this.playing = null;
-    this.load = this.load.bind(this);
+    // this.load = this.load.bind(this);
     this.playNext = this.playNext.bind(this);
   }
 
-  load() {
-    this.setState({ loading: true });
-    var req = new XMLHttpRequest();
-    req.addEventListener('load', evt => {
-      const data = evt.target.responseXML;
-      if (!data) {
-        this.setState({ loading: false });
-        return;
-      }
-      if (this.state.replaceList) {
-        const historyState = {
-          episodes: this.state.episodes[0],
-          nextPage: this.state.nextPage,
-          playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
-        };
-        window.history.replaceState(historyState, document.title, document.location.pathname);
-        const title = 'Preguntale a tu Madre';
-        window.history.pushState({}, title, '/');
-        document.title = title;
-      }
-      let newState = {
-        loading: false,
-        episodes: this.state.replaceList ? [] : this.state.episodes,
-        nextPage: null,
-        replaceList: false,
-      };
-      const items = data.getElementsByTagName('item');
-      for (let i = 0; i < items.length; i++) {
-        let rssItem = items.item(i);
-        let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
-        let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
-        newState.episodes.push({
-          title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
-          duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
-          episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
-          fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
-          file: enclosure.getAttribute('url'),
-          length: parseInt(enclosure.getAttribute('length')),
-          url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
-        });
-      }
-      const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
-      for (let i = 0; i < links.length; i++) {
-        let link = links.item(i);
-        if (link.getAttribute('rel') === 'next') {
-          newState.nextPage = link.getAttribute('href');
-          break;
-        }
-      }
-      this.setState(newState, () => {
-        if (this.state.playingEpisode !== null) {
-          this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
-        }
-      });
-    });
-    req.addEventListener('error', evt => {
-      this.setState({ loading: false });
-    });
-    req.open('GET', this.state.nextPage);
-    req.send();
-  }
+  // load() {
+  //   this.setState({ loading: true });
+  //   var req = new XMLHttpRequest();
+  //   req.addEventListener('load', evt => {
+  //     const data = evt.target.responseXML;
+  //     if (!data) {
+  //       this.setState({ loading: false });
+  //       return;
+  //     }
+  //     if (this.state.replaceList) {
+  //       const historyState = {
+  //         episodes: this.state.episodes[0],
+  //         nextPage: this.state.nextPage,
+  //         playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
+  //       };
+  //       window.history.replaceState(historyState, document.title, document.location.pathname);
+  //       const title = 'Preguntale a tu Madre';
+  //       window.history.pushState({}, title, '/');
+  //       document.title = title;
+  //     }
+  //     let newState = {
+  //       loading: false,
+  //       episodes: this.state.replaceList ? [] : this.state.episodes,
+  //       nextPage: null,
+  //       replaceList: false,
+  //     };
+  //     const items = data.getElementsByTagName('item');
+  //     for (let i = 0; i < items.length; i++) {
+  //       let rssItem = items.item(i);
+  //       let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
+  //       let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
+  //       newState.episodes.push({
+  //         title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
+  //         duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
+  //         episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
+  //         fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
+  //         file: enclosure.getAttribute('url'),
+  //         length: parseInt(enclosure.getAttribute('length')),
+  //         url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
+  //       });
+  //     }
+  //     const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
+  //     for (let i = 0; i < links.length; i++) {
+  //       let link = links.item(i);
+  //       if (link.getAttribute('rel') === 'next') {
+  //         newState.nextPage = link.getAttribute('href');
+  //         break;
+  //       }
+  //     }
+  //     this.setState(newState, () => {
+  //       if (this.state.playingEpisode !== null) {
+  //         this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
+  //       }
+  //     });
+  //   });
+  //   req.addEventListener('error', evt => {
+  //     this.setState({ loading: false });
+  //   });
+  //   req.open('GET', this.state.nextPage);
+  //   req.send();
+  // }
 
   findIndex () {
     this.setState({
