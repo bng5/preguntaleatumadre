@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel watch -d assets/ -o bundle-20190331.js _js/entry.js",
+    "build": "parcel build -d assets/ -o bundle-20190331.js _js/entry.js",
     "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts assets/"
   },
   "repository": {

@@ -17,14 +17,19 @@ class DropDown extends Component {
     }
     this.icon = props.icon || null;
     this.toggleList = this.toggleList.bind(this);
+    this.openList = this.openList.bind(this);
+  }
+
+  openList () {
+    if (!this.state.listOpen) {
+      this.toggleList();
+    }
   }
 
   toggleList () {
     const listOpen = !this.state.listOpen;
     if (listOpen) {
       document.addEventListener('click', clickListener(this.toggleList));
-        
-        
     }
     this.setState({
       listOpen
@@ -33,23 +38,21 @@ class DropDown extends Component {
 
   render () {
     const { options, changeHandler, value } = this.props;
-    const{ listOpen, title } = this.state
-console.log(options)
+    const{ listOpen } = this.state
     return (
-      <div className="dropdown-wrapper">
-        <div className="dropdown-header" onClick={this.toggleList}>
-          {/*<span className="dropdown-header__title">{title}</span>*/}
+      <div className={'dropdown-wrapper' + (listOpen ? ' dropdown-wrapper--active' : '')}>
+        <div className="dropdown-header" onClick={this.openList}>
           { this.props.children }
         </div>
         { listOpen && (
           <ul className="dropdown-list">
-            {options.map(({ value, text }, index) => (
+            {options.map((item, index) => (
               <li
                 key={index}
                 className="dropdown-list__item"
                 onClick={() => changeHandler(index)}
               >
-                {text}
+                {item.text}
               </li>
             ))
             .filter((option, index) => index !== value)}

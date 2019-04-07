@@ -95,7 +95,7 @@ a {
 .social {
   padding: 0;
   text-align: left;
-  
+
   .social-item {
     display: inline-block;
     // padding-right: 1em;
@@ -105,7 +105,7 @@ a {
       padding: 0.5em 1em;
       border-radius: 4px;
       text-decoration: none;
-      
+
       &::before {
         @include fa-icon();
         @extend .fab;
@@ -142,7 +142,7 @@ a {
 @media screen and (max-width: 42em) { .project-name { font-size: 1.75rem; } }
 
 .project-tagline {
-  color: $main-color;
+  color: $secondary-color;
   font-weight: normal;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);

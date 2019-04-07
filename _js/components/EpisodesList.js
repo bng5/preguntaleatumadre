@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import Dropdown from './Dropdown';
 import Episode from './Episode';
 import { IDDLE, PLAYING, PAUSED, SEEKING } from '../constants';
 
@@ -23,11 +25,18 @@ const meses = [
   'diciembre',
 ];
 
-class EpisodesList extends React.Component {
+const seasons = [
+  { value: 2, text: 'Temporada 2' },
+  { value: 1, text: 'Temporada 1' },
+];
+
+class EpisodesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       episodes: props.episodes,
+      season: props.season,
+      selectedSeason: 0,
       playerState: 0,
       playing: null,
       playingEpisode: null,
@@ -40,69 +49,70 @@ class EpisodesList extends React.Component {
     this.playing = null;
     // this.load = this.load.bind(this);
     this.playNext = this.playNext.bind(this);
+    this.changeSeason = this.changeSeason.bind(this);
   }
 
-  // load() {
-  //   this.setState({ loading: true });
-  //   var req = new XMLHttpRequest();
-  //   req.addEventListener('load', evt => {
-  //     const data = evt.target.responseXML;
-  //     if (!data) {
-  //       this.setState({ loading: false });
-  //       return;
-  //     }
-  //     if (this.state.replaceList) {
-  //       const historyState = {
-  //         episodes: this.state.episodes[0],
-  //         nextPage: this.state.nextPage,
-  //         playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
-  //       };
-  //       window.history.replaceState(historyState, document.title, document.location.pathname);
-  //       const title = 'Preguntale a tu Madre';
-  //       window.history.pushState({}, title, '/');
-  //       document.title = title;
-  //     }
-  //     let newState = {
-  //       loading: false,
-  //       episodes: this.state.replaceList ? [] : this.state.episodes,
-  //       nextPage: null,
-  //       replaceList: false,
-  //     };
-  //     const items = data.getElementsByTagName('item');
-  //     for (let i = 0; i < items.length; i++) {
-  //       let rssItem = items.item(i);
-  //       let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
-  //       let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
-  //       newState.episodes.push({
-  //         title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
-  //         duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
-  //         episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
-  //         fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
-  //         file: enclosure.getAttribute('url'),
-  //         length: parseInt(enclosure.getAttribute('length')),
-  //         url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
-  //       });
-  //     }
-  //     const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
-  //     for (let i = 0; i < links.length; i++) {
-  //       let link = links.item(i);
-  //       if (link.getAttribute('rel') === 'next') {
-  //         newState.nextPage = link.getAttribute('href');
-  //         break;
-  //       }
-  //     }
-  //     this.setState(newState, () => {
-  //       if (this.state.playingEpisode !== null) {
-  //         this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
-  //       }
-  //     });
-  //   });
-  //   req.addEventListener('error', evt => {
-  //     this.setState({ loading: false });
-  //   });
-  //   req.open('GET', this.state.nextPage);
-  //   req.send();
-  // }
+  load (path, replaceList) {
+    this.setState({ loading: true });
+    const req = new XMLHttpRequest();
+    req.addEventListener('load', evt => {
+      const data = evt.target.responseXML;
+      if (!data) {
+        this.setState({ loading: false });
+        return;
+      }
+    //   if (this.state.replaceList) {
+    //     const historyState = {
+    //       episodes: this.state.episodes[0],
+    //       nextPage: this.state.nextPage,
+    //       playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
+    //     };
+    //     window.history.replaceState(historyState, document.title, document.location.pathname);
+    //     const title = 'Preguntale a tu Madre';
+    //     window.history.pushState({}, title, '/');
+    //     document.title = title;
+    //   }
+      let newState = {
+        loading: false,
+        episodes: replaceList ? [] : this.state.episodes,
+        nextPage: null,
+        replaceList: false,
+      };
+      const items = data.getElementsByTagName('item');
+      for (let i = 0; i < items.length; i++) {
+        let rssItem = items.item(i);
+        let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
+        let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
+        newState.episodes.push({
+          title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
+          duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
+          episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
+          fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
+          file: enclosure.getAttribute('url'),
+          length: parseInt(enclosure.getAttribute('length')),
+          url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
+        });
+      }
+    //   const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
+    //   for (let i = 0; i < links.length; i++) {
+    //     let link = links.item(i);
+    //     if (link.getAttribute('rel') === 'next') {
+    //       newState.nextPage = link.getAttribute('href');
+    //       break;
+    //     }
+    //   }
+      this.setState(newState, () => {
+        if (this.state.playingEpisode !== null) {
+          this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
+        }
+      });
+    });
+    req.addEventListener('error', evt => {
+      this.setState({ loading: false });
+    });
+    req.open('GET', path);//this.state.nextPage);
+    req.send();
+  }
 
   findIndex () {
     this.setState({
@@ -127,6 +137,7 @@ class EpisodesList extends React.Component {
       title: episode.title,
       duration: episode.duration,
     };
+    console.log(ep)
     this.props.player.togglePlay(ep, (err, data) => {
       if (err) {
         console.error('Error!');
@@ -149,7 +160,7 @@ class EpisodesList extends React.Component {
     });
   }
 
-  share(path, title, site) {
+  share (path, title, site) {
     const { protocol, host } = document.location;
     const url = encodeURIComponent(`${protocol}//${host}${path}`);
     const sites = {
@@ -159,8 +170,17 @@ class EpisodesList extends React.Component {
     window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
   }
 
-  setEpisodes(episodes) {
-    this.setState({ episodes });
+  // setEpisodes (episodes) {
+  //   this.setState({ episodes });
+  // }
+
+  changeSeason (index) {
+    if (index !== this.state.selectedSeason) {
+      this.setState({
+        selectedSeason: index,
+        season: seasons[index],
+      }, () => this.load(`/feed/temporada${seasons[this.state.selectedSeason].value}/podcast-1.xml`, true));
+    }
   }
 
   render() {
@@ -169,7 +189,16 @@ class EpisodesList extends React.Component {
       loadMoreClassName.push('loading');
     }
     return (
-      <div>
+      <div id="home">
+        <Dropdown
+          changeHandler={this.changeSeason}
+          options={seasons}
+          //value={this.state.season.value}
+          value={this.state.selectedSeason}
+        >
+          <h1>{seasons[this.state.selectedSeason].text}</h1>
+        </Dropdown>
+        {/*<h1>Programas <sup><a href="/podcast.xml" target="_blank"><span className="rss"></span></a></sup></h1>*/}
         {this.state.episodes.map((episode, i) => (
           <Episode
             key={ episode.episode }
@@ -195,7 +224,8 @@ class EpisodesList extends React.Component {
             )
             : null
         }
-      </div>);
+      </div>
+    );
   }
 }
 
