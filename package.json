@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode development -w",
+    "start": "parcel watch -d assets/ -o bundle-20190331.js _js/entry.js",
+    "build": "parcel build -d assets/ -o bundle-20190331.js _js/entry.js",
     "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts assets/"
   },
   "repository": {
@@ -31,5 +31,8 @@
     "react-dom": "^16.4.0",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.3"
   }
 }

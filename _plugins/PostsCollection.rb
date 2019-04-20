@@ -11,6 +11,7 @@ module Jekyll
           "episode" => post.episode,
           "duration" => post.duration,
           "url" => post.url,
+          "slug" => post.slug,
         ]
       end
     end

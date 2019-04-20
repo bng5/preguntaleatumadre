@@ -1,7 +1,7 @@
 import React from 'react';
 import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
-const Episode = (props) => {
+const Episode = props => {
   let buttonClass = ['programa__playback', 'playback'];
   if (props.playerState === PLAYING) {
     buttonClass.push('pause');

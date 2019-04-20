@@ -1,12 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Player from './components/Player';
-import EpisodesList from './components/EpisodesList';
+import { render } from 'react-dom';
 
+import App from './components/App';
+
+const episodes = JSON.parse(document.getElementById('data').firstChild.textContent);
+
+render(
+  <App
+    episodes={episodes}
+  />,
+  document.getElementById('app')
+);
+
+/*
 var playerInstance = ReactDOM.render(<Player />, document.getElementById('player-container'));
 
-var episodes = JSON.parse(document.getElementById('data').firstChild.textContent);
-console.log(episodes);
 var episodesList = ReactDOM.render(<EpisodesList player={playerInstance} episodes={episodes.programas} replaceList={ episodes.back === true } nextPage={episodes.next_page} />, document.getElementById('programas'));
 
 window.onpopstate = function(event) {
@@ -24,6 +32,8 @@ window.onpopstate = function(event) {
     episodesList.load();
   }
 };
+*/
+
 
 // document.getElementById('radio-playback').addEventListener('click', function (ev) {
 //   ev.preventDefault();

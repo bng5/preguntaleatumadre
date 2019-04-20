@@ -1,5 +1,5 @@
-import React from 'react';
-import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
+import React, { Component } from 'react';
+import { IDDLE, PLAYING, PAUSED, SEEKING } from '../constants';
 
 const toTime = function (seconds) {
   var minutes = '0' + Math.floor(seconds / 60);
@@ -11,7 +11,7 @@ const volumeIcon = function (value) {
   return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
 };
 
-class Player extends React.Component {
+class Player extends Component {
   constructor(props) {
     super(props);
     this.playerEl = null;
@@ -23,6 +23,7 @@ class Player extends React.Component {
       title: '',
       progress: 0,
       volume: 0,
+      started: false,
     };
     this.timeUpdate = this.timeUpdate.bind(this);
     this.ended = this.ended.bind(this);
@@ -39,16 +40,17 @@ class Player extends React.Component {
 
   togglePlay(episode, callback) {
     // playerControls.classList.add('show');
-    if (!episode || !episode.filename || episode.filename === this.state.playerSrc) {
+    if (!episode || !episode.file || episode.file === this.state.playerSrc) {
       this.playerEl.paused ? this.playerEl.play() : this.playerEl.pause();
       return;
     }
     this.setState({
       playerState: 1,
-      playerSrc: episode.filename,
+      playerSrc: episode.file,
       title: episode.title,
       endTime: episode.duration,
       progress: 0,
+      started: true,
     }, () => {
       this.playerEl.play();
     });
@@ -106,7 +108,7 @@ class Player extends React.Component {
   }
 
   render() {
-    const playerClass = this.state.playerState !== 0 ? 'show' : '';
+    const playerClass = this.state.started ? 'show' : '';
     const toggleClass = ['playback'];
     if (this.playerEl) {
       if (!this.playerEl.paused) {
