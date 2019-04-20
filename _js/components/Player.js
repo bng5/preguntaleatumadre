@@ -23,6 +23,7 @@ class Player extends Component {
       title: '',
       progress: 0,
       volume: 0,
+      started: false,
     };
     this.timeUpdate = this.timeUpdate.bind(this);
     this.ended = this.ended.bind(this);
@@ -39,16 +40,17 @@ class Player extends Component {
 
   togglePlay(episode, callback) {
     // playerControls.classList.add('show');
-    if (!episode || !episode.filename || episode.filename === this.state.playerSrc) {
+    if (!episode || !episode.file || episode.file === this.state.playerSrc) {
       this.playerEl.paused ? this.playerEl.play() : this.playerEl.pause();
       return;
     }
     this.setState({
       playerState: 1,
-      playerSrc: episode.filename,
+      playerSrc: episode.file,
       title: episode.title,
       endTime: episode.duration,
       progress: 0,
+      started: true,
     }, () => {
       this.playerEl.play();
     });
@@ -106,7 +108,7 @@ class Player extends Component {
   }
 
   render() {
-    const playerClass = this.state.playerState !== 0 ? 'show' : '';
+    const playerClass = this.state.started ? 'show' : '';
     const toggleClass = ['playback'];
     if (this.playerEl) {
       if (!this.playerEl.paused) {

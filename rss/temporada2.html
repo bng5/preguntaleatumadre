@@ -49,6 +49,7 @@ pagination:
    <itunes:duration>{{ post.duration }}</itunes:duration>
    <itunes:explicit>clean</itunes:explicit>
    <patum:date>{{ post.date | date_to_xmlschema }}</patum:date>
+   <patum:slug>{{ post.slug }}</patum:slug>
   </item>
   {%- endfor %}
  </channel>

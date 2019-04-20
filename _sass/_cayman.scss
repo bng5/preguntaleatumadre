@@ -153,8 +153,14 @@ a {
 @media screen and (min-width: 42em) and (max-width: 64em) { .project-tagline { font-size: 1.15rem; } }
 @media screen and (max-width: 42em) { .project-tagline { font-size: 1rem; } }
 
-.main-content { word-wrap: break-word; }
-.main-content :first-child { margin-top: 0; }
+.main-content {
+  word-wrap: break-word;
+}
+
+.main-content :first-child {
+  margin-top: 0;
+}
+
 @media screen and (min-width: 64em) {
   .main-content {
     //max-width: 64rem;
@@ -177,7 +183,7 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: $secondary-color;
+  color: $main-color;
 }
 
 .main-content p { margin-bottom: 1em; }
