@@ -50,6 +50,7 @@ class App extends Component {
     };
     this.player = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
+    this.playRadio = this.playRadio.bind(this);
     this.playNext = this.playNext.bind(this);
     this.changeSeason = this.changeSeason.bind(this);
   }
@@ -126,6 +127,15 @@ class App extends Component {
     }
   }
 
+  playRadio () {
+    this.togglePlay({
+      file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
+      title: 'Radio en vivo',
+      duration: null,
+      slug: 'radio',
+    });
+  }
+
   togglePlay (episode) {
     //const episode = this.state.episodes.find(element => element.episode === key);
     // const ep = {
@@ -190,6 +200,8 @@ class App extends Component {
         <PageHeader
           title="Preguntale a tu Madre"
           tagline="Donde no existen preguntas estúpidas…"
+          togglePlay={this.playRadio}
+          playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
         />
         <section className="main-content">
           <div id="home">
@@ -201,7 +213,6 @@ class App extends Component {
             >
               <h1>{seasons[this.state.selectedSeason].text}</h1>
             </Dropdown>
-            {/*<h1>Programas <sup><a href="/podcast.xml" target="_blank"><span className="rss"></span></a></sup></h1>*/}
             {this.state.episodes.map((episode, i) => {
               const current = this.state.playing && this.state.playing.slug === episode.slug;
               return (

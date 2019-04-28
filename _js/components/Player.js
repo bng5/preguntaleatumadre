@@ -126,20 +126,22 @@ class Player extends Component {
         <div>
           <em id="player-track-title" className="player-controls__title">{ this.state.title }</em>
           <span id="player-currentTime" className="player-time">{ this.state.currentTime }</span>
-          <div className="range-slider range-slider--position">
-            <div className="bar-holder">
-              <div id="player-position-bar" className="bar" style={{ width: this.state.progress + '%' }}></div>
+          {!isNaN(this.state.progress) && (
+            <div className="range-slider range-slider--position">
+              <div className="bar-holder">
+                <div id="player-position-bar" className="bar" style={{ width: this.state.progress + '%' }}></div>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={this.state.progress}
+                className="slider"
+                onInput={this.positionControl.bind(this)}
+                id="player-position"
+              />
             </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={this.state.progress}
-              className="slider"
-              onInput={this.positionControl.bind(this)}
-              id="player-position"
-            />
-          </div>
+          )}
           <span id="player-endTime" className="player-time">{ this.state.endTime }</span>
           <span id="player-volume-indicator" className={"player-volume-indicator " + volumeIcon(this.state.volume)}></span>
           <div className="range-slider range-slider--volume">
