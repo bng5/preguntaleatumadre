@@ -64,7 +64,7 @@ class Player extends Component {
   }
 
   timeUpdate() {
-    const progress = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
+    const progress = this.state.endTime ? Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration) : 0;
     this.setState({
       currentTime: toTime(this.playerEl.currentTime),
       progress,
@@ -73,9 +73,6 @@ class Player extends Component {
       type: 'progress',
       progress
     });
-    // var value = Math.round(this.playerEl.currentTime * 100 / this.playerEl.duration);
-    // positionControl.value = value;
-    // positionControlBar.style.width = value + '%';
   }
 
   ended() {
@@ -121,16 +118,19 @@ class Player extends Component {
     return (
       <div id="player-controls" className={playerClass}>
         <div className="player-controls__buttons">
-          <button id="player-toggle" className={toggleClass.join(' ')} onClick={() => this.togglePlay() }> </button>
+          <button
+            className={toggleClass.join(' ')}
+            onClick={() => this.togglePlay() }
+          > </button>
         </div>
         <div>
-          <em id="player-track-title" className="player-controls__title">{ this.state.title }</em>
-          <span id="player-currentTime" className="player-time">{ this.state.currentTime }</span>
-          {!isNaN(this.state.progress) && (
-            <div className="range-slider range-slider--position">
-              <div className="bar-holder">
-                <div id="player-position-bar" className="bar" style={{ width: this.state.progress + '%' }}></div>
-              </div>
+          <em className="player-controls__title">{ this.state.title }</em>
+          <span className="player-time">{ this.state.currentTime }</span>
+          <div className="range-slider range-slider--position">
+            <div className="bar-holder">
+              <div className="bar" style={{ width: this.state.progress + '%' }}></div>
+            </div>
+            {this.state.endTime && this.state.progress && !isNaN(this.state.progress) && (
               <input
                 type="range"
                 min="0"
@@ -138,12 +138,11 @@ class Player extends Component {
                 value={this.state.progress}
                 className="slider"
                 onInput={this.positionControl.bind(this)}
-                id="player-position"
               />
-            </div>
-          )}
+            )}
+          </div>
           <span id="player-endTime" className="player-time">{ this.state.endTime }</span>
-          <span id="player-volume-indicator" className={"player-volume-indicator " + volumeIcon(this.state.volume)}></span>
+          <span className={"player-volume-indicator " + volumeIcon(this.state.volume)}></span>
           <div className="range-slider range-slider--volume">
             <div className="bar-holder">
               <div id="player-volume-bar" className="bar" style={{ width: this.state.volume + '%' }}></div>
@@ -167,7 +166,7 @@ class Player extends Component {
           onEnded={this.ended}
           onWaiting={() => this.stateChange(SEEKING)}
           onSeeking={() => this.stateChange(SEEKING)}
-          onPlay={() => console.log('play')}
+          //onPlay={() => console.log('play')}
           onPause={() => this.stateChange(PAUSED)}
           onPlaying={() => this.stateChange(PLAYING)}
         ></audio>

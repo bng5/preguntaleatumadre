@@ -71,12 +71,19 @@
     &::before {
       content: fa-content($fa-var-broadcast-tower);
     }
+
     &.play::before {
       content: fa-content($fa-var-broadcast-tower);
       content: fa-content($fa-var-play);
     }
+
     &.pause::before {
       content: fa-content($fa-var-pause);
+    }
+
+    &.loading::before {
+      content: fa-content($fa-var-circle-notch);
+      @extend .fa-spin;
     }
   }
 }
