@@ -32,6 +32,13 @@ const meses = [
   'diciembre',
 ];
 
+const radioStreaming = {
+  file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
+  title: 'Radio en vivo',
+  duration: null,
+  slug: 'radio',
+};
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -40,7 +47,7 @@ class App extends Component {
       selectedSeason: 0,
       episodes: props.episodes.programas,
       playerState: 0,
-      playing: null,
+      playing: radioStreaming,
       playingEpisode: null,
       progress: 0,
       // loadMore: true,//props.loadMore,
@@ -50,9 +57,9 @@ class App extends Component {
     };
     this.player = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
-    this.playRadio = this.playRadio.bind(this);
     this.playNext = this.playNext.bind(this);
     this.changeSeason = this.changeSeason.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   load (path, replaceList) {
@@ -118,6 +125,32 @@ class App extends Component {
     req.send();
   }
 
+  updateState (err, data) {
+    console.log(data);
+    if (err) {
+      console.error('Error!');
+    }
+    if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
+      this.setState({
+        playing: episode,
+        // playingEpisode: key,
+        progress: data.progress,
+      });
+    } else if (data.type === 'stateChange') {
+      this.setState({
+        playing: episode,
+        // playingEpisode: key,
+        playerState: data.state,
+      });
+    } else if (data.type === 'end') {
+      this.setState({
+        playing: null,
+        playerState: data.state,
+      });
+      // this.playNext();
+    }
+  }
+
   changeSeason (index) {
     if (index !== this.state.selectedSeason) {
       this.setState({
@@ -127,15 +160,6 @@ class App extends Component {
     }
   }
 
-  playRadio () {
-    this.togglePlay({
-      file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
-      title: 'Radio en vivo',
-      duration: null,
-      slug: 'radio',
-    });
-  }
-
   togglePlay (episode) {
     //const episode = this.state.episodes.find(element => element.episode === key);
     // const ep = {
@@ -143,31 +167,7 @@ class App extends Component {
     //   title: episode.title,
     //   duration: episode.duration,
     // };
-    this.player.current.togglePlay(episode, (err, data) => {
-      if (err) {
-        console.error('Error!');
-      }
-      if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
-        this.setState({
-          playing: episode,
-          // playingEpisode: key,
-          progress: data.progress,
-        });
-      } else if (data.type === 'stateChange') {
-        this.setState({
-          playing: episode,
-          // playingEpisode: key,
-          playerState: data.state,
-        });
-      } else if (data.type === 'end') {
-        console.log(data)
-        this.setState({
-          playing: null,
-          playerState: data.state,
-        });
-        // this.playNext();
-      }
-    });
+    this.player.current.togglePlay(episode);
   }
 
   playNext () {
@@ -200,7 +200,7 @@ class App extends Component {
         <PageHeader
           title="Preguntale a tu Madre"
           tagline="Donde no existen preguntas estúpidas…"
-          togglePlay={this.playRadio}
+          togglePlay={() => this.togglePlay(radioStreaming)}
           playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
         />
         <section className="main-content">
@@ -251,6 +251,7 @@ class App extends Component {
         <Player
           ref={this.player}
           episode={this.state.playing}
+          onUpdateState={this.updateState}
         />
       </>
     );

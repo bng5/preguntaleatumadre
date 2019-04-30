@@ -17,10 +17,10 @@ class Player extends Component {
     this.playerEl = null;
     this.state = {
       currentTime: '0:00',
-      endTime: '0:00',
       playerState: 0,
-      playerSrc: '',
-      title: '',
+      playerSrc: props.episode.file,
+      title: props.episode.title,
+      endTime: props.episode.duration,
       progress: 0,
       volume: 0,
       started: false,
@@ -54,7 +54,7 @@ class Player extends Component {
     }, () => {
       this.playerEl.play();
     });
-    this.callback = callback;
+    // this.callback = callback;
     // if (toggleButton) {
     //   toggleButton.classList.remove('pause');
     // }
@@ -69,7 +69,8 @@ class Player extends Component {
       currentTime: toTime(this.playerEl.currentTime),
       progress,
     });
-    this.callback(null, {
+    // this.callback(null, {
+    this.props.onUpdateState(null, {
       type: 'progress',
       progress
     });
@@ -79,7 +80,8 @@ class Player extends Component {
   }
 
   ended() {
-    this.callback(null, {
+    // this.callback(null, {
+    this.props.onUpdateState(null, {
       type: 'end',
       progress: 0,
     });
@@ -101,14 +103,16 @@ class Player extends Component {
   }
 
   stateChange (state) {
-    this.callback(null, {
+    // this.callback(null, {
+    this.props.onUpdateState(null, {
       type: 'stateChange',
       state,
     });
   }
 
   render() {
-    const playerClass = this.state.started ? 'show' : '';
+    // const playerClass = this.state.started ? 'show' : '';
+    const playerClass = 'show';
     const toggleClass = ['playback'];
     if (this.playerEl) {
       if (!this.playerEl.paused) {
@@ -162,7 +166,10 @@ class Player extends Component {
           src={this.state.playerSrc}
           type="audio/mpeg"
           ref={audio => this.playerEl = audio}
-          onError={(error) => console.log(this.playerEl.error)}
+          onError={error => {
+            console.log(error);
+            console.log(this.playerEl.error);
+          }}
           onTimeUpdate={this.timeUpdate}
           onEnded={this.ended}
           onWaiting={() => this.stateChange(SEEKING)}
@@ -170,6 +177,9 @@ class Player extends Component {
           onPlay={() => console.log('play')}
           onPause={() => this.stateChange(PAUSED)}
           onPlaying={() => this.stateChange(PLAYING)}
+
+          // onLoad={() => console.log('onLoad')}
+          // onLoadedData={() => console.log('onLoadedData')}
         ></audio>
       </div>
     );
