@@ -12,19 +12,14 @@
     padding: 5rem 1rem 1rem;
   }
 
-
-
   // @media screen and (max-width: 42em) {
 
   // }
 
   img {
-    width: 100%;
-    @media screen and (min-width: $screen-md) {
-      width: auto;
-    }
+    max-width: 100%;
+    width: auto;
   }
-
 }
 
 // .header-title__top {
@@ -51,6 +46,7 @@
   border-color: $main-color;
   background-color: rgba(255, 255, 255, 0.2);
   color: $main-color;
+  cursor: pointer;
   display: block;
 
   &:hover {
@@ -75,12 +71,19 @@
     &::before {
       content: fa-content($fa-var-broadcast-tower);
     }
+
     &.play::before {
       content: fa-content($fa-var-broadcast-tower);
       content: fa-content($fa-var-play);
     }
+
     &.pause::before {
       content: fa-content($fa-var-pause);
+    }
+
+    &.loading::before {
+      content: fa-content($fa-var-circle-notch);
+      @extend .fa-spin;
     }
   }
 }

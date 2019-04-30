@@ -20,14 +20,18 @@
     content: fa-content($fa-var-rss);
     color: #cccccc;
   }
-  
+
   &:hover::before {
     color: #f26522;
   }
 }
 
 .sidebar {
-  width: 300px;
+  display: none;
+
+  @media screen and (min-width: 64em) {
+    display: block;
+  }
 }
 
 .programa {
