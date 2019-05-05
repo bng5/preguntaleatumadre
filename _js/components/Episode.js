@@ -1,14 +1,14 @@
 import React from 'react';
 import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
-const Episode = props => {
+const Episode = ({ children, fecha, playHandler, playerState, progress, sharer, title }) => {
   let buttonClass = ['programa__playback', 'playback'];
-  if (props.playerState === PLAYING) {
+  if (playerState === PLAYING) {
     buttonClass.push('pause');
-  } else if (props.playerState === SEEKING) {
+  } else if (playerState === SEEKING) {
     buttonClass.push('loading');
   }
-  const progress = (1.8 * props.progress);
+  progress *= 1.8;
   return <div className="programa">
     <div className="radial-progress">
       <div className="circle">
@@ -22,17 +22,17 @@ const Episode = props => {
         <div className="shadow"></div>
       </div>
       <div className="inset">
-        <span className={buttonClass.join(' ')} onClick={props.playHandler}></span>
+        <span className={buttonClass.join(' ')} onClick={playHandler}></span>
       </div>
     </div>
-    <h2 className="programa__titulo">{ props.title }</h2>
+    <h2 className="programa__titulo">{ title }</h2>
     <p className="programa__info">
-      Emitido: <time>{ props.fecha }</time>
+      Emitido: <time>{ fecha }</time>
     </p>
     <p className="programa__share">
-      Compartir en <a className="twitter" title="Twitter" onClick={() => props.sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => props.sharer('facebook')}></a>
+      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => props.sharer('facebook')}></a>
     </p>
-    { props.children }
+    { children }
   </div>
 };
 // <a href={ "/episodios/" + props.file }>Descargar</a>

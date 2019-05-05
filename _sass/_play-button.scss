@@ -31,10 +31,10 @@
 		.mask,
     .fill {
 			-webkit-backface-visibility: hidden;
+			border-radius: 50%;
 			transition: -webkit-transform $transition-length;
 			transition: -ms-transform $transition-length;
 			transition: transform $transition-length;
-			border-radius: 50%;
 		}
 		.mask {
 			clip: rect(0px, $circle-size, $circle-size, $circle-size/2);

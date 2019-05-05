@@ -58,6 +58,7 @@ class App extends Component {
     this.player = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
     this.playNext = this.playNext.bind(this);
+    this.playRadio = this.playRadio.bind(this);
     this.changeSeason = this.changeSeason.bind(this);
     this.updateState = this.updateState.bind(this);
   }
@@ -112,13 +113,10 @@ class App extends Component {
     //       break;
     //     }
     //   }
-      this.setState(newState, () => {
-        if (this.state.playingEpisode !== null) {
-          this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
-        }
-      });
+      this.setState(newState);
     });
     req.addEventListener('error', evt => {
+      console.error(evt);
       this.setState({ loading: false });
     });
     req.open('GET', path);//this.state.nextPage);
@@ -126,29 +124,31 @@ class App extends Component {
   }
 
   updateState (err, data) {
-    console.log(data);
     if (err) {
-      console.error('Error!');
+      console.error('Error!', err);
     }
-    if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
-      this.setState({
-        playing: episode,
-        // playingEpisode: key,
-        progress: data.progress,
-      });
-    } else if (data.type === 'stateChange') {
-      this.setState({
-        playing: episode,
-        // playingEpisode: key,
-        playerState: data.state,
-      });
-    } else if (data.type === 'end') {
-      this.setState({
-        playing: null,
-        playerState: data.state,
-      });
-      // this.playNext();
+    const newState = {};
+    switch (data.type) {
+      case 'changeEpisode':
+        newState.playing = data.episode;
+        newState.progress = data.progress;
+        break;
+      case 'progress':
+        if (this.state.progress === data.progress) {
+          return;
+        }
+        newState.progress = data.progress;
+        break;
+      case 'stateChange':
+        newState.playerState = data.state;
+        break;
+      case 'end':
+        newState.playing = null;
+        newState.playerState = data.state;
+        // this.playNext();
+        break;
     }
+    this.setState(newState);
   }
 
   changeSeason (index) {
@@ -160,13 +160,11 @@ class App extends Component {
     }
   }
 
+  playRadio () {
+    this.togglePlay(radioStreaming);
+  }
+
   togglePlay (episode) {
-    //const episode = this.state.episodes.find(element => element.episode === key);
-    // const ep = {
-    //   filename: episode.file,
-    //   title: episode.title,
-    //   duration: episode.duration,
-    // };
     this.player.current.togglePlay(episode);
   }
 
@@ -200,7 +198,7 @@ class App extends Component {
         <PageHeader
           title="Preguntale a tu Madre"
           tagline="Donde no existen preguntas estúpidas…"
-          togglePlay={() => this.togglePlay(radioStreaming)}
+          togglePlay={this.playRadio}
           playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
         />
         <section className="main-content">
@@ -208,7 +206,6 @@ class App extends Component {
             <Dropdown
               changeHandler={this.changeSeason}
               options={seasons}
-              //value={this.state.season.value}
               value={this.state.selectedSeason}
             >
               <h1>{seasons[this.state.selectedSeason].text}</h1>
