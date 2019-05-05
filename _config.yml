@@ -48,6 +48,7 @@ exclude:
   - webpack.config.js
   - package.json
   - package-lock.json
+  - _js/
 #   - Gemfile
 #   - Gemfile.lock
 #   - vendor/bundle/

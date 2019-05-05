@@ -32,6 +32,13 @@ const meses = [
   'diciembre',
 ];
 
+const radioStreaming = {
+  file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
+  title: 'Radio en vivo',
+  duration: null,
+  slug: 'radio',
+};
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -40,7 +47,7 @@ class App extends Component {
       selectedSeason: 0,
       episodes: props.episodes.programas,
       playerState: 0,
-      playing: null,
+      playing: radioStreaming,
       playingEpisode: null,
       progress: 0,
       // loadMore: true,//props.loadMore,
@@ -50,9 +57,10 @@ class App extends Component {
     };
     this.player = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
-    this.playRadio = this.playRadio.bind(this);
     this.playNext = this.playNext.bind(this);
+    this.playRadio = this.playRadio.bind(this);
     this.changeSeason = this.changeSeason.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   load (path, replaceList) {
@@ -105,17 +113,42 @@ class App extends Component {
     //       break;
     //     }
     //   }
-      this.setState(newState, () => {
-        if (this.state.playingEpisode !== null) {
-          this.setState({ playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode) });
-        }
-      });
+      this.setState(newState);
     });
     req.addEventListener('error', evt => {
+      console.error(evt);
       this.setState({ loading: false });
     });
     req.open('GET', path);//this.state.nextPage);
     req.send();
+  }
+
+  updateState (err, data) {
+    if (err) {
+      console.error('Error!', err);
+    }
+    const newState = {};
+    switch (data.type) {
+      case 'changeEpisode':
+        newState.playing = data.episode;
+        newState.progress = data.progress;
+        break;
+      case 'progress':
+        if (this.state.progress === data.progress) {
+          return;
+        }
+        newState.progress = data.progress;
+        break;
+      case 'stateChange':
+        newState.playerState = data.state;
+        break;
+      case 'end':
+        newState.playing = null;
+        newState.playerState = data.state;
+        // this.playNext();
+        break;
+    }
+    this.setState(newState);
   }
 
   changeSeason (index) {
@@ -128,46 +161,11 @@ class App extends Component {
   }
 
   playRadio () {
-    this.togglePlay({
-      file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
-      title: 'Radio en vivo',
-      duration: null,
-      slug: 'radio',
-    });
+    this.togglePlay(radioStreaming);
   }
 
   togglePlay (episode) {
-    //const episode = this.state.episodes.find(element => element.episode === key);
-    // const ep = {
-    //   filename: episode.file,
-    //   title: episode.title,
-    //   duration: episode.duration,
-    // };
-    this.player.current.togglePlay(episode, (err, data) => {
-      if (err) {
-        console.error('Error!');
-      }
-      if (data.type && data.type === 'progress' && this.state.progress !== data.progress) {
-        this.setState({
-          playing: episode,
-          // playingEpisode: key,
-          progress: data.progress,
-        });
-      } else if (data.type === 'stateChange') {
-        this.setState({
-          playing: episode,
-          // playingEpisode: key,
-          playerState: data.state,
-        });
-      } else if (data.type === 'end') {
-        console.log(data)
-        this.setState({
-          playing: null,
-          playerState: data.state,
-        });
-        // this.playNext();
-      }
-    });
+    this.player.current.togglePlay(episode);
   }
 
   playNext () {
@@ -208,7 +206,6 @@ class App extends Component {
             <Dropdown
               changeHandler={this.changeSeason}
               options={seasons}
-              //value={this.state.season.value}
               value={this.state.selectedSeason}
             >
               <h1>{seasons[this.state.selectedSeason].text}</h1>
@@ -251,6 +248,7 @@ class App extends Component {
         <Player
           ref={this.player}
           episode={this.state.playing}
+          onUpdateState={this.updateState}
         />
       </>
     );

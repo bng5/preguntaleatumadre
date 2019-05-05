@@ -12,19 +12,27 @@
     padding: 5rem 1rem 1rem;
   }
 
-  // @media screen and (max-width: 42em) {
-
-  // }
-
   img {
     max-width: 100%;
     width: auto;
   }
 }
 
-// .header-title__top {
+.header-title .project-tagline {
+  color: $main-color;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);
 
-// }
+  @media screen and (min-width: 42em) {
+    font-size: 1.15rem;
+  }
+
+  @media screen and (min-width: 64em) {
+    font-size: 1.25rem;
+  }
+}
 
 .header-ctas-list {
   list-style-type: none;

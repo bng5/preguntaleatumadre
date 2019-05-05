@@ -10,7 +10,7 @@ export default ({ title, tagline, togglePlay, playerState }) => (
       <div className="header-ctas">
         <ul className="header-ctas-list">
           <li><a href="/podcast.xml" className="btn header-ctas-list__item podcast" target="_blank">Podcast</a></li>
-          <li><a onClick={togglePlay} className={'btn header-ctas-list__item radio ' + (playerState ? ['', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
+          <li><a onClick={togglePlay} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
         </ul>
       </div>
     </div>
