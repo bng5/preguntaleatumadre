@@ -1,38 +1,34 @@
 {
-  "name": "preguntaleatumadre",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "react-static-example-basic",
+  "private": true,
   "scripts": {
-    "start": "parcel watch -d assets/ -o bundle-20190331.js _js/entry.js",
-    "build": "parcel build -d assets/ -o bundle-20190331.js _js/entry.js",
-    "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts assets/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bng5/preguntaleatumadre.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bng5/preguntaleatumadre/issues"
-  },
-  "homepage": "https://github.com/bng5/preguntaleatumadre#readme",
-  "devDependencies": {
-    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "file-saver": "^1.3.8",
-    "font-awesome": "^4.7.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "webpack": "^4.9.1",
-    "webpack-cli": "^2.1.4"
+    "start": "react-static start",
+    "stage": "react-static build --staging",
+    "build": "react-static build",
+    "analyze": "react-static build --analyze",
+    "serve": "serve dist -p 3000"
   },
   "dependencies": {
-    "parcel-bundler": "^1.12.3"
+    "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-static": "^7.0.0",
+    "react-static-plugin-reach-router": "^7.0.0",
+    "react-static-plugin-sitemap": "^7.0.0",
+    "react-static-plugin-source-filesystem": "^7.0.0",
+    "xmlbuilder": "^13.0.2",
+    "yaml": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "9.x",
+    "eslint": "5.x",
+    "eslint-config-react-app": "^3.0.8",
+    "eslint-config-react-tools": "1.x.x",
+    "eslint-plugin-flowtype": "2.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "serve": "10.1.2"
   }
 }

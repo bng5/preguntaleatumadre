@@ -14,3 +14,7 @@ vendor/
 dockerbuild/
 .cache/
 assets/bundle-*
+
+artifacts/
+tmp/
+dist/
