@@ -6,22 +6,32 @@
     "stage": "react-static build --staging",
     "build": "react-static build",
     "analyze": "react-static build --analyze",
-    "serve": "serve dist -p 3000"
+    "serve": "serve dist -p 3000",
+    "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts src/"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-helmet": "^5.2.1",
+    "react-modal": "^3.8.1",
     "react-static": "^7.0.0",
     "react-static-plugin-reach-router": "^7.0.0",
+    "react-static-plugin-sass": "^7.1.0",
     "react-static-plugin-sitemap": "^7.0.0",
     "react-static-plugin-source-filesystem": "^7.0.0",
+    "react-static-plugin-styled-components": "^7.0.10",
+    "react-twitter-embed": "^2.0.8",
+    "react-twitter-widgets": "^1.7.1",
+    "styled-components": "^4.3.1",
     "xmlbuilder": "^13.0.2",
     "yaml": "^1.6.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "babel-eslint": "9.x",
+    "babel-plugin-styled-components": "^1.10.0",
     "eslint": "5.x",
     "eslint-config-react-app": "^3.0.8",
     "eslint-config-react-tools": "1.x.x",

@@ -1,15 +1,16 @@
 import React from 'react'
-import { Root, Routes } from 'react-static'
+import { addPrefetchExcludes, Root, Routes } from 'react-static'
 import { Link, Router } from 'components/Router';
 
 import PageHeader from './components/PageHeader';
-import './app.css'
+import Player from './components/Player';
+import './main.scss'
 
-const xmlns = {
-  ATOM: 'http://www.w3.org/2005/Atom',
-  ITUNES: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
-  PATUM: 'http://www.preguntaleatumadre.com/Feed',
-};
+// const xmlns = {
+//   ATOM: 'http://www.w3.org/2005/Atom',
+//   ITUNES: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
+//   PATUM: 'http://www.preguntaleatumadre.com/Feed',
+// };
 
 const seasons = [
   { value: 2, text: 'Temporada 2' },
@@ -74,13 +75,18 @@ class App extends React.Component {
           togglePlay={this.playRadio}
           playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
         />
-        <div className="content">
+        <section className="main-content">
           <React.Suspense fallback={<em>Cargando...</em>}>
             <Router>
               <Routes path="*" />
             </Router>
           </React.Suspense>
-        </div>
+        </section>
+        <Player
+          ref={this.player}
+          episode={this.state.playing}
+          onUpdateState={this.updateState}
+        />
       </Root>
     );
   }

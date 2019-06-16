@@ -1,8 +1,425 @@
-<?xml version="1.0"?>
-<squares>
-  <data x="1" y="1"/>
-  <data x="2" y="4"/>
-  <data x="3" y="9"/>
-  <data x="4" y="16"/>
-  <data x="5" y="25"/>
-</squares>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:patum="http://www.preguntaleatumadre.com/Feed">
+  <channel>
+    <atom:link href="https://www.preguntaleatumadre.com/podcast.xml" rel="self" type="application/rss+xml"/>
+    <title>Preguntale a tu Madre</title>
+    <link>https://www.preguntaleatumadre.com</link>
+    <description>Donde no existen preguntas estúpidas…</description>
+    <lastBuildDate>Sun, 16 Jun 2019 04:36:28 -0300</lastBuildDate>
+    <language>es-UY</language>
+    <image>
+      <title>Preguntale a tu Madre</title>
+      <url>https://www.preguntaleatumadre.com/assets/images/patum.png</url>
+      <link>https://www.preguntaleatumadre.com</link>
+    </image>
+    <itunes:type>episodic</itunes:type>
+    <itunes:category text="Comedy"/>
+    <itunes:explicit>clean</itunes:explicit>
+    <itunes:author>Mediarte</itunes:author>
+    <item>
+      <title>Apodos</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/05/22/apodos.html</link>
+      <description/>
+      <pubDate>Sun, 26 May 2019 22:00:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-05-22.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-05-22.mp3" length="54710556" type="audio/mpeg"/>
+      <itunes:episode>7</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>56:59</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-05-22T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Bananas en el espacio</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/05/15/bananas_en_el_espacio.html</link>
+      <description/>
+      <pubDate>Sun, 26 May 2019 22:00:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-05-15.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-05-15.mp3" length="52735296" type="audio/mpeg"/>
+      <itunes:episode>6</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>54:55</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-05-15T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Cuestión de edades</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/04/24/cuestion_de_edades.html</link>
+      <description/>
+      <pubDate>Sun, 28 Apr 2019 17:20:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-04-24.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-04-24.mp3" length="52603272" type="audio/mpeg"/>
+      <itunes:episode>5</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>54:47</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-04-24T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Sologamia</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/04/10/sologamia.html</link>
+      <description/>
+      <pubDate>Sun, 28 Apr 2019 17:20:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-04-10.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-04-10.mp3" length="54382077" type="audio/mpeg"/>
+      <itunes:episode>4</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>56:38</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-04-10T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>A punta de pistolas</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/04/03/a_punta_de_pistolas.html</link>
+      <description/>
+      <pubDate>Sun, 07 Apr 2019 02:55:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-04-03.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-04-03.mp3" length="57655091" type="audio/mpeg"/>
+      <itunes:episode>3</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>1:00:03</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-04-03T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Parado, sentado o en coma?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/03/27/parado_sentado_o_en_coma.html</link>
+      <description/>
+      <pubDate>Sun, 31 Mar 2019 20:25:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-03-27.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-03-27.mp3" length="55654358" type="audio/mpeg"/>
+      <itunes:episode>2</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>57:58</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-03-27T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Gomas o Ruedas?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2019/03/20/gomas_o_ruedas.html</link>
+      <description/>
+      <pubDate>Sun, 24 Mar 2019 19:25:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2019-03-20.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2019-03-20.mp3" length="54475256" type="audio/mpeg"/>
+      <itunes:episode>1</itunes:episode>
+      <itunes:season>2</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>56:44</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2019-03-20T22:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Medias y siliconas</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/10/03/medias_y_siliconas.html</link>
+      <description/>
+      <pubDate>Sun, 07 Oct 2018 14:32:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-10-03.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-10-03.mp3" length="12502138" type="audio/mpeg"/>
+      <itunes:episode>20</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>52:05</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-10-03T23:07:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Carne vieja</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/09/26/carne_vieja.html</link>
+      <description/>
+      <pubDate>Sun, 07 Oct 2018 14:31:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-09-26.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-09-26.mp3" length="13757275" type="audio/mpeg"/>
+      <itunes:episode>19</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>57:19</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-09-26T23:07:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Aprendiendo a fingir</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/09/19/aprendiendo_a_fingir.html</link>
+      <description/>
+      <pubDate>Sun, 07 Oct 2018 14:30:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-09-19.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-09-19.mp3" length="12537144" type="audio/mpeg"/>
+      <itunes:episode>18</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>52:14</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-09-19T23:07:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Inflación sexual</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/09/12/inflacion_sexual.html</link>
+      <description/>
+      <pubDate>Sun, 16 Sep 2018 19:10:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-09-12.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-09-12.mp3" length="46606786" type="audio/mpeg"/>
+      <itunes:episode>17</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>48:32</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-09-12T23:07:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Ruleta rusa</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/09/05/ruleta_rusa.html</link>
+      <description/>
+      <pubDate>Sun, 09 Sep 2018 13:10:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-09-05.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-09-05.mp3" length="48808572" type="audio/mpeg"/>
+      <itunes:episode>16</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>50:50</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-09-05T23:07:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Dioses de fideos?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/08/29/dioses_de_fideos.html</link>
+      <description/>
+      <pubDate>Mon, 03 Sep 2018 22:20:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-08-29.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-08-29.mp3" length="49103678" type="audio/mpeg"/>
+      <itunes:episode>15</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>51:08</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-08-29T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Dentro del baño de mujeres?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/08/15/dentro_del_baño_de_mujeres.html</link>
+      <description/>
+      <pubDate>Sat, 18 Aug 2018 20:00:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-08-15.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-08-15.mp3" length="48385226" type="audio/mpeg"/>
+      <itunes:episode>14</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>50:24</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-08-15T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Uno de barberos</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/08/08/uno_de_barberos.html</link>
+      <description/>
+      <pubDate>Sat, 11 Aug 2018 17:10:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-08-08.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-08-08.mp3" length="52398428" type="audio/mpeg"/>
+      <itunes:episode>13</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>54:34</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-08-08T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Larga vida al Príncipe Alberto</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/08/01/larga_vida_al_principe_alberto.html</link>
+      <description/>
+      <pubDate>Sun, 05 Aug 2018 11:35:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-08-01.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-08-01.mp3" length="55342997" type="audio/mpeg"/>
+      <itunes:episode>12</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>57:38</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-08-01T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Cuántos pares son 3 orgías?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/07/25/cuantos_pares_son_3_orgias.html</link>
+      <description/>
+      <pubDate>Sat, 28 Jul 2018 00:35:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-07-25.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-07-25.mp3" length="57847822" type="audio/mpeg"/>
+      <itunes:episode>11</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>1:00:15</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-07-25T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Amigos con derecho?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/07/11/amigos_con_derecho.html</link>
+      <description/>
+      <pubDate>Wed, 18 Jul 2018 10:40:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-07-11.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-07-11.mp3" length="51649877" type="audio/mpeg"/>
+      <itunes:episode>10</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>53:48</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-07-11T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿La Tierra Plana?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/07/04/la_tierra_plana.html</link>
+      <description/>
+      <pubDate>Sat, 07 Jul 2018 18:35:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-07-04.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-07-04.mp3" length="53289537" type="audio/mpeg"/>
+      <itunes:episode>9</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>55:30</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-07-04T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Amor en tiempos de Resfrío?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/06/27/amor_en_tiempos_de_resfrio.html</link>
+      <description/>
+      <pubDate>Sun, 01 Jul 2018 00:25:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-06-27.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-06-27.mp3" length="54714381" type="audio/mpeg"/>
+      <itunes:episode>8</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>56:59</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-06-27T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Sabor a telaraña?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/06/20/sabor_a_telaraña.html</link>
+      <description/>
+      <pubDate>Sat, 23 Jun 2018 17:05:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-06-20.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-06-20.mp3" length="52815155" type="audio/mpeg"/>
+      <itunes:episode>7</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>55:00</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-06-20T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Ratones paranoicos?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/06/13/ratones_paranoicos.html</link>
+      <description/>
+      <pubDate>Sun, 17 Jun 2018 12:00:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-06-13.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-06-13.mp3" length="50997442" type="audio/mpeg"/>
+      <itunes:episode>6</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>53:07</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-06-13T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>¿Mosquitos borrachos?</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/06/06/mosquitos_borrachos.html</link>
+      <description/>
+      <pubDate>Sat, 09 Jun 2018 17:30:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-06-06.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-06-06.mp3" length="52642950" type="audio/mpeg"/>
+      <itunes:episode>5</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>54:50</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-06-06T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Interludio: Entre ovnis y ratas</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/05/30/interludio/entre_ovnis_y_ratas.html</link>
+      <description/>
+      <pubDate>Fri, 01 Jun 2018 20:11:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-05-30.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-05-30.mp3" length="56803676" type="audio/mpeg"/>
+      <itunes:episode>4</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>59:10</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-05-30T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Música y gorditas</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/05/23/musica_y_gorditas.html</link>
+      <description/>
+      <pubDate>Fri, 25 May 2018 23:55:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-05-23.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-05-23.mp3" length="56934915" type="audio/mpeg"/>
+      <itunes:episode>3</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>59:18</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-05-23T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Viajes en el tiempo</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/05/16/viajes_en_el_tiempo.html</link>
+      <description/>
+      <pubDate>Fri, 18 May 2018 00:32:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-05-16.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-05-16.mp3" length="53353825" type="audio/mpeg"/>
+      <itunes:episode>2</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>55:34</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-05-16T23:00:00-03:00</patum:date>
+    </item>
+    <item>
+      <title>Fraudes y fútbol</title>
+      <link>https://www.preguntaleatumadre.com/programas/2018/05/09/fraudes_y_futbol.html</link>
+      <description/>
+      <pubDate>Thu, 10 May 2018 00:00:00 -0300</pubDate>
+      <category>Podcast</category>
+      <guid isPermaLink="true">https://www.preguntaleatumadre.com/episodios/patum-2018-05-09.mp3</guid>
+      <enclosure url="https://www.preguntaleatumadre.com/episodios/patum-2018-05-09.mp3" length="50368383" type="audio/mpeg"/>
+      <itunes:episode>1</itunes:episode>
+      <itunes:season>1</itunes:season>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>52:27</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <patum:date>2018-05-09T23:00:00-03:00</patum:date>
+    </item>
+  </channel>
+</rss>

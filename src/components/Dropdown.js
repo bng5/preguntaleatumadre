@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'components/Router';
 
 const clickListener = next => {
   const func = () => {
@@ -50,9 +51,9 @@ class DropDown extends Component {
               <li
                 key={index}
                 className="dropdown-list__item"
-                onClick={() => changeHandler(index)}
+                // onClick={() => changeHandler(index)}
               >
-                {item.text}
+                <Link to={`/temporada${item}`}>Temporada {item}</Link>
               </li>
             ))
             .filter((option, index) => index !== value)}
