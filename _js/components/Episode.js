@@ -30,7 +30,7 @@ const Episode = ({ children, fecha, playHandler, playerState, progress, sharer, 
       Emitido: <time>{ fecha }</time>
     </p>
     <p className="programa__share">
-      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => props.sharer('facebook')}></a>
+      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => sharer('facebook')}></a>
     </p>
     { children }
   </div>
