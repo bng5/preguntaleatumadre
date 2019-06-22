@@ -7,7 +7,7 @@ import React from 'react';
 import createRss from './src/createRss';
 
 export default {
-  siteRoot: 'https://www.preguntaleatumadre.com',
+  // siteRoot: 'https://www.preguntaleatumadre.com',
   // getSiteData: async ({ dev }) => ({
   //   title: 'Preguntale a tu Madre',
   //   tagline: 'Donde no existen preguntas estúpidas…',
@@ -21,7 +21,7 @@ export default {
   }) => (
     <Html lang="es-UY">
       <Head>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <title>Preguntale a tu Madre</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#aaddd6" />
@@ -144,7 +144,8 @@ export default {
     //     location: path.resolve('./src/pages'),
     //   },
     // ],
-    require.resolve('react-static-plugin-reach-router'),
+    // require.resolve('react-static-plugin-reach-router'),
+    'react-static-plugin-react-router',
     //require.resolve('react-static-plugin-sitemap'),
     // "react-static-plugin-styled-components",
     [

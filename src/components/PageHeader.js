@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'components/Router';
+// import { Link } from 'components/Router';
 import Modal from 'react-modal';
 
 //import Logo from '../../assets/images/patum.svg';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+// const customStyles = {
+//   content : {
+//     top                   : '50%',
+//     left                  : '50%',
+//     right                 : 'auto',
+//     bottom                : 'auto',
+//     marginRight           : '-50%',
+//     transform             : 'translate(-50%, -50%)'
+//   }
+// };
 
 Modal.setAppElement('#root');
 
@@ -59,8 +59,8 @@ class PageHeader extends React.Component {
           </div>
           <div className="header-ctas">
             <ul className="header-ctas-list">
-              <li><a onClick={this.openModal} href="/podcast.xml" className="btn header-ctas-list__item podcast">Podcast</a></li>
-              <li><a onClick={togglePlay} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
+              <li><a type="button" onClick={this.openModal} href="/podcast.xml" className="btn header-ctas-list__item podcast">Podcast</a></li>
+              <li><a type="button" onClick={togglePlay} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
             </ul>
           </div>
         </div>

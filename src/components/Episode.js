@@ -1,7 +1,7 @@
 import React from 'react';
 import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
-const Episode = ({ children, fecha, playHandler, playerState, progress, sharer, title }) => {
+const Episode = ({ children, fecha, id, playHandler, playerState, progress, sharer, title }) => {
   let buttonClass = ['programa__playback', 'playback'];
   if (playerState === PLAYING) {
     buttonClass.push('pause');
@@ -30,7 +30,7 @@ const Episode = ({ children, fecha, playHandler, playerState, progress, sharer, 
       Emitido: <time>{ fecha }</time>
     </p>
     <p className="programa__share">
-      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter')}></a> <a className="facebook" title="Facebook" onClick={() => props.sharer('facebook')}></a>
+      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter', id, title)}></a> <a className="facebook" title="Facebook" onClick={() => sharer('facebook', id, title)}></a>
     </p>
     { children }
   </div>

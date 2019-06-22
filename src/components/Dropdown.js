@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'components/Router';
+// import { Link } from 'components/Router';
+import { Link } from 'react-router-dom';
 
 const clickListener = next => {
   const func = () => {

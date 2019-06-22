@@ -43,10 +43,12 @@ class Player extends Component {
   }
 
   canPlay () {
+    console.log('canPlay')
+    console.log(this.state.started)
     if (!this.state.started) {
       this.setState({
         started: true,
-      });
+      }, () => {console.log(this.state.started)});
     }
   }
 
