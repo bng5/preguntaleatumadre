@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'components/Router';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
 
 //import Logo from '../../assets/images/patum.svg';
 
@@ -31,6 +32,7 @@ class PageHeader extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.copyText = this.copyText.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.playRadio = this.playRadio.bind(this);
   }
 
   openModal (ev) {
@@ -48,8 +50,13 @@ class PageHeader extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
+  playRadio () {
+    this.props.togglePlay(this.props.episode);
+  }
+
   render () {
-    const { title, tagline, togglePlay, playerState } = this.props;
+    const { episode, file, state, title, tagline } = this.props;
+    const playerState = (file === episode.file) ? state : 0;
     return (
       <section className="page-header">
         <div className="header-title__top">
@@ -60,7 +67,7 @@ class PageHeader extends React.Component {
           <div className="header-ctas">
             <ul className="header-ctas-list">
               <li><a type="button" onClick={this.openModal} href="/podcast.xml" className="btn header-ctas-list__item podcast">Podcast</a></li>
-              <li><a type="button" onClick={togglePlay} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
+              <li><a type="button" onClick={this.playRadio} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
             </ul>
           </div>
         </div>
@@ -97,4 +104,24 @@ class PageHeader extends React.Component {
   }
 }
 
-export default PageHeader;
+const mapStateToProps = (state) => {
+  return state;
+ //  return {
+ //    currentPlay: state.currentPlay,
+ //  // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+ // }
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  togglePlay: (episode) => {
+    dispatch({
+      type: 'TOGGLE_PLAY',
+      ...episode,
+    })
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PageHeader);

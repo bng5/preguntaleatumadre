@@ -16,6 +16,7 @@
     "react-dom": "^16.8.2",
     "react-helmet": "^5.2.1",
     "react-modal": "^3.8.1",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-static": "^7.0.0",
     "react-static-plugin-reach-router": "^7.0.0",
@@ -26,6 +27,7 @@
     "react-static-plugin-styled-components": "^7.0.10",
     "react-twitter-embed": "^2.0.8",
     "react-twitter-widgets": "^1.7.1",
+    "redux": "^4.0.1",
     "styled-components": "^4.3.1",
     "xmlbuilder": "^13.0.2",
     "yaml": "^1.6.0"

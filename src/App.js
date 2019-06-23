@@ -1,11 +1,15 @@
 import React from 'react'
 import { addPrefetchExcludes, Root, Routes } from 'react-static';
 // import { Link, Router } from 'components/Router';
-import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 import PageHeader from './components/PageHeader';
 import Player from './components/Player';
 import './main.scss'
+
+import { IDDLE, PLAYING, PAUSED, SEEKING } from './constants';
 
 // const xmlns = {
 //   ATOM: 'http://www.w3.org/2005/Atom',
@@ -38,7 +42,47 @@ const radioStreaming = {
   title: 'Radio en vivo',
   duration: null,
   slug: 'radio',
+  status: 0,
+  state: IDDLE,
+  progress: 0,
+  currentTime: '0:00',
 };
+
+const playerState = (playing = radioStreaming, action) => {
+  switch (action.type) {
+    case 'PROGRESS':
+      return {
+        ...playing,
+        progress: action.progress,
+        currentTime: action.currentTime,
+      };
+    case 'STATE_CHANGE':
+      return {
+        ...playing,
+        state: action.state,
+      };
+    case 'TOGGLE_PLAY':
+      if (playing && (!action.file || playing.file === action.file)) {
+        return {
+          ...playing,
+          status: (playing.status === PLAYING ? PAUSED : PLAYING),
+        };
+      }
+      return {
+        ...playing,
+        file: action.file,
+        title: action.title,
+        slug: action.slug,
+        status: PLAYING,
+        duration: action.duration,
+        progress: 0,
+      };
+    default:
+      return playing;
+  }
+};
+
+let store = createStore(playerState);
 
 class App extends React.PureComponent {
   constructor (props) {
@@ -195,32 +239,37 @@ class App extends React.PureComponent {
     // }
     return (
       <Root>
-        <PageHeader
-          title="Preguntale a tu Madre"
-          tagline="Donde no existen preguntas estúpidas…"
-          togglePlay={this.playRadio}
-          playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
-        />
-        <section className="main-content">
-          <React.Suspense fallback={<em>Cargando...</em>}>
-            <Switch>
-              {/*
-              <Route path="/dynamic" component={Dynamic} />
-              */}
-              <Route render={() => <Routes />} />
-            </Switch>
-            {/*
+        <Provider store={store}>
+          <PageHeader
+            title="Preguntale a tu Madre"
+            tagline="Donde no existen preguntas estúpidas…"
+            // togglePlay={this.playRadio}
+            playerState={this.state.playing && this.state.playing.slug === 'radio' ? this.state.playerState : null}
+            episode={radioStreaming}
+          />
+          <section className="main-content">
+            <React.Suspense fallback={<em>Cargando...</em>}>
             <Router>
-              <Routes path="*" />
+              <Switch>
+                {/*
+                <Route path="/dynamic" component={Dynamic} />
+                */}
+                <Route render={() => <Routes />} />
+              </Switch>
+              {/*
+              <Router>
+                <Routes path="*" />
+              </Router>
+              */}
             </Router>
-            */}
-          </React.Suspense>
-        </section>
-        <Player
-          ref={this.player}
-          episode={this.state.playing}
-          onUpdateState={this.updateState}
-        />
+            </React.Suspense>
+          </section>
+          <Player
+            // ref={this.player}
+            episode={this.state.playing}
+            onUpdateState={this.updateState}
+          />
+        </Provider>
       </Root>
     );
   }

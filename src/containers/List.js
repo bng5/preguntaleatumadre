@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouteData } from 'react-static';
+import { connect } from 'react-redux';
 // import { Link } from 'components/Router';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
@@ -17,7 +18,7 @@ const share = (snd, path, title) => {
   window.open(sites[snd], 'sharer', 'toolbar=0,status=0,width=626,height=436');
 };
 
-export default () => {
+const EpisodesList = ({ player, togglePlay }) => {
   const { posts, seasons, selectedSeason } = useRouteData();
   return (
     <React.Fragment>
@@ -30,14 +31,14 @@ export default () => {
           <h1>Temporada {selectedSeason}</h1>
         </Dropdown>
         {posts.map(episode => {
-          //const current = this.state.playing && this.state.playing.slug === episode.slug;
+          const current = player.slug === episode.slug;
           return (
             <Episode
               key={episode.id}
               {...episode}
-              //playerState={current ? this.state.playerState : 0 }
-              //progress={current ? this.state.progress : 0 }
-              //playHandler={() => this.togglePlay(episode)}
+              playerState={current ? player.state : 0 }
+              progress={current ? player.progress : 0 }
+              playHandler={() => togglePlay(episode)}
               sharer={share}
               //sharer={this.share.bind(null, episode.url, episode.title)}
             />
@@ -78,4 +79,26 @@ export default () => {
 
     </React.Fragment>
   )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    player: state,
+  // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  togglePlay: (episode) => {
+    dispatch({
+      type: 'TOGGLE_PLAY',
+      ...episode,
+    })
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EpisodesList);
+// export default EpisodesList;

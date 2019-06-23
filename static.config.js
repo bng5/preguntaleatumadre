@@ -1,5 +1,5 @@
-import path from 'path';
-import { makePageRoutes } from 'react-static/node';
+// import path from 'path';
+// import { makePageRoutes } from 'react-static/node';
 import fs from 'fs';
 import yaml from 'yaml';
 import React from 'react';
@@ -55,8 +55,13 @@ export default {
     const filenames = fs.readdirSync('./posts');
     const posts = filenames.map(filename => {
       const content = fs.readFileSync('./posts/' + filename, 'utf-8');
+
+      const match = filename.match(/^(\d+)-(\d+)-(\d+)-(.*)\.yml$/);
+      const [ _, year, month, day, slug ] = match;
       return {
         id: filename.replace(/\.yml$/, '').replace(/-/g, '/'),
+        path: `/${year}/${month}/${day}/${slug}`,
+        slug,
         ...yaml.parse(content),
       };
     })
