@@ -47,13 +47,17 @@
   z-index: 1;
 
   &__item {
-    color: $main-color;
-    font-size: 1em;
-    padding: 0.2em 0.7em;
+    a {
+      color: $main-color;
+      display: block;
+      font-size: 1em;
+      padding: 0.2em 0.7em;
+      text-decoration: none;
 
-    &:hover {
-      background-color: $main-color;
-      color: rgba(255, 255, 255, 0.7);
+      &:hover {
+        background-color: $main-color;
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
   }
 }

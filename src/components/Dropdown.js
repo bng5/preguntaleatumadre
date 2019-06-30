@@ -39,12 +39,12 @@ class DropDown extends Component {
   }
 
   render () {
-    const { options, changeHandler, value } = this.props;
+    const { children, options, changeHandler, value } = this.props;
     const{ listOpen } = this.state
     return (
       <div className={'dropdown-wrapper' + (listOpen ? ' dropdown-wrapper--active' : '')}>
         <div className="dropdown-header" onClick={this.openList}>
-          { this.props.children }
+          {children}
         </div>
         { listOpen && (
           <ul className="dropdown-list">
@@ -57,7 +57,8 @@ class DropDown extends Component {
                 <Link to={`/temporada${item}`}>Temporada {item}</Link>
               </li>
             ))
-            .filter((option, index) => index !== value)}
+            //.filter((option, index) => index !== value)
+            }
           </ul>
         )}
       </div>

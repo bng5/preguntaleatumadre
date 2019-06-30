@@ -30,7 +30,9 @@ class PageHeader extends React.Component {
     this.inputUrl = React.createRef();
 
     this.closeModal = this.closeModal.bind(this);
+    this.copyMouseOut = this.copyMouseOut.bind(this);
     this.copyText = this.copyText.bind(this);
+    this.focusUrl = this.focusUrl.bind(this);
     this.openModal = this.openModal.bind(this);
     this.playRadio = this.playRadio.bind(this);
   }
@@ -40,10 +42,20 @@ class PageHeader extends React.Component {
     this.setState({ modalIsOpen: true });
   }
 
+  focusUrl (ev) {
+    console.log('focusUrl')
+    ev.target.select();
+  }
+
   copyText () {
     this.inputUrl.current.select();
     document.execCommand('copy');
-    this.setState({ copied: true }, () => window.setTimeout(() => this.setState({ copied: false }), 5000));
+    // this.setState({ copied: true }, () => window.setTimeout(() => this.setState({ copied: false }), 5000));
+    this.setState({ copied: true });
+  }
+
+  copyMouseOut () {
+    this.setState({ copied: false });
   }
 
   closeModal () {
@@ -82,22 +94,38 @@ class PageHeader extends React.Component {
           //onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           //style={customStyles}
+          className="podcast-modal"
+          //overlayClassName="modal-overlay"
           contentLabel="Suscribirse al Podcast"
         >
-          <button onClick={this.closeModal}>close</button>
-          <input
-            ref={this.inputUrl}
-            type="text"
-            value="https://www.preguntaleatumadre.com/podcast.xml"
-            readOnly
-          />
-          <button onClick={this.copyText}>Copiar</button> {this.state.copied && <span>Copiado</span>}
-          <ul>
-            <li><a href="https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001">itunes</a></li>
-            <li><a href="http://tun.in/pi5TW">tunein</a></li>
-            <li><a href="https://player.fm/series/preguntale-a-tu-madre">playerfm</a></li>
-            <li><a href="https://www.ivoox.com/escuchar-preguntale-a-tu-madre_nq_531023_1.html">ivoox</a></li>
-          </ul>
+          <header>
+            <h1>Suscribirse al Podcast</h1>
+            <button onClick={this.closeModal} className="icon-btn close"><span className="label">Cerrar</span></button>
+          </header>
+          <main>
+            <p className="feed-url">
+              <input
+                ref={this.inputUrl}
+                type="text"
+                value="https://www.preguntaleatumadre.com/podcast.xml"
+                readOnly
+                onFocus={this.focusUrl}
+              />
+              <div className="tooltip">
+                <button onClick={this.copyText} onMouseOut={this.copyMouseOut} className="icon-btn copy">
+                  <span className="tooltiptext">{this.state.copied ? 'Copiado' : 'Copiar ruta'}</span>
+                  <span className="label">Copiar</span>
+                </button>
+              </div>
+            </p>
+            <p>Copiá la ruta del feed para agregarla en tu reproductor de podcast o seleccioná uno de los siguientes servicios.</p>
+            <ul className="podcast-providers">
+              <li><a href="https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001" className="btn header-ctas-list__item" target="_blank">iTunes</a></li>
+              <li><a href="http://tun.in/pi5TW" className="btn header-ctas-list__item" target="_blank">TuneIn</a></li>
+              <li><a href="https://player.fm/series/preguntale-a-tu-madre" className="btn header-ctas-list__item" target="_blank">PlayerFM</a></li>
+              <li><a href="https://www.ivoox.com/escuchar-preguntale-a-tu-madre_nq_531023_1.html" className="btn header-ctas-list__item" target="_blank">iVoox</a></li>
+            </ul>
+          </main>
         </Modal>
       </section>
     );

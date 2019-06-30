@@ -166,3 +166,137 @@
     }
   }
 }
+
+.podcast-modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #AADDD6;
+  border-radius: 4px;
+  bottom: auto;
+  color: #1e766a;
+  // left: 50%;
+  // margin-right: -50%;
+  // overflow: auto;
+  // position: absolute;
+  // right: auto;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
+  margin: 0 auto;
+  inset: 40px 40px;
+  // border: 1px solid rgb(204, 204, 204);
+  outline: none;
+  overflow: auto;
+  // outline: currentcolor none medium;
+  padding: 0 30px 30px;
+  position: absolute;
+  width: 30em;
+
+  header {
+    position: relative;
+
+    h1 {
+      font-size: 1.5em;
+      line-height: 2em;
+      margin: 0;
+    }
+  }
+
+  main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+
+    p {
+      margin: 0.5em 0;
+    }
+  }
+}
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+
+  .label {
+    display: none;
+  }
+
+  &::before {
+    @include fa-icon();
+  }
+
+  &.close {
+    position: absolute;
+    right: -25px;
+    top: 0;
+
+    &::before {
+      @extend .fas;
+      content: fa-content($fa-var-times);
+    }
+  }
+
+  &.copy {
+    &::before {
+      @extend .fas;
+      content: fa-content($fa-var-copy);
+    }
+  }
+}
+
+.podcast-providers {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  // width: 60%;
+}
+
+.feed-url {
+  display: flex;
+  input {
+    background-color: transparent;
+    border: none;
+    flex: 1;
+    text-overflow: ellipsis;
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  background-color: #555;
+  border-radius: 4px;
+  bottom: 130%;
+  font-size: small;
+  visibility: hidden;
+  // width: 140px;
+  color: #fff;
+  text-align: center;
+  padding: 1px 5px;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  // margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
