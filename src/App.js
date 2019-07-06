@@ -1,7 +1,7 @@
 import React from 'react'
 import { addPrefetchExcludes, Root, Routes } from 'react-static';
 // import { Link, Router } from 'components/Router';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
@@ -222,15 +222,15 @@ class App extends React.PureComponent {
     }
   }
 
-  share (path, title, site) {
-    const { protocol, host } = document.location;
-    const url = encodeURIComponent(`${protocol}//${host}${path}`);
-    const sites = {
-      twitter: `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`,
-      facebook: `http://www.facebook.com/sharer.php?u=${url}`,
-    };
-    window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
-  }
+  // share (path, title, site) {
+  //   const { protocol, host } = document.location;
+  //   const url = encodeURIComponent(`${protocol}//${host}${path}`);
+  //   const sites = {
+  //     twitter: `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`,
+  //     facebook: `http://www.facebook.com/sharer.php?u=${url}`,
+  //   };
+  //   window.open(sites[site], 'sharer', 'toolbar=0,status=0,width=626,height=436');
+  // }
 
   render () {
     // let loadMoreClassName = ['load-more'];
@@ -249,19 +249,9 @@ class App extends React.PureComponent {
           />
           <section className="main-content">
             <React.Suspense fallback={<em>Cargando...</em>}>
-            <Router>
               <Switch>
-                {/*
-                <Route path="/dynamic" component={Dynamic} />
-                */}
                 <Route render={() => <Routes />} />
               </Switch>
-              {/*
-              <Router>
-                <Routes path="*" />
-              </Router>
-              */}
-            </Router>
             </React.Suspense>
           </section>
           <Player

@@ -1,5 +1,5 @@
 .page-header {
-  color: #fff;
+  color: #ff5c5c;
   text-align: center;
   background-color: #AADDD6;
   padding: 2rem 1rem 1em;
@@ -37,9 +37,10 @@
 .header-ctas-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column-reverse;
 
   @media screen and (min-width: $screen-lg) {
-    display: flex;
     flex-direction: row;
     justify-content: center;
 
@@ -57,7 +58,8 @@
   cursor: pointer;
   display: block;
 
-  &:hover {
+  &:hover,
+  &.active {
     background-color: #ff5c5c;
     box-shadow: 6px 8px 0px rgba(168, 168, 168, 0.5);
     color: rgba(255, 255, 255, 0.7);//#606c71;
@@ -167,51 +169,57 @@
   }
 }
 
-.podcast-modal {
-  display: flex;
-  flex-direction: column;
-  background-color: #AADDD6;
-  border-radius: 4px;
-  bottom: auto;
+// .modal-overlay {
+//   align-items: center;
+//   background-color: rgba(255, 255, 255, 0.75);
+//   display: flex;
+//   flex-direction: column;
+//   inset: 0;
+//   justify-content: center;
+//   position: fixed;
+// }
+
+.podcast-subscription {
   color: #1e766a;
-  // left: 50%;
-  // margin-right: -50%;
-  // overflow: auto;
-  // position: absolute;
-  // right: auto;
-  // top: 50%;
-  // transform: translate(-50%, -50%);
   margin: 0 auto;
-  inset: 40px 40px;
-  // border: 1px solid rgb(204, 204, 204);
-  outline: none;
-  overflow: auto;
-  // outline: currentcolor none medium;
-  padding: 0 30px 30px;
-  position: absolute;
-  width: 30em;
 
-  header {
-    position: relative;
-
-    h1 {
-      font-size: 1.5em;
-      line-height: 2em;
-      margin: 0;
-    }
-  }
-
-  main {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-around;
-
-    p {
-      margin: 0.5em 0;
-    }
+  @media screen and (min-width: $screen-md) {
+    width: 60%;
   }
 }
+
+// .podcast-modal {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #AADDD6;
+//   border-radius: 4px;
+//   color: #1e766a;
+//   outline: none;
+//   overflow: auto;
+//   padding: 0 30px 30px;
+
+//   header {
+//     position: relative;
+
+//     h1 {
+//       font-size: 1.5em;
+//       line-height: 2em;
+//       margin: 0;
+//     }
+//   }
+
+//   main {
+//     display: flex;
+//     flex: 1;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     overflow: auto;
+
+//     p {
+//       margin: 0.5em 0;
+//     }
+//   }
+// }
 
 .icon-btn {
   background-color: transparent;
@@ -248,7 +256,6 @@
   list-style-type: none;
   padding: 0;
   text-align: center;
-  // width: 60%;
 }
 
 .feed-url {
@@ -272,14 +279,12 @@
   bottom: 130%;
   font-size: small;
   visibility: hidden;
-  // width: 140px;
   color: #fff;
   text-align: center;
   padding: 1px 5px;
   position: absolute;
   z-index: 1;
-  right: 0;
-  // margin-left: -75px;
+  left: 0;
   opacity: 0;
   transition: opacity 0.3s;
   white-space: nowrap;
@@ -289,7 +294,7 @@
   content: "";
   position: absolute;
   top: 100%;
-  right: 10px;
+  left: 15px;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
