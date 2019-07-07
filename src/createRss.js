@@ -22,7 +22,8 @@ export default posts => {
     .att('version', '2.0')
     .att('xmlns:atom', "http://www.w3.org/2005/Atom")
     .att('xmlns:itunes', "http://www.itunes.com/dtds/podcast-1.0.dtd")
-    .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed");
+    .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed")
+  .instructionBefore('xml-stylesheet', 'type="text/xsl" href="podcast.xsl"');
   const channel = root.ele('channel')
     .ele('atom:link', {
       href: "https://www.preguntaleatumadre.com/podcast.xml",
