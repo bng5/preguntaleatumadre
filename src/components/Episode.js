@@ -1,7 +1,8 @@
 import React from 'react';
 import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
 
-const Episode = ({ children, fecha, id, playHandler, playerState, progress, sharer, title }) => {
+const Episode = ({ baseUrl, fecha, id, playHandler, playerState, progress, sharer, title }) => {
+  const url = encodeURIComponent(`${baseUrl}${id}`);
   let buttonClass = ['programa__playback', 'playback'];
   if (playerState === PLAYING) {
     buttonClass.push('pause');
@@ -25,14 +26,27 @@ const Episode = ({ children, fecha, id, playHandler, playerState, progress, shar
         <span className={buttonClass.join(' ')} onClick={playHandler}></span>
       </div>
     </div>
-    <h2 className="programa__titulo">{ title }</h2>
-    <p className="programa__info">
-      Emitido: <time>{ fecha }</time>
-    </p>
-    <p className="programa__share">
-      Compartir en <a className="twitter" title="Twitter" onClick={() => sharer('twitter', id, title)}></a> <a className="facebook" title="Facebook" onClick={() => sharer('facebook', id, title)}></a>
-    </p>
-    { children }
+    <div className="programa__info">
+      <h2 className="programa__titulo">{ title }</h2>
+      <p className="programa__meta">
+        Emitido: <time>{ fecha }</time>
+      </p>
+      <p className="programa__share">
+        Compartir en <a
+          href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`}
+          className="twitter"
+          title="Twitter"
+          onClick={sharer}
+        ><span>Twitter</span></a>
+        {' '}
+        <a
+          href={`http://www.facebook.com/sharer.php?u=${url}`}
+          className="facebook"
+          title="Facebook"
+          onClick={sharer}
+        ><span>Facebook</span></a>
+      </p>
+    </div>
   </div>
 };
 // <a href={ "/episodios/" + props.file }>Descargar</a>

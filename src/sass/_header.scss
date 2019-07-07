@@ -16,6 +16,14 @@
     max-width: 100%;
     width: auto;
   }
+
+  &--podcast {
+    padding-top: 0;
+
+    img {
+      width: 439px;
+    }
+  }
 }
 
 .header-title .project-tagline {
@@ -168,16 +176,6 @@
     }
   }
 }
-
-// .modal-overlay {
-//   align-items: center;
-//   background-color: rgba(255, 255, 255, 0.75);
-//   display: flex;
-//   flex-direction: column;
-//   inset: 0;
-//   justify-content: center;
-//   position: fixed;
-// }
 
 .podcast-subscription {
   color: #1e766a;

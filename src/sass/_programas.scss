@@ -36,6 +36,15 @@
 
 .programa {
   clear: both;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+
+  &__info {
+    flex: 1;
+    margin-top: 0;
+    margin-bottom: 0.5em !important;
+  }
 
   &__titulo {
     margin-bottom: 0 !important;
@@ -45,7 +54,7 @@
     }
   }
 
-  &__info {
+  &__meta {
     margin-top: 0;
     margin-bottom: 0.5em !important;
   }
@@ -55,8 +64,13 @@
     font-size: 85%;
 
     a {
+      color: inherit;
       cursor: pointer;
       margin-left: 0.3em;
+
+      span {
+        display: none;
+      }
 
       &::before {
         @include fa-icon();
@@ -94,9 +108,13 @@
       @extend .fas;
       // @extend .fa-fw;
       content: fa-content($fa-var-play);
-      font-size: 2em;
+      font-size: 1.6em;
       // border-radius: 50%;
       // line-height: 2em;
+
+      @media screen and (min-width: 64em) {
+        font-size: 1.9em;
+      }
     }
     &.pause::before {
       content: fa-content($fa-var-pause);

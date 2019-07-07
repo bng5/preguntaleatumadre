@@ -1,29 +1,42 @@
 .radial-progress {
-	$circle-size: 110px;
-	$circle-background: #d6dadc;
-	$inset-size: 90px;
-	$inset-color: #fbfbfb;
+	$circle-size: 90px;
+	$inset-size: 80px;
+	$circle-size-sm: 60px;
+	$inset-size-sm: 50px;
+
 	$transition-length: 1s;
 	$shadow: 6px 6px 10px rgba(0,0,0,0.2);
-	$percentage-font-size: 22px;
-	$percentage-text-width: 57px;
+	// $percentage-font-size: 22px;
+	// $percentage-text-width: 57px;
 
-  background-color: $circle-background;
+  background-color: #d6dadc;
   border-radius: 50%;
-  float: left;
-  height: $circle-size;
-	margin-bottom: 2em;
-	margin-right: 28px;
-  width:  $circle-size;
+	// float: left;
+	flex-shrink: 0;
+  height: $circle-size-sm;
+	// margin-bottom: 2em;
+	margin-right: 10px;
+  width:  $circle-size-sm;
+
+	@media screen and (min-width: 64em) {
+		height: $circle-size;
+		margin-right: 28px;
+		width:  $circle-size;
+	}
 
 	.circle {
 		.mask,
     .fill,
     .shadow {
-			width:    $circle-size;
-			height:   $circle-size;
+			width:    $circle-size-sm;
+			height:   $circle-size-sm;
 			position: absolute;
 			border-radius: 50%;
+
+			@media screen and (min-width: 64em) {
+				height: $circle-size;
+				width:  $circle-size;
+			}
 		}
 		.shadow {
 			box-shadow: $shadow inset;
@@ -37,19 +50,28 @@
 			transition: transform $transition-length;
 		}
 		.mask {
-			clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+			clip: rect(0px, $circle-size-sm, $circle-size-sm, $circle-size-sm / 2);
+
+			@media screen and (min-width: 64em) {
+				clip: rect(0px, $circle-size, $circle-size, $circle-size / 2);
+			}
+
 			.fill {
-				clip: rect(0px, $circle-size/2, $circle-size, 0px);
+				clip: rect(0px, $circle-size-sm / 2, $circle-size-sm, 0px);
 				background-color: $main-color;
+
+				@media screen and (min-width: 64em) {
+					clip: rect(0px, $circle-size / 2, $circle-size, 0px);
+				}
 			}
 		}
 	}
 	.inset {
-		width:       $inset-size;
-		height:      $inset-size;
+		width:       $inset-size-sm;
+		height:      $inset-size-sm;
 		position:    absolute;
-		margin-left: ($circle-size - $inset-size)/2;
-		margin-top:  ($circle-size - $inset-size)/2;
+		margin-left: ($circle-size-sm - $inset-size-sm) / 2;
+		margin-top:  ($circle-size-sm - $inset-size-sm) / 2;
 
 		background-color: black;
 		border-radius: 50%;
@@ -58,31 +80,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+		text-align: center;
+
+		@media screen and (min-width: 64em) {
+			height: $inset-size;
+			margin-left: ($circle-size - $inset-size) / 2;
+			margin-top:  ($circle-size - $inset-size) / 2;
+			width:  $inset-size;
+		}
 	}
-//
-// 	$i: 0;
-// 	$increment: 180deg / 100;
-// 	.loop ($i) when ($i <= 100) {
-// 		&[data-progress="${i}"] {
-// 			.circle {
-// 				.mask.full,
-//        .fill {
-// 				  -webkit-transform: rotate($increment * $i);
-// 				  -ms-transform: rotate($increment * $i);
-// 				  transform: rotate($increment * $i);
-// 				}
-// 				.fill.fix {
-// 					-webkit-transform: rotate($increment * $i * 2);
-// 					-ms-transform: rotate($increment * $i * 2);
-// 					transform: rotate($increment * $i * 2);
-// 				}
-// 			}
-// 			.inset .percentage .numbers {
-// 				width: $i * $percentage-text-width + $percentage-text-width;
-// 			}
-// 		}
-// 		.loop($i + 1);
-// 	}
-// 	.loop($i);
 }

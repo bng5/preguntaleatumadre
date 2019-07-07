@@ -8,17 +8,20 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import Dropdown from '../components/Dropdown';
 import Episode from '../components/Episode';
 
-const share = (snd, path, title) => {
-  const { protocol, host } = document.location;
-  const url = encodeURIComponent(`${protocol}//${host}/${path}`);
-  const sites = {
-    twitter: `https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`,
-    facebook: `http://www.facebook.com/sharer.php?u=${url}`,
-  };
-  window.open(sites[snd], 'sharer', 'toolbar=0,status=0,width=626,height=436');
+const share = (ev) => {
+  const link = ev.target;
+  try {
+    if (window.open(link.href, 'sharer', 'toolbar=0,status=0,width=626,height=436')) {
+      ev.preventDefault();
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const EpisodesList = ({ player, togglePlay }) => {
+  const { protocol, host } = document.location;
+  const baseUrl = `${protocol}//${host}/`;
   const { posts, seasons, selectedSeason } = useRouteData();
   return (
     <React.Fragment>
@@ -40,6 +43,7 @@ const EpisodesList = ({ player, togglePlay }) => {
               progress={current ? player.progress : 0 }
               playHandler={() => togglePlay(episode)}
               sharer={share}
+              baseUrl={baseUrl}
               //sharer={this.share.bind(null, episode.url, episode.title)}
             />
           )}
