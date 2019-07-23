@@ -14,3 +14,10 @@ vendor/
 dockerbuild/
 .cache/
 assets/bundle-*
+
+artifacts/
+tmp/
+dist/
+src/webfonts/
+public/podcast.xml
+public/episodios

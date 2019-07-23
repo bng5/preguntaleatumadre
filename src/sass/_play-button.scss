@@ -1,0 +1,92 @@
+.radial-progress {
+	$circle-size: 90px;
+	$inset-size: 80px;
+	$circle-size-sm: 60px;
+	$inset-size-sm: 50px;
+
+	$transition-length: 1s;
+	$shadow: 6px 6px 10px rgba(0,0,0,0.2);
+	// $percentage-font-size: 22px;
+	// $percentage-text-width: 57px;
+
+  background-color: #d6dadc;
+  border-radius: 50%;
+	// float: left;
+	flex-shrink: 0;
+  height: $circle-size-sm;
+	// margin-bottom: 2em;
+	margin-right: 10px;
+  width:  $circle-size-sm;
+
+	@media screen and (min-width: 64em) {
+		height: $circle-size;
+		margin-right: 28px;
+		width:  $circle-size;
+	}
+
+	.circle {
+		.mask,
+    .fill,
+    .shadow {
+			width:    $circle-size-sm;
+			height:   $circle-size-sm;
+			position: absolute;
+			border-radius: 50%;
+
+			@media screen and (min-width: 64em) {
+				height: $circle-size;
+				width:  $circle-size;
+			}
+		}
+		.shadow {
+			box-shadow: $shadow inset;
+		}
+		.mask,
+    .fill {
+			-webkit-backface-visibility: hidden;
+			border-radius: 50%;
+			transition: -webkit-transform $transition-length;
+			transition: -ms-transform $transition-length;
+			transition: transform $transition-length;
+		}
+		.mask {
+			clip: rect(0px, $circle-size-sm, $circle-size-sm, $circle-size-sm / 2);
+
+			@media screen and (min-width: 64em) {
+				clip: rect(0px, $circle-size, $circle-size, $circle-size / 2);
+			}
+
+			.fill {
+				clip: rect(0px, $circle-size-sm / 2, $circle-size-sm, 0px);
+				background-color: $main-color;
+
+				@media screen and (min-width: 64em) {
+					clip: rect(0px, $circle-size / 2, $circle-size, 0px);
+				}
+			}
+		}
+	}
+	.inset {
+		width:       $inset-size-sm;
+		height:      $inset-size-sm;
+		position:    absolute;
+		margin-left: ($circle-size-sm - $inset-size-sm) / 2;
+		margin-top:  ($circle-size-sm - $inset-size-sm) / 2;
+
+		background-color: black;
+		border-radius: 50%;
+		box-shadow: $shadow;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+		text-align: center;
+
+		@media screen and (min-width: 64em) {
+			height: $inset-size;
+			margin-left: ($circle-size - $inset-size) / 2;
+			margin-top:  ($circle-size - $inset-size) / 2;
+			width:  $inset-size;
+		}
+	}
+}
