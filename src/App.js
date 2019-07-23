@@ -4,6 +4,10 @@ import { addPrefetchExcludes, Root, Routes } from 'react-static';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
+
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-119802091-1');
 
 import PageHeader from './components/PageHeader';
 import Player from './components/Player';
@@ -16,26 +20,6 @@ import { IDDLE, PLAYING, PAUSED, SEEKING } from './constants';
 //   ITUNES: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
 //   PATUM: 'http://www.preguntaleatumadre.com/Feed',
 // };
-
-// const seasons = [
-//   { value: 2, text: 'Temporada 2' },
-//   { value: 1, text: 'Temporada 1' },
-// ];
-
-// const meses = [
-//   'enero',
-//   'febrero',
-//   'marzo',
-//   'abril',
-//   'mayo',
-//   'junio',
-//   'julio',
-//   'agosto',
-//   'setiembre',
-//   'octubre',
-//   'noviembre',
-//   'diciembre',
-// ];
 
 const radioStreaming = {
   file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
@@ -66,6 +50,7 @@ const playerState = (playing = radioStreaming, action) => {
         return {
           ...playing,
           status: (playing.status === PLAYING ? PAUSED : PLAYING),
+          state: 0,
         };
       }
       return {
@@ -103,69 +88,8 @@ class App extends React.PureComponent {
     this.togglePlay = this.togglePlay.bind(this);
     this.playNext = this.playNext.bind(this);
     this.playRadio = this.playRadio.bind(this);
-    // this.changeSeason = this.changeSeason.bind(this);
     this.updateState = this.updateState.bind(this);
   }
-
-  // load (path, replaceList) {
-  //   this.setState({ loading: true });
-  //   const req = new XMLHttpRequest();
-  //   req.addEventListener('load', evt => {
-  //     const data = evt.target.responseXML;
-  //     if (!data) {
-  //       this.setState({ loading: false });
-  //       return;
-  //     }
-  //   //   if (this.state.replaceList) {
-  //   //     const historyState = {
-  //   //       episodes: this.state.episodes[0],
-  //   //       nextPage: this.state.nextPage,
-  //   //       playing: this.state.episodes.findIndex(element => element.episode === this.state.playingEpisode),
-  //   //     };
-  //   //     window.history.replaceState(historyState, document.title, document.location.pathname);
-  //   //     const title = 'Preguntale a tu Madre';
-  //   //     window.history.pushState({}, title, '/');
-  //   //     document.title = title;
-  //   //   }
-  //     let newState = {
-  //       loading: false,
-  //       episodes: replaceList ? [] : this.state.episodes,
-  //       nextPage: null,
-  //       replaceList: false,
-  //     };
-  //     const items = data.getElementsByTagName('item');
-  //     for (let i = 0; i < items.length; i++) {
-  //       let rssItem = items.item(i);
-  //       let enclosure = rssItem.getElementsByTagName('enclosure').item(0);
-  //       let date = new Date(rssItem.getElementsByTagNameNS(xmlns.PATUM, 'date').item(0).firstChild.nodeValue);
-  //       newState.episodes.push({
-  //         title: rssItem.getElementsByTagName('title').item(0).firstChild.nodeValue,
-  //         duration: rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'duration').item(0).firstChild.nodeValue,
-  //         episode: parseInt(rssItem.getElementsByTagNameNS(xmlns.ITUNES, 'episode').item(0).firstChild.nodeValue),
-  //         fecha: ` ${date.getDate()} de ${meses[date.getMonth()]}, ${date.getFullYear()}`,
-  //         file: enclosure.getAttribute('url'),
-  //         length: parseInt(enclosure.getAttribute('length')),
-  //         url: rssItem.getElementsByTagName('link').item(0).firstChild.nodeValue,
-  //         slug: rssItem.getElementsByTagNameNS(xmlns.PATUM, 'slug').item(0).firstChild.nodeValue,
-  //       });
-  //     }
-  //   //   const links = data.getElementsByTagNameNS(xmlns.ATOM, 'link');
-  //   //   for (let i = 0; i < links.length; i++) {
-  //   //     let link = links.item(i);
-  //   //     if (link.getAttribute('rel') === 'next') {
-  //   //       newState.nextPage = link.getAttribute('href');
-  //   //       break;
-  //   //     }
-  //   //   }
-  //     this.setState(newState);
-  //   });
-  //   req.addEventListener('error', evt => {
-  //     console.error(evt);
-  //     this.setState({ loading: false });
-  //   });
-  //   req.open('GET', path);//this.state.nextPage);
-  //   req.send();
-  // }
 
   updateState (err, data) {
     if (err) {
@@ -193,15 +117,6 @@ class App extends React.PureComponent {
         break;
     }
     this.setState(newState);
-  }
-
-  changeSeason (index) {
-    // if (index !== this.state.selectedSeason) {
-    //   this.setState({
-    //     selectedSeason: index,
-    //     season: seasons[index],
-    //   }, () => this.load(`/feed/temporada${seasons[this.state.selectedSeason].value}/podcast-1.xml`, true));
-    // }
   }
 
   playRadio () {
@@ -248,11 +163,18 @@ class App extends React.PureComponent {
             episode={radioStreaming}
           />
           <section className="main-content">
-            <React.Suspense fallback={<em>Cargando...</em>}>
+            <React.Suspense fallback={<em style={{ flex: 1 }}>Cargando…</em>}>
               <Switch>
                 <Route render={() => <Routes />} />
               </Switch>
             </React.Suspense>
+            <div className="sidebar">
+              <TwitterTimelineEmbed
+                sourceType="profile"
+                screenName="preguntaleatum"
+                options={{ height: 1024 }}
+              />
+            </div>
           </section>
           <Player
             // ref={this.player}

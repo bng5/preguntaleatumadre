@@ -1,30 +1,34 @@
 import React from 'react';
-import { useRouteData } from 'react-static';
+import { Head, useRouteData, useSiteData } from 'react-static';
 import { connect } from 'react-redux';
 // import { Link } from 'components/Router';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-
+// import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 import Dropdown from '../components/Dropdown';
 import Episode from '../components/Episode';
 
-const share = (ev) => {
-  const link = ev.target;
-  try {
-    if (window.open(link.href, 'sharer', 'toolbar=0,status=0,width=626,height=436')) {
-      ev.preventDefault();
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const EpisodesList = ({ player, togglePlay }) => {
-  const { protocol, host } = document.location;
-  const baseUrl = `${protocol}//${host}/`;
+  // const { protocol, host } = document.location;
+  // const baseUrl = `${protocol}//${host}/`;
+  const { title } = useSiteData();
   const { posts, seasons, selectedSeason } = useRouteData();
+  // if (player.state === 2) {
+  //   const index = posts.findIndex(post => post.slug === player.slug);
+  //   console.log(index)
+  //   console.log(player.slug)
+  //   console.log(posts)
+  //   if (index > -1 && posts[index + 1]) {
+  //     togglePlay(posts[index + 1]);
+  //   }
+  // }
   return (
     <React.Fragment>
+      <Head>
+        <title>{title}</title>
+        <meta name="twitter:title" content={title} />
+        {/* <meta name="twitter:card" content="summary" /> */}
+        <meta property="og:title" content={title} />
+      </Head>
       <div id="home">
         <Dropdown
           // changeHandler={this.changeSeason}
@@ -42,9 +46,6 @@ const EpisodesList = ({ player, togglePlay }) => {
               playerState={current ? player.state : 0 }
               progress={current ? player.progress : 0 }
               playHandler={() => togglePlay(episode)}
-              sharer={share}
-              baseUrl={baseUrl}
-              //sharer={this.share.bind(null, episode.url, episode.title)}
             />
           )}
         )}
@@ -64,26 +65,12 @@ const EpisodesList = ({ player, togglePlay }) => {
           : null
         */}
       </div>
-      <div className="sidebar">
-        {/*
-        <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="preguntaleatum"
-          options={{ height: 1024 }}
-        />
-        */}
-        {/*
-        <div className="twitter-timeline-wrapper">
-          <a className="twitter-timeline" href="https://twitter.com/preguntaleatum?ref_src=twsrc%5Etfw">Tweets de Preguntale a tu Madre</a>
-        </div>
-        */}
-      </div>
-
       {/*<p>{currentPage} - {totalPages}</p>*/}
 
     </React.Fragment>
   )
 }
+// }
 
 const mapStateToProps = (state) => {
   return {

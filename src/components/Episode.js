@@ -1,8 +1,21 @@
 import React from 'react';
 import {IDDLE, PLAYING, PAUSED, SEEKING} from '../constants';
+// import { Link } from 'react-router-dom';
 
-const Episode = ({ baseUrl, fecha, id, playHandler, playerState, progress, sharer, title }) => {
-  const url = encodeURIComponent(`${baseUrl}${id}`);
+const share = (ev) => {
+  const link = ev.target;
+  try {
+    const win = window.open(link.href, 'sharer', 'toolbar=0,status=0,width=626,height=436');
+    if (win) {
+      ev.preventDefault();
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const Episode = ({ fecha, playHandler, playerState, progress, title, path }) => {
+  const url = encodeURIComponent(`https://www.preguntaleatumadre.com/programas${path}`);
   let buttonClass = ['programa__playback', 'playback'];
   if (playerState === PLAYING) {
     buttonClass.push('pause');
@@ -27,7 +40,7 @@ const Episode = ({ baseUrl, fecha, id, playHandler, playerState, progress, share
       </div>
     </div>
     <div className="programa__info">
-      <h2 className="programa__titulo">{ title }</h2>
+      <h2 className="programa__titulo">{title}</h2>
       <p className="programa__meta">
         Emitido: <time>{ fecha }</time>
       </p>
@@ -36,14 +49,14 @@ const Episode = ({ baseUrl, fecha, id, playHandler, playerState, progress, share
           href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`}
           className="twitter"
           title="Twitter"
-          onClick={sharer}
+          onClick={share}
         ><span>Twitter</span></a>
         {' '}
         <a
           href={`http://www.facebook.com/sharer.php?u=${url}`}
           className="facebook"
           title="Facebook"
-          onClick={sharer}
+          onClick={share}
         ><span>Facebook</span></a>
       </p>
     </div>

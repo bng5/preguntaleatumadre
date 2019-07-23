@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, forwardRef } from 'react';
 import { connect } from 'react-redux';
 
 import { IDDLE, PLAYING, PAUSED, SEEKING } from '../constants';
@@ -13,7 +13,7 @@ const volumeIcon = function (value) {
   return value == 0 ? 'off' : (value >= 80 ? 'up' : 'down');
 };
 
-const Audio = React.forwardRef(({ src, onError, onTimeUpdate, onEnded, onWaiting, onSeeking, onPause, onPlaying, onCanPlay }, ref) => (
+const Audio = forwardRef(({ src, onError, onTimeUpdate, onEnded, onWaiting, onSeeking, onPause, onPlaying, onCanPlay }, ref) => (
   <audio
     ref={ref}
     type="audio/mpeg"
@@ -35,7 +35,7 @@ const Audio = React.forwardRef(({ src, onError, onTimeUpdate, onEnded, onWaiting
 class Player extends Component {
   constructor(props) {
     super(props);
-    this.playerEl = React.createRef();
+    this.playerEl = createRef();
     this.state = {
       currentTime: '0:00',
       // playerState: 0,
@@ -52,8 +52,8 @@ class Player extends Component {
     this.onPlaying = this.onPlaying.bind(this);
     this.positionControl = this.positionControl.bind(this);
     this.timeUpdate = this.timeUpdate.bind(this);
-    this.togglePlay = this.togglePlay.bind(this);
-    this.stateChange = this.stateChange.bind(this);
+    // this.togglePlay = this.togglePlay.bind(this);
+    // this.stateChange = this.stateChange.bind(this);
     this.volumeControl = this.volumeControl.bind(this);
     this.waiting = this.waiting.bind(this);
   }
@@ -67,40 +67,32 @@ class Player extends Component {
   componentDidUpdate (prevProps) {
     if (prevProps.episode.status !== this.props.episode.status) {
       this.playerEl.current.paused ? this.playerEl.current.play() : this.playerEl.current.pause();
-    }
-  }
-
-  canPlay () {
-    console.log('canPlay')
-    console.log(this.state.started)
-    if (!this.state.started) {
-      this.setState({
-        started: true,
-      }, () => {console.log(this.state.started)});
-    }
-  }
-
-  togglePlay (episode) {
-    if (!episode || !episode.file || episode.file === this.state.episode.file) {
-      this.playerEl.current.paused ? this.playerEl.current.play() : this.playerEl.current.pause();
-      return;
-    }
-    this.props.onUpdateState(null, {
-      type: 'changeEpisode',
-      episode,
-    });
-    this.setState({
-      // playerState: 1,
-      episode,
-      progress: 0,
-      started: true,
-      error: false,
-    }, () => {
+    } else if (prevProps.episode.file !== this.props.episode.file) {
       this.playerEl.current.play();
-    });
+    }
   }
 
-  timeUpdate() {
+  // togglePlay (episode) {
+  //   if (!episode || !episode.file || episode.file === this.state.episode.file) {
+  //     this.playerEl.current.paused ? this.playerEl.current.play() : this.playerEl.current.pause();
+  //     return;
+  //   }
+  //   this.props.onUpdateState(null, {
+  //     type: 'changeEpisode',
+  //     episode,
+  //   });
+  //   this.setState({
+  //     // playerState: 1,
+  //     episode,
+  //     progress: 0,
+  //     started: true,
+  //     error: false,
+  //   }, () => {
+  //     this.playerEl.current.play();
+  //   });
+  // }
+
+  timeUpdate () {
     const progress = (this.props.episode.duration && !isNaN(this.playerEl.current.duration)) ? Math.round(this.playerEl.current.currentTime * 100 / this.playerEl.current.duration) : 0;
     this.props.updateProgress(progress, toTime(this.playerEl.current.currentTime));
     // this.setState({
@@ -113,34 +105,49 @@ class Player extends Component {
     // });
   }
 
-  ended() {
-    this.props.onUpdateState(null, {
-      type: 'end',
-      progress: 0,
-    });
-  }
-
   volumeControl (event) {
     const volume = event.target.value;
     this.setState({ volume });
     this.playerEl.current.volume = (volume / 100);
   }
 
-  positionControl(event) {
+  positionControl (event) {
     const progress = event.target.value;
-    this.setState({ progress });
+    // const progress = (this.props.episode.duration && !isNaN(this.playerEl.current.duration)) ? Math.round(this.playerEl.current.currentTime * 100 / this.playerEl.current.duration) : 0;
+    this.props.updateProgress(progress, toTime(this.playerEl.current.currentTime));
+    // this.setState({ progress });
     this.playerEl.current.currentTime = Math.round(progress * this.playerEl.current.duration / 100);
   }
 
-  stateChange (state) {
-    this.props.onUpdateState(null, {
-      type: 'stateChange',
-      state,
-    });
+  // stateChange (state) {
+  //   this.props.onUpdateState(null, {
+  //     type: 'stateChange',
+  //     state,
+  //   });
+  // }
+
+  canPlay () {
+    if (!this.state.started) {
+      this.setState({
+        started: true,
+      }, () => {console.log(this.state.started)});
+    } else {
+      this.props.stateChange(this.playerEl.current.paused ? PAUSED : PLAYING);
+    }
   }
 
-  waiting () {
-    this.stateChange(SEEKING);
+  waiting (ev) {
+    // console.log(ev)
+    this.props.stateChange(SEEKING);
+  }
+
+  ended () {
+    this.props.stateChange(IDDLE);
+    // this.props.ended(this.props.episode.slug);
+  //   this.props.stateChange(null, {
+  //     type: 'end',
+  //     progress: 0,
+  //   });
   }
 
   onPause () {
@@ -229,11 +236,12 @@ class Player extends Component {
           onEnded={this.ended}
           onWaiting={this.waiting}
           onSeeking={this.waiting}
+          onSeeked={this.onSeeked}
           //onPlay={() => console.log('play')}
           onPause={this.onPause}
           onPlaying={this.onPlaying}
           onCanPlay={this.canPlay}
-          // onLoad={() => console.log('onLoad')}
+          onLoad={() => console.log('onLoad')}
           // onLoadedData={() => console.log('onLoadedData')}
         />
       </div>
@@ -244,7 +252,7 @@ class Player extends Component {
 const mapStateToProps = (state) => {
   return {
     episode: state,
-  // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 };
 
@@ -266,7 +274,7 @@ const mapDispatchToProps = (dispatch) => ({
       progress,
       currentTime,
     });
-  }
+  },
 });
 
 export default connect(

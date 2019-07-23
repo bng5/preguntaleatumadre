@@ -127,8 +127,15 @@
 }
 
 .pagination {
-  clear: both;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    flex-basis: 33%;
+    text-align: center;
+  }
 
   .load-more {
     background-color: $main-color;

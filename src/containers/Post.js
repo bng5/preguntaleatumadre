@@ -1,39 +1,39 @@
 import React from 'react'
-import { useRouteData } from 'react-static';
-import { Helmet } from 'react-helmet';
-import { Link } from 'components/Router';
+import { Head, useRouteData, useSiteData } from 'react-static';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default function Post() {
-  const { post } = useRouteData();
+import Episode from '../components/Episode';
+
+const Post = ({ player, togglePlay }) => {
+  const { title } = useSiteData();
+  const { next, post, previous } = useRouteData();
+  const current = player.slug === post.slug;
   return (
     <div id="home">
-      <Helmet>
-        <title>{post.title} - Preguntale a tu Madre</title>
-        <meta name="twitter:card" content="player" />
+      <Head>
+        <title>{post.title} - {title}</title>
+        {/* <meta name="twitter:card" content="player" /> */}
         <meta name="twitter:title" content={post.title} />
         <meta property="og:title" content={post.title} />
         <meta property="og:audio" content={post.file} />
-      </Helmet>
-      <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span className="rss"></span></a></sup></h1>
+      </Head>
+      {/* <h1>Programas <sup><a href="/podcast.xml" target="_blank"><span className="rss"></span></a></sup></h1> */}
       <div id="programas">
-        <div className="programa">
-          <p>Emitido: <time datetime={post.date}>{post.fecha}</time></p>
-          <a href={`/episodios/${post.file}`}>{post.file}</a>
-        </div>
-        <div className="pagination">
-          {/* % if page.previous %}
-          Anterior: <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
-          {% endif % */}
-          <Link to="/">Listado de programas</Link>
-          {/* % if page.next %}
-          Siguiente: <a href="{{ page.next.url }}">{{ page.next.title }}</a>
-          {% endif % */}
-        </div>
+        <Episode
+          key={post.id}
+          {...post}
+          playerState={current ? player.state : 0 }
+          progress={current ? player.progress : 0 }
+          playHandler={() => togglePlay(post)}
+        />
+        <ul className="pagination">
+          <li>{previous && <Link to={`/programas${previous.path}`}><span title="Anterior">←</span> {previous.title}</Link>}</li>
+          <li><Link to="/">Listado de programas</Link></li>
+          <li>{next && <Link to={`/programas${next.path}`}>{next.title} <span title="Siguiente">→</span></Link>}</li>
+        </ul>
       </div>
     </div>
-
-
-
   )
 }
 
@@ -51,3 +51,23 @@ export default function Post() {
 //     "url": "{{ page.url }}"
 //   }]
 // }</script>
+
+const mapStateToProps = (state) => {
+  return {
+    player: state,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  togglePlay: (episode) => {
+    dispatch({
+      type: 'TOGGLE_PLAY',
+      ...episode,
+    })
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);

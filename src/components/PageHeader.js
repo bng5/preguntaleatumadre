@@ -45,7 +45,6 @@ class PageHeader extends React.Component {
   }
 
   focusUrl (ev) {
-    console.log('focusUrl')
     ev.target.select();
   }
 
@@ -73,8 +72,7 @@ class PageHeader extends React.Component {
   }
 
   render () {
-    const { episode, file, state, title, tagline } = this.props;
-    const playerState = (file === episode.file) ? state : 0;
+    const { current, episode, file, playerState, state, title, tagline } = this.props;
     return (
       <section className="page-header">
         <div className="header-title__top">
@@ -126,11 +124,12 @@ class PageHeader extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return state;
- //  return {
- //    currentPlay: state.currentPlay,
- //  // todos: getVisibleTodos(state.todos, state.visibilityFilter)
- // }
+  const current = (state.slug === 'radio');
+  const playerState = current ? state.state : 0;
+  return {
+    current,
+    playerState,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

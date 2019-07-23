@@ -22,7 +22,7 @@ export default posts => {
     .att('version', '2.0')
     .att('xmlns:atom', "http://www.w3.org/2005/Atom")
     .att('xmlns:itunes', "http://www.itunes.com/dtds/podcast-1.0.dtd")
-    .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed")
+    // .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed")
   .instructionBefore('xml-stylesheet', 'type="text/xsl" href="podcast.xsl"');
   const channel = root.ele('channel')
     .ele('atom:link', {
@@ -47,7 +47,7 @@ export default posts => {
   posts.forEach(post => {
     channel.ele('item')
       .ele('title', post.title).up()
-      .ele('link', `https://www.preguntaleatumadre.com/programas/${post.id}.html`).up()
+      .ele('link', `https://www.preguntaleatumadre.com/programas${post.path}`).up()
       .ele('description').up()
       .ele('pubDate', pubDate(post.pubDate)).up()
       .ele('category', 'Podcast').up()
@@ -61,8 +61,8 @@ export default posts => {
       .ele('itunes:season', post.season).up()
       .ele('itunes:episodeType', 'full').up()
       .ele('itunes:duration', post.duration).up()
-      .ele('itunes:explicit', 'clean').up()
-      .ele('patum:date', post.date).up();
+      .ele('itunes:explicit', 'clean').up();
+      // .ele('patum:date', post.date).up();
   });
 
   return root.end({ pretty: true });

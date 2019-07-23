@@ -8,16 +8,17 @@ import createRss from './src/createRss';
 
 export default {
   // siteRoot: 'https://www.preguntaleatumadre.com',
-  // getSiteData: async ({ dev }) => ({
-  //   title: 'Preguntale a tu Madre',
-  //   tagline: 'Donde no existen preguntas estúpidas…',
-  // }),
+  stagingBasePath: 'dev.preguntaleatumadre.com',
+  getSiteData: async ({ dev }) => ({
+    title: 'Preguntale a tu Madre',
+    tagline: 'Donde no existen preguntas estúpidas…',
+  }),
   Document: ({
     Html,
     Head,
     Body,
     children,
-    state: { siteData, renderMeta },
+    // state: { siteData, renderMeta, routeInfo },
   }) => (
     <Html lang="es-UY">
       <Head>
@@ -25,15 +26,12 @@ export default {
         <title>Preguntale a tu Madre</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#aaddd6" />
-        {/*<link rel="stylesheet" href="/assets/main.css" />*/}
         <link rel="alternate" type="application/rss+xml" title="Preguntale a tu Madre - Podcast" href="/podcast.xml" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@preguntaleatum" />
         <meta name="twitter:creator" content="@bng5" />
-        <meta name="twitter:title" content="Preguntale a tu Madre" />
         <meta name="twitter:description" content="Donde no existen preguntas estúpidas…" />
         <meta name="twitter:image" content="https://www.preguntaleatumadre.com/assets/images/patum.png" />
-        <meta property="og:title" content="Preguntale a tu Madre" />
         <meta property="og:url" content="https://www.preguntaleatumadre.com" />
         <meta property="og:site_name" content="Preguntale a tu Madre" />
         <meta property="og:description" content="Donde no existen preguntas estúpidas…" />
@@ -41,10 +39,12 @@ export default {
         {/*
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119802091-1"></script>
         <script>
+        {`
           window.dataLayer = window.dataLayer || [];
           function gtag() {dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'UA-119802091-1');
+        `}
         </script>
         */}
       </Head>
@@ -113,14 +113,31 @@ export default {
       //     }),
       //   }),
       // }),
-      // Make the routes for each blog post
-      ...posts.map(post => ({
-        path: `/${post.id}`,
-        template: 'src/containers/Post',
+      {
+        path: 'programas',
+        template: 'src/containers/List',
         getData: () => ({
-          post,
+          posts: posts,
+          seasons,
+          selectedSeason: seasons[0],
         }),
-      })),
+        children: posts.map((post, i) => ({
+          path: post.path,
+          template: 'src/containers/Post',
+          getData: () => ({
+            post,
+            previous: (posts[i - 1] ? posts[i - 1] : null),
+            next: (posts[i + 1] ? posts[i + 1] : null),
+          }),
+        })),
+      },
+      // ...posts.map(post => ({
+      //   path: `programas${post.path}`,
+      //   template: 'src/containers/Post',
+      //   getData: () => ({
+      //     post,
+      //   }),
+      // })),
       {
         path: '404',
         template: 'src/containers/NotFound',
