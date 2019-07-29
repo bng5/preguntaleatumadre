@@ -6,6 +6,8 @@ import React from 'react';
 
 import createRss from './src/createRss';
 
+// s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
+
 export default {
   // siteRoot: 'https://www.preguntaleatumadre.com',
   stagingBasePath: 'dev.preguntaleatumadre.com',
@@ -160,6 +162,14 @@ export default {
     ]
   },
   plugins: [
+    // 'create-rss',
+    // [
+    //   'source-yaml',
+    //   {
+    //     location: './posts',
+    //   }
+    // ],
+    'fix-css-route',
     // [
     //   require.resolve('react-static-plugin-source-filesystem'),
     //   {
