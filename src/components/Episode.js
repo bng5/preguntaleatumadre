@@ -49,7 +49,6 @@ const Episode = ({ fecha, playHandler, playerState, progress, title, path }) => 
           href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`}
           className="twitter"
           title="Twitter"
-          onClick={share}
         ><span>Twitter</span></a>
         {' '}
         <a
