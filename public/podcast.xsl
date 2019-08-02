@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:patum="http://www.preguntaleatumadre.com/Feed">
   <xsl:template match="/rss/channel">
     <html lang="es-UY">
       <head>
@@ -65,9 +65,10 @@ function copyMouseOut () {
             <div id="home">
               <h2>Programas</h2>
               <xsl:for-each select="item">
-                <div class="programa">
+                <div class="programa__info">
                   <h3 class="programa__titulo"><a href="{link}"><xsl:value-of select="title" /></a></h3>
-                  <p class="programa__info">
+                  <p class="programa__meta">
+                    Emitido: <xsl:value-of select="patum:date" /><br />
                     Audio: <a href="{enclosure/@url}"><xsl:value-of select="enclosure/@url" /></a>
                   </p>
                 </div>

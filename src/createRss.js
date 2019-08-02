@@ -22,7 +22,7 @@ export default posts => {
     .att('version', '2.0')
     .att('xmlns:atom', "http://www.w3.org/2005/Atom")
     .att('xmlns:itunes', "http://www.itunes.com/dtds/podcast-1.0.dtd")
-    // .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed")
+    .att('xmlns:patum', "http://www.preguntaleatumadre.com/Feed")
   .instructionBefore('xml-stylesheet', 'type="text/xsl" href="podcast.xsl"');
   const channel = root.ele('channel')
     .ele('atom:link', {
@@ -63,14 +63,15 @@ export default posts => {
       .ele('enclosure', {
         url: `https://www.preguntaleatumadre.com${post.file}`,
         length: post.filesize,
-        type: "audio/mpeg"
+        type: 'audio/mpeg',
       }).up()
       .ele('itunes:episode', post.episode).up()
       .ele('itunes:season', post.season).up()
       .ele('itunes:episodeType', 'full').up()
       .ele('itunes:duration', post.duration).up()
-      .ele('itunes:explicit', 'clean').up();
-      // .ele('patum:date', post.date).up();
+      .ele('itunes:explicit', 'clean').up()
+      .ele('patum:date', post.fecha)
+        .att('date', post.date).up();
   });
 
   return root.end({ pretty: true });
