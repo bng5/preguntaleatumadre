@@ -116,7 +116,7 @@ class PageHeader extends React.Component {
         <p className="page-header__cuando">Miércoles 22 hs. por <a href="http://www.mediarte.com.uy/" rel="noopener noreferrer" target="_blank">Mediarte</a></p>
         <ul className={'social' + (this.state.showPodcast ? ' hidden' : '')}>
           <li className="social-item twitter"><a href="https://twitter.com/preguntaleatum" rel="noopener noreferrer" target="_blank">@preguntaleatum</a></li>
-          <li className="social-item instagram"><a href="https://www.instagram.com/patumradio/" rel="noopener noreferrer" target="_blank">@preguntaleatum</a></li>
+          <li className="social-item instagram"><a href="https://www.instagram.com/patumradio/" rel="noopener noreferrer" target="_blank">@patumradio</a></li>
           <li className="social-item facebook"><a href="https://www.facebook.com/2036459399960596/" rel="noopener noreferrer" target="_blank">Preguntale A Tu Madre</a></li>
           <li className="social-item whatsapp"><a href="https://wa.me/59892633427" rel="noopener noreferrer" target="_blank">+598 92 633 427</a></li>
         </ul>

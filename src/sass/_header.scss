@@ -150,9 +150,8 @@
       &::before {
         @include fa-icon();
         @extend .fab;
-        // @extend .fa-2x;
+        @extend .fa-fw;
         font-size: 1.5em;
-        padding-right: 0.2em;
         vertical-align: sub;
       }
 
