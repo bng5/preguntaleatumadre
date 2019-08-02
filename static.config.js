@@ -162,13 +162,6 @@ export default {
     ]
   },
   plugins: [
-    // 'create-rss',
-    // [
-    //   'source-yaml',
-    //   {
-    //     location: './posts',
-    //   }
-    // ],
     'fix-css-route',
     // [
     //   require.resolve('react-static-plugin-source-filesystem'),

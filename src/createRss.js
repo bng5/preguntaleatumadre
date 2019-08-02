@@ -5,8 +5,8 @@ function pubDate (dateStr) {
     ? new Date(dateStr)
     : new Date();
   const pieces = date.toString().split(' '),
-      offsetTime = pieces[5].match(/[-+]\d{4}/),
-      offset     = (offsetTime) ? offsetTime : pieces[5];
+    offsetTime = pieces[5].match(/[-+]\d{4}/),
+    offset     = (offsetTime) ? offsetTime : pieces[5];
   return [
     pieces[0] + ',',
     pieces[2],
@@ -35,6 +35,7 @@ export default posts => {
     .ele('description', 'Donde no existen preguntas estúpidas…').up()
     .ele('lastBuildDate', pubDate()).up()
     .ele('language', 'es-UY').up()
+    .ele('author', 'Preguntale a tu Madre').up()
     .ele('image')
       .ele('title', 'Preguntale a tu Madre').up()
       .ele('url', 'https://www.preguntaleatumadre.com/assets/images/patum.png').up()
@@ -43,7 +44,11 @@ export default posts => {
     .ele('itunes:type', 'episodic').up()
     .ele('itunes:category', { text: "Comedy" }).up()
     .ele('itunes:explicit', 'clean').up()
-    .ele('itunes:author', 'Mediarte').up();
+    .ele('itunes:author', 'Preguntale a tu Madre').up()
+    .ele('itunes:owner')
+      .ele('itunes:name', 'Preguntale a tu Madre').up()
+      .ele('itunes:email', 'pablo@bng5.net').up()
+    .up();
   posts.forEach(post => {
     channel.ele('item')
       .ele('title', post.title).up()
