@@ -38,7 +38,7 @@ export default posts => {
     .ele('author', 'Preguntale a tu Madre').up()
     .ele('image')
       .ele('title', 'Preguntale a tu Madre').up()
-      .ele('url', 'https://www.preguntaleatumadre.com/assets/images/patum.png').up()
+      .ele('url', 'https://www.preguntaleatumadre.com/assets/images/patum-normal.png').up()
       .ele('link', 'https://www.preguntaleatumadre.com').up()
     .up()
     .ele('itunes:type', 'episodic').up()
@@ -48,7 +48,10 @@ export default posts => {
     .ele('itunes:owner')
       .ele('itunes:name', 'Preguntale a tu Madre').up()
       .ele('itunes:email', 'pablo@bng5.net').up()
-    .up();
+    .up()
+    .ele('itunes:image', {
+      href: 'https://www.preguntaleatumadre.com/assets/images/patum.png',
+    }).up();
   posts.forEach(post => {
     channel.ele('item')
       .ele('title', post.title).up()

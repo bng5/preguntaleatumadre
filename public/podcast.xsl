@@ -46,17 +46,19 @@ function copyMouseOut () {
                 </p>
                 <p>Copiá la ruta del feed para agregarla en tu reproductor de podcast o seleccioná uno de los siguientes servicios.</p>
                 <ul class="podcast-providers">
-                  <li><a href="https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001" class="btn header-ctas-list__item">iTunes</a></li>
-                  <li><a href="http://tun.in/pi5TW" class="btn header-ctas-list__item">TuneIn</a></li>
-                  <li><a href="https://player.fm/series/preguntale-a-tu-madre" class="btn header-ctas-list__item">PlayerFM</a></li>
-                  <li><a href="https://www.ivoox.com/escuchar-preguntale-a-tu-madre_nq_531023_1.html" class="btn header-ctas-list__item">iVoox</a></li>
+                  <li><a class="btn header-ctas-list__item" href="https://itunes.apple.com/uy/podcast/preguntale-a-tu-madre/id1384328001">iTunes</a></li>
+                  <li><a class="btn header-ctas-list__item" href="https://open.spotify.com/show/2CIphN1cbPh4Z8AAhV08dH">Spotify</a></li>
+                  <li><a class="btn header-ctas-list__item" href="http://tun.in/pi5TW">TuneIn</a></li>
+                  <li><a class="btn header-ctas-list__item" href="https://player.fm/series/preguntale-a-tu-madre">PlayerFM</a></li>
+                  <li><a class="btn header-ctas-list__item" href="https://www.ivoox.com/podcast-preguntale-a-tu-madre_sq_f1681139_1.html">iVoox</a></li>
                 </ul>
               </div>
             </div>
             <ul class="social">
               <li class="social-item twitter"><a href="https://twitter.com/preguntaleatum" rel="noopener noreferrer" target="_blank">@preguntaleatum</a></li>
-              <li class="social-item instagram"><a href="https://www.instagram.com/patumradio/" rel="noopener noreferrer" target="_blank">@preguntaleatum</a></li>
+              <li class="social-item instagram"><a href="https://www.instagram.com/patumradio/" rel="noopener noreferrer" target="_blank">@patumradio</a></li>
               <li class="social-item facebook"><a href="https://www.facebook.com/2036459399960596/" rel="noopener noreferrer" target="_blank">Preguntale A Tu Madre</a></li>
+              <li class="social-item whatsapp"><a href="https://wa.me/59892633427" rel="noopener noreferrer" target="_blank">+598 92 633 427</a></li>
             </ul>
           </section>
           <section class="main-content">
