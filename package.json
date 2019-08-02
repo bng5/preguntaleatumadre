@@ -16,6 +16,7 @@
     "react-helmet": "^5.2.1",
     "react-modal": "^3.8.1",
     "react-redux": "^7.1.0",
+    "react-responsive-modal": "^4.0.1",
     "react-router-dom": "^5.0.1",
     "react-static": "^7.0.0",
     "react-static-plugin-react-router": "^7.0.10",

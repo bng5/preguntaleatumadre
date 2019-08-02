@@ -46,7 +46,7 @@
   list-style-type: none;
   padding: 0;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   @media screen and (min-width: $screen-lg) {
     flex-direction: row;
@@ -107,7 +107,7 @@
 }
 
 .page-header__cuando {
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: $secondary-color;
   font-weight: bold;
 
@@ -174,50 +174,23 @@
     &.facebook a::before {
       content: fa-content($fa-var-facebook);
     }
+
+    &.whatsapp a::before {
+      content: fa-content($fa-var-whatsapp);
+    }
   }
 }
 
 .podcast-subscription {
+  background-color: $bg-color;
+  border-radius: 4px;
   color: #1e766a;
   margin: 0 auto;
-
-  @media screen and (min-width: $screen-md) {
-    width: 60%;
-  }
 }
 
-// .podcast-modal {
-//   display: flex;
-//   flex-direction: column;
-//   background-color: #AADDD6;
-//   border-radius: 4px;
-//   color: #1e766a;
-//   outline: none;
-//   overflow: auto;
-//   padding: 0 30px 30px;
-
-//   header {
-//     position: relative;
-
-//     h1 {
-//       font-size: 1.5em;
-//       line-height: 2em;
-//       margin: 0;
-//     }
-//   }
-
-//   main {
-//     display: flex;
-//     flex: 1;
-//     flex-direction: column;
-//     justify-content: space-around;
-//     overflow: auto;
-
-//     p {
-//       margin: 0.5em 0;
-//     }
-//   }
-// }
+.podcast-subscription__close-icon {
+  fill: #1e766a;
+}
 
 .icon-btn {
   background-color: transparent;
