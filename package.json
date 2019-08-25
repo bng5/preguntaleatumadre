@@ -1,5 +1,5 @@
 {
-  "name": "react-static-example-basic",
+  "name": "preguntaleatumadre.com",
   "private": true,
   "scripts": {
     "start": "react-static start",
@@ -7,6 +7,7 @@
     "build": "react-static build",
     "analyze": "react-static build --analyze",
     "serve": "serve dist -p 3000",
+    "addepisode": "node bin/add-episode.js",
     "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts src/"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
+    "read-id3-tags": "^1.1.0",
     "serve": "10.1.2"
   }
 }
