@@ -7,8 +7,7 @@
     "build": "react-static build",
     "analyze": "react-static build --analyze",
     "serve": "serve dist -p 3000",
-    "addepisode": "node bin/add-episode.js",
-    "postinstall": "cp -r node_modules/@fortawesome/fontawesome-free-webfonts/webfonts src/"
+    "addepisode": "node bin/add-episode.js"
   },
   "dependencies": {
     "react": "^16.8.2",
