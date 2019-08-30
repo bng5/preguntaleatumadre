@@ -7,6 +7,20 @@ import React from 'react';
 import createRss from './src/createRss';
 
 // s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
+const meses = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'setiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
 
 export default {
   // siteRoot: 'https://www.preguntaleatumadre.com',
@@ -57,14 +71,16 @@ export default {
     const filenames = fs.readdirSync('./posts');
     const posts = filenames.map(filename => {
       const content = fs.readFileSync('./posts/' + filename, 'utf-8');
-
+      const data = yaml.parse(content);
+      const d = new Date(data.date);
       const match = filename.match(/^(\d+)-(\d+)-(\d+)-(.*)\.yml$/);
       const [ _, year, month, day, slug ] = match;
       return {
         id: filename.replace(/\.yml$/, '').replace(/-/g, '/'),
         path: `/${year}/${month}/${day}/${slug}`,
         slug,
-        ...yaml.parse(content),
+        ...data,
+        fecha: `${d.getDate()} de ${meses[d.getMonth()]}, ${d.getFullYear()}`,
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
