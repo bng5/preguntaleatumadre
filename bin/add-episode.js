@@ -52,7 +52,7 @@ class Episode {
     const fileName = path.basename(filePath);
     const date = fileName.replace(/^patum-(\d{4}-\d{2}-\d{2})\.mp3$/, '$1');
     this.data.title = data.title;
-    this.data.date = date + 'T22:00:00-0300';
+    this.data.date = date;
     this.data.file = `/episodios/${fileName}`;
     this.data.filesize = size;
     this.data.duration = this.formatSeconds(data.duration);
@@ -63,9 +63,10 @@ class Episode {
   async setNumberFromLastEpisode () {
     const files = fs.readdirSync(this.dir).sort();
     const file = fs.readFileSync(path.join(this.dir, files.pop()), 'utf8');
-    const { season, episode } = YAML.parse(file);
+    const { date, episode, season } = YAML.parse(file);
     this.data.season = season;
     this.data.episode = (episode + 1);
+    this.data.date += date.substring(10);
   }
 
   saveFile () {
