@@ -24,9 +24,12 @@ class PageHeader extends React.Component {
       modalIsOpen: false,
       copied: false,
       showPodcast: false,
+      formMessage: '',
+      placeholder: '',
     };
 
     this.inputUrl = React.createRef();
+    this.inputMessage = React.createRef();
 
     this.closeModal = this.closeModal.bind(this);
     this.copyMouseOut = this.copyMouseOut.bind(this);
@@ -34,7 +37,55 @@ class PageHeader extends React.Component {
     this.focusUrl = this.focusUrl.bind(this);
     this.openModal = this.openModal.bind(this);
     this.playRadio = this.playRadio.bind(this);
+    this.setFormMessage = this.setFormMessage.bind(this);
+    this.submitForm = this.submitForm.bind(this);
     this.togglePodcast = this.togglePodcast.bind(this);
+  }
+
+  componentDidMount () {
+    const nombres = [
+      'Carlos',
+      'Luisa',
+      'Teresa',
+    ];
+    const barrios = [
+      'Cerrito de la Victoria',
+      'La Blanqueada',
+      'la Unión',
+    ];
+    this.setState({ placeholder: `Hola, soy ${nombres[0]} de ${barrios[0]}. Tengo un amigo que quiere saber...` });
+    this.inputMessage.current.setAttribute('placeholder', `Hola, soy ${nombres[0]} de ${barrios[0]}. Tengo un amigo que quiere saber...`);
+  }
+
+  setFormMessage (event) {
+    this.setState({ formMessage: event.target.value });
+  }
+
+  submitForm (ev) {
+    const { action } = ev.target;
+    console.log(action)
+    ev.preventDefault();
+
+    var formData = new FormData();
+    formData.append('consulta', this.state.formMessage);
+
+console.log('submitForm')
+
+    fetch(action, {
+      method: 'POST',
+      mode: 'cors', // no-cors, cors, *same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      // redirect: 'follow', // manual, *follow, error
+      // referrer: 'no-referrer', // no-referrer, *client
+      body: `consulta=${encodeURIComponent(this.state.formMessage)}`,//formData,//JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+    .then(response => response.json())
+    .then(response => console.log(response)); // parses JSON response into native JavaScript objects
+
   }
 
   openModal (ev) {
@@ -77,8 +128,30 @@ class PageHeader extends React.Component {
         <div className="header-title__top">
           <div className="header-title">
             <img src="/assets/images/patum.svg" alt={title} />
-            <h2 className="project-tagline">{tagline}</h2>
+            {/* <h2 className="project-tagline">{tagline}</h2> */}
           </div>
+
+          <form
+            method="post"
+            action="https://3crulvsza4.execute-api.us-east-1.amazonaws.com/dev/contacto"
+            onSubmit={this.submitForm}
+          >
+            <fieldset className="contact">
+              {/* <legend>{tagline}</legend> */}
+              <legend>Enviá tu pregunta de forma totalmente anónima. Nunca nadie va a saber fuiste vos. <b>Nunca!</b></legend>
+              <textarea
+                name="consulta"
+                cols="70"
+                rows="8"
+                ref={this.inputMessage}
+                placeholder={this.state.placeholder}
+                value={this.state.formMessage}
+                onChange={this.setFormMessage}
+              /><br />
+              <input type="submit" value="Enviar consulta" className="btn btn--primary" />
+            </fieldset>
+          </form>
+
           <div className="header-ctas">
             <ul className="header-ctas-list">
               {/* <li><a type="button" onClick={this.togglePodcast} className={'btn header-ctas-list__item podcast' + (this.state.showPodcast ? ' active' : '')}>Podcast</a></li> */}
