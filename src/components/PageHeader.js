@@ -26,6 +26,7 @@ class PageHeader extends React.Component {
       showPodcast: false,
       formMessage: '',
       placeholder: '',
+      sendingMessage: false,
     };
 
     this.inputUrl = React.createRef();
@@ -66,10 +67,12 @@ class PageHeader extends React.Component {
     console.log(action)
     ev.preventDefault();
 
-    var formData = new FormData();
-    formData.append('consulta', this.state.formMessage);
+    // var formData = new FormData();
+    // formData.append('consulta', this.state.formMessage);
 
+    this.setState({ sendingMessage: true });
 console.log('submitForm')
+
 
     fetch(action, {
       method: 'POST',
@@ -78,14 +81,21 @@ console.log('submitForm')
       // credentials: 'same-origin', // include, *same-origin, omit
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest',
       },
       // redirect: 'follow', // manual, *follow, error
       // referrer: 'no-referrer', // no-referrer, *client
       body: `consulta=${encodeURIComponent(this.state.formMessage)}`,//formData,//JSON.stringify(data), // body data type must match "Content-Type" header
     })
     .then(response => response.json())
-    .then(response => console.log(response)); // parses JSON response into native JavaScript objects
-
+    .then(response => {
+      this.setState({
+        formMessage: '',
+        sendingMessage: false,
+      });
+      console.log(response)
+    })// parses JSON response into native JavaScript objects
+    .catch(err => console.error(err));
   }
 
   openModal (ev) {
@@ -133,7 +143,7 @@ console.log('submitForm')
 
           <form
             method="post"
-            action="https://3crulvsza4.execute-api.us-east-1.amazonaws.com/dev/contacto"
+            action="https://m9evpphtgl.execute-api.us-east-1.amazonaws.com/dev/contacto"
             onSubmit={this.submitForm}
           >
             <fieldset className="contact">
@@ -148,7 +158,7 @@ console.log('submitForm')
                 value={this.state.formMessage}
                 onChange={this.setFormMessage}
               /><br />
-              <input type="submit" value="Enviar consulta" className="btn btn--primary" />
+              <input type="submit" value="Enviar consulta" className="btn btn--primary" disabled={this.state.sendingMessage} />
             </fieldset>
           </form>
 
