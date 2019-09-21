@@ -13,6 +13,7 @@ if (!filePath) {
 class Episode {
   constructor () {
     const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
     this.filename = '';
     this.data = {
       title: '',
