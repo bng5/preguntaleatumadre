@@ -24,7 +24,7 @@ const EpisodesList = ({ player, togglePlay }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>{title}</title>
+        <title>PAtuM - {title}</title>
         <meta name="twitter:title" content={title} />
         {/* <meta name="twitter:card" content="summary" /> */}
         <meta property="og:title" content={title} />
