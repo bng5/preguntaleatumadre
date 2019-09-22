@@ -10,6 +10,7 @@ class PageHeader extends React.Component {
     super(props);
 
     this.state = {
+      logo: '/assets/images/patum.svg',
       modalIsOpen: false,
       copied: false,
       showPodcast: false,
@@ -22,6 +23,7 @@ class PageHeader extends React.Component {
     this.inputUrl = React.createRef();
     this.inputMessage = React.createRef();
 
+    this.changeLogo = this.changeLogo.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.copyMouseOut = this.copyMouseOut.bind(this);
     this.copyText = this.copyText.bind(this);
@@ -38,19 +40,23 @@ class PageHeader extends React.Component {
       <code>{`01110000 01110101 01110100 01101111  00100000 01100101 01101100 00100000
 01110001 01110101 01100101 00100000  01101100 01100101 01100101 00000000`}</code>,
       <code>01000011 01100001 01101001 01110011 01110100 01100101</code>,
-      <p><a href="https://youtu.be/dQw4w9WgXcQ" rel="noopener noreferrer" target="_blank">Click acá</a></p>,
+      <p><a href="https://youtu.be/dQw4w9WgXcQ" rel="noopener noreferrer" target="_blank" onClick={this.changeLogo}>Click acá</a></p>,
       // <p>Si vas a preguntar por los próximos números del 5 de oro, son: 4, 8, 15, 16, 23 extra 42</p>,
       <p>Si vas a preguntar por los próximos números del 5 de oro, son: <img src="https://www3.labanca.com.uy/assets/bolillas/oro/4.png" alt="4" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/8.png" alt="8" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/15.png" alt="15" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/16.png" alt="16" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/23.png" alt="23" /> extra <img src="https://www3.labanca.com.uy/assets/bolillas/oro/42.png" alt="42" /></p>,
       <p>Algunas de las preguntas pueden considerarse actos de guerra según los Convenios de Ginebra</p>,
       <p>Consejo: Siempre mira para los dos lados antes de enviar una pregunta</p>,
       <><blockquote>Nunca dije nada de lo que el internet dice que dije</blockquote> <p>Abraham Lincoln</p></>,
-      <><blockquote>...Yo tengo un sueño, un sueño donde toda pregunta sea respondidas los miércoles a las veintidos...</blockquote> <p>Martin Luther King Jr.</p></>,
+      <><blockquote>...Yo tengo un sueño, un sueño donde toda pregunta sea respondida los miércoles a las veintidos...</blockquote> <p>Martin Luther King Jr.</p></>,
       <p>Las preguntas pueden ser o no, legales dentro de los 193 países reconocidos por la ONU</p>,
       <p>"Nescio, ergo sum"</p>,
     ];
     this.setState({
       randomMessage: messages[Math.floor(Math.random() * messages.length)],
     });
+  }
+
+  changeLogo () {
+    this.setState({ logo: 'https://media.giphy.com/media/LXONhtCmN32YU/giphy.gif' });
   }
 
   setFormMessage (event) {
@@ -149,7 +155,7 @@ class PageHeader extends React.Component {
       <section className="page-header">
         <div className="header-title__top">
           <div className="header-title">
-            <img src="/assets/images/patum.svg" alt={title} />
+            <img src={this.state.logo} alt={title} />
             {/* <h2 className="project-tagline">{tagline}</h2> */}
           </div>
 
