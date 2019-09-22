@@ -5,17 +5,6 @@ import { connect } from 'react-redux';
 
 //import Logo from '../../assets/images/patum.svg';
 
-// const customStyles = {
-//   content : {
-//     top                   : '50%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)'
-//   }
-// };
-
 class PageHeader extends React.Component {
   constructor (props) {
     super(props);
@@ -24,9 +13,14 @@ class PageHeader extends React.Component {
       modalIsOpen: false,
       copied: false,
       showPodcast: false,
+      formMessage: '',
+      placeholder: '',
+      sendingMessage: false,
+      formStatus: 0,
     };
 
     this.inputUrl = React.createRef();
+    this.inputMessage = React.createRef();
 
     this.closeModal = this.closeModal.bind(this);
     this.copyMouseOut = this.copyMouseOut.bind(this);
@@ -34,7 +28,78 @@ class PageHeader extends React.Component {
     this.focusUrl = this.focusUrl.bind(this);
     this.openModal = this.openModal.bind(this);
     this.playRadio = this.playRadio.bind(this);
+    this.setFormMessage = this.setFormMessage.bind(this);
+    this.submitForm = this.submitForm.bind(this);
     this.togglePodcast = this.togglePodcast.bind(this);
+  }
+
+  componentDidMount () {
+    const messages = [
+      <code>{`01110000 01110101 01110100 01101111  00100000 01100101 01101100 00100000
+01110001 01110101 01100101 00100000  01101100 01100101 01100101 00000000`}</code>,
+      <code>01000011 01100001 01101001 01110011 01110100 01100101</code>,
+      <p><a href="https://youtu.be/dQw4w9WgXcQ" rel="noopener noreferrer" target="_blank">Click acá</a></p>,
+      // <p>Si vas a preguntar por los próximos números del 5 de oro, son: 4, 8, 15, 16, 23 extra 42</p>,
+      <p>Si vas a preguntar por los próximos números del 5 de oro, son: <img src="https://www3.labanca.com.uy/assets/bolillas/oro/4.png" alt="4" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/8.png" alt="8" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/15.png" alt="15" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/16.png" alt="16" /> <img src="https://www3.labanca.com.uy/assets/bolillas/oro/23.png" alt="23" /> extra <img src="https://www3.labanca.com.uy/assets/bolillas/oro/42.png" alt="42" /></p>,
+      <p>Algunas de las preguntas pueden considerarse actos de guerra según los Convenios de Ginebra</p>,
+      <p>Consejo: Siempre mira para los dos lados antes de enviar una pregunta</p>,
+      <><blockquote>Nunca dije nada de lo que el internet dice que dije</blockquote> <p>Abraham Lincoln</p></>,
+      <><blockquote>...Yo tengo un sueño, un sueño donde toda pregunta sea respondidas los miércoles a las veintidos...</blockquote> <p>Martin Luther King Jr.</p></>,
+      <p>Las preguntas pueden ser o no, legales dentro de los 193 países reconocidos por la ONU</p>,
+      <p>"Nescio, ergo sum"</p>,
+    ];
+    this.setState({
+      randomMessage: messages[Math.floor(Math.random() * messages.length)],
+    });
+  }
+
+  setFormMessage (event) {
+    this.setState({ formMessage: event.target.value });
+  }
+
+  submitForm (ev) {
+    ev.preventDefault();
+
+    if (this.state.formMessage.trim().length === 0) {
+      return false;
+    }
+
+    const { action } = ev.target;
+
+    // var formData = new FormData();
+    // formData.append('consulta', this.state.formMessage);
+
+    this.setState({
+      formStatus: 0,
+      sendingMessage: true,
+    });
+    fetch(action, {
+      method: 'POST',
+      mode: 'cors', // no-cors, cors, *same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'X-Requested-With': 'XMLHttpRequest',
+      },
+      // redirect: 'follow', // manual, *follow, error
+      // referrer: 'no-referrer', // no-referrer, *client
+      body: `consulta=${encodeURIComponent(this.state.formMessage)}`,//formData,//JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+    // .then(response => response.json())
+    .then(() => {
+      this.setState({
+        formMessage: '',
+        sendingMessage: false,
+        formStatus: 1,
+      });
+    })// parses JSON response into native JavaScript objects
+    .catch(err => {
+      this.setState({
+        sendingMessage: false,
+        formStatus: 2,
+      });
+    });
   }
 
   openModal (ev) {
@@ -70,15 +135,49 @@ class PageHeader extends React.Component {
   }
 
   render () {
-    const { current, episode, file, playerState, state, title, tagline } = this.props;
+    const {
+      current,
+      episode,
+      file,
+      playerState,
+      state,
+      title,
+      tagline
+    } = this.props;
     const { modalIsOpen } = this.state;
     return (
       <section className="page-header">
         <div className="header-title__top">
           <div className="header-title">
             <img src="/assets/images/patum.svg" alt={title} />
-            <h2 className="project-tagline">{tagline}</h2>
+            {/* <h2 className="project-tagline">{tagline}</h2> */}
           </div>
+
+          <form
+            method="post"
+            action="https://8t002prw85.execute-api.us-east-1.amazonaws.com/prod/contacto"
+            onSubmit={this.submitForm}
+          >
+            <fieldset className="contact">
+              <div className="contact-message">
+                {this.state.randomMessage}
+              </div>
+              <textarea
+                name="consulta"
+                cols="70"
+                rows="8"
+                ref={this.inputMessage}
+                placeholder="Escribí tu pregunta acá"
+                value={this.state.formMessage}
+                onChange={this.setFormMessage}
+              /><br />
+              {!!this.state.formStatus && (
+                <p>{['', 'Mensaje enviado correctamente', 'Error. No fue posible enviar la pregunta'][this.state.formStatus]}</p>
+              )}
+              <input type="submit" value={this.state.sendingMessage ? 'Enviando…' : (this.state.formStatus === 1 ? 'Enviar otra pregunta' : 'Enviar pregunta')} className="btn btn--primary" disabled={this.state.sendingMessage} />
+            </fieldset>
+          </form>
+
           <div className="header-ctas">
             <ul className="header-ctas-list">
               {/* <li><a type="button" onClick={this.togglePodcast} className={'btn header-ctas-list__item podcast' + (this.state.showPodcast ? ' active' : '')}>Podcast</a></li> */}

@@ -1,0 +1,70 @@
+.contact {
+  border-style: none;
+  margin: 0 auto;
+  width: 62%;
+
+  textarea {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.3rem;
+    border: 1px solid $main-color;
+    margin-bottom: 1em;
+    padding: 1em;
+    width: 100%;
+  }
+
+  .btn {
+    padding: 0.5em 1.5em;
+  }
+}
+
+.contact-message {
+  font-size: 1.25rem;
+  text-align: initial;
+  text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);
+
+  p img {
+    vertical-align: middle;
+    width: 34px;
+  }
+
+  code {
+    font-family: monospace;
+    font-size: 85%;
+    display: block;
+    margin-bottom: 0.5em;
+    text-shadow: none;
+    white-space: break-spaces;
+  }
+
+  blockquote {
+    font-size: 1.3rem;
+    margin: 0;
+    quotes: '\201C' '\201E';
+    text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);
+
+    &:before,
+    &:after {
+      font-size: 4em;
+      font-family: serif;
+      opacity: 0.5;
+      text-shadow: 1px 1px 1px black;
+      vertical-align: middle;
+    }
+
+    &:before {
+      content: open-quote;
+    }
+
+    &:after {
+      content: close-quote;
+    }
+    // text-indent: 23px;
+
+    span {
+      display: block;
+      // background-image: url(images/closequote1.gif);
+      // background-repeat: no-repeat;
+      // background-position: bottom right;
+    }
+  }
+}

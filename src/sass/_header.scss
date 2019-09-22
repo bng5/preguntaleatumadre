@@ -26,19 +26,22 @@
   }
 }
 
-.header-title .project-tagline {
-  color: $main-color;
-  font-size: 1rem;
-  font-weight: normal;
+.header-title {
   margin-bottom: 2rem;
-  text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);
 
-  @media screen and (min-width: 42em) {
-    font-size: 1.15rem;
-  }
+  .project-tagline {
+    color: $main-color;
+    font-size: 1rem;
+    font-weight: normal;
+    text-shadow: 1px 1px 0px rgba(168, 168, 168, 0.5);
 
-  @media screen and (min-width: 64em) {
-    font-size: 1.25rem;
+    @media screen and (min-width: 42em) {
+      font-size: 1.15rem;
+    }
+
+    @media screen and (min-width: 64em) {
+      font-size: 1.25rem;
+    }
   }
 }
 
