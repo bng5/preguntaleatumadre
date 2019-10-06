@@ -52,17 +52,10 @@ export default {
         <meta property="og:site_name" content="Preguntale a tu Madre" />
         <meta property="og:description" content="Donde no existen preguntas estúpidas…" />
         <meta property="og:locale" content="es_UY" />
-        {/*
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119802091-1"></script>
-        <script>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'UA-119802091-1');
-        `}
-        </script>
-        */}
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="application-name" content="PAtuM" />
+        <link rel="icon" sizes="16x16 32x32" href="/favicon.ico" />
+        <link rel="icon" sizes="48x48" href="/assets/images/homescreen48.png" />
       </Head>
       <Body>{children}</Body>
     </Html>
