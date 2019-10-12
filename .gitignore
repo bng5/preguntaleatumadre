@@ -19,5 +19,3 @@ artifacts/
 tmp/
 dist/
 src/webfonts/
-public/podcast.xml
-public/episodios

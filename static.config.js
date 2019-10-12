@@ -4,8 +4,6 @@ import fs from 'fs';
 import yaml from 'yaml';
 import React from 'react';
 
-import createRss from './src/createRss';
-
 // s3: "http://preguntaleatumadre.com.s3-website-us-west-2.amazonaws.com/"
 const meses = [
   'enero',
@@ -77,8 +75,6 @@ export default {
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
-
-    fs.writeFileSync('./public/podcast.xml', createRss(posts));
 
     const seasons = posts.reduce((acc, post) => {
       if (!acc.includes(post.season)) {
@@ -171,6 +167,7 @@ export default {
     ]
   },
   plugins: [
+    'create-rss',
     'fix-css-route',
     // [
     //   require.resolve('react-static-plugin-source-filesystem'),
