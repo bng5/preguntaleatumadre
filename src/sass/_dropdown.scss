@@ -11,14 +11,14 @@
   // border-color: transparent;
   padding: 0.2em 0.5em 0.2em 0;
 
-  .dropdown-wrapper--active > & {
+  // .dropdown-wrapper--active > & {
     // border-color: $bg-color;
     // box-shadow: 0 0 3px $text-color;
     // background-color: $main-color;
-  }
+  // }
 
   h1 {
-    display: inline;
+    display: inline-block;
 
     // &:hover {
     //   color: rgba(255,255,255,0.7);

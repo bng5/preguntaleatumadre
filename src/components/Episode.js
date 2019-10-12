@@ -14,7 +14,27 @@ const share = (ev) => {
   }
 };
 
-const Episode = ({ fecha, playHandler, playerState, progress, title, path }) => {
+const durationText = duration => {
+  const durationArr = duration.split(':').map(Number).reverse();
+  let min = durationArr[0] > 30 ? 1 : 0;
+  let h = 0;
+  let text = [];
+  if (durationArr.length > 1) {
+    min += durationArr[1];
+    if (durationArr.length > 2) {
+      h += durationArr[2];
+      text.push(`${h} h`);
+    }
+  }
+  if (min) {
+    text.push(`${min} min`);
+  }
+  return text.join(' y ');
+};
+
+const Episode = props => {
+  const { duration, fecha, playHandler, playerState, title, path } = props;
+  let { progress } = props;
   const url = encodeURIComponent(`https://www.preguntaleatumadre.com/programas${path}`);
   let buttonClass = ['programa__playback', 'playback'];
   if (playerState === PLAYING) {
@@ -42,6 +62,8 @@ const Episode = ({ fecha, playHandler, playerState, progress, title, path }) => 
     <div className="programa__info">
       <h2 className="programa__titulo">{title}</h2>
       <p className="programa__meta">
+        {durationText(duration)}
+        <br />
         Emitido: <time>{ fecha }</time>
       </p>
       <p className="programa__share">
