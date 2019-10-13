@@ -1,4 +1,4 @@
-const { readID3Tags } = require('read-id3-tags');
+const { parseFile } = require('music-metadata');
 const fs = require('fs');
 const path = require('path');
 const YAML = require('yaml');
@@ -49,14 +49,14 @@ class Episode {
 
   async setMedia (filePath) {
     const { size } = fs.statSync(filePath);
-    const data = await readID3Tags(filePath);
+    const metadata = await parseFile(filePath, {duration: true});
     const fileName = path.basename(filePath);
     const date = fileName.replace(/^patum-(\d{4}-\d{2}-\d{2})\.mp3$/, '$1');
-    this.data.title = data.title;
+    this.data.title = metadata.common.title;
     this.data.date = date;
     this.data.file = `/episodios/${fileName}`;
     this.data.filesize = size;
-    this.data.duration = this.formatSeconds(data.duration);
+    this.data.duration = this.formatSeconds(metadata.format.duration);
 
     this.filename = `${date}-${data.title.toLowerCase().replace(' ', '_')}.yml`;
   }

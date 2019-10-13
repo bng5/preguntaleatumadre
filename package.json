@@ -10,6 +10,7 @@
     "addepisode": "node bin/add-episode.js"
   },
   "dependencies": {
+    "music-metadata": "^4.8.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-ga": "^2.6.0",
@@ -40,7 +41,6 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
-    "read-id3-tags": "^1.1.0",
     "serve": "10.1.2"
   }
 }
