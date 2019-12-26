@@ -19,6 +19,7 @@ class PageHeader extends React.Component {
       placeholder: '',
       sendingMessage: false,
       formStatus: 0,
+      showForm: false,
     };
 
     this.inputUrl = React.createRef();
@@ -53,6 +54,7 @@ class PageHeader extends React.Component {
     ];
     this.setState({
       randomMessage: messages[Math.floor(Math.random() * messages.length)],
+      showForm: true,
     });
   }
 
@@ -71,7 +73,8 @@ class PageHeader extends React.Component {
       return false;
     }
 
-    const { action } = ev.target;
+    // const { action } = ev.target;
+    const action = 'https://8t002prw85.execute-api.us-east-1.amazonaws.com/prod/contacto';
 
     // var formData = new FormData();
     // formData.append('consulta', this.state.formMessage);
@@ -86,12 +89,12 @@ class PageHeader extends React.Component {
       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       // credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',//'application/x-www-form-urlencoded',
         // 'X-Requested-With': 'XMLHttpRequest',
       },
       // redirect: 'follow', // manual, *follow, error
       // referrer: 'no-referrer', // no-referrer, *client
-      body: `consulta=${encodeURIComponent(this.state.formMessage)}`,//formData,//JSON.stringify(data), // body data type must match "Content-Type" header
+      body: JSON.stringify({ consulta: this.state.formMessage }),// `consulta=${encodeURIComponent(this.state.formMessage)}`,//formData,//JSON.stringify(data), // body data type must match "Content-Type" header
     })
     // .then(response => response.json())
     .then(() => {
@@ -160,9 +163,10 @@ class PageHeader extends React.Component {
             {/* <h2 className="project-tagline">{tagline}</h2> */}
           </div>
 
+          {this.state.showForm && (
           <form
             method="post"
-            action="https://8t002prw85.execute-api.us-east-1.amazonaws.com/prod/contacto"
+            // action="https://8t002prw85.execute-api.us-east-1.amazonaws.com/prod/contacto"
             onSubmit={this.submitForm}
           >
             <fieldset className="contact">
@@ -184,6 +188,7 @@ class PageHeader extends React.Component {
               <input type="submit" value={this.state.sendingMessage ? 'Enviando…' : (this.state.formStatus === 1 ? 'Enviar otra pregunta' : 'Enviar pregunta')} className="btn btn--primary" disabled={this.state.sendingMessage} />
             </fieldset>
           </form>
+          )}
 
           <div className="header-ctas">
             <ul className="header-ctas-list">
