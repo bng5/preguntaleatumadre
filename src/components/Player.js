@@ -252,7 +252,6 @@ class Player extends Component {
 const mapStateToProps = (state) => {
   return {
     episode: state,
-    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 };
 

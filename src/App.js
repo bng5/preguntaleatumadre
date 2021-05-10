@@ -22,8 +22,8 @@ import { IDDLE, PLAYING, PAUSED, SEEKING } from './constants';
 // };
 
 const radioStreaming = {
-  file: 'http://radio.tallerderadio.com:8050/;listen.pls&type=mp3',
-  title: 'Radio en vivo',
+  file: '',
+  title: '',
   duration: null,
   slug: 'radio',
   status: 0,
@@ -32,7 +32,7 @@ const radioStreaming = {
   currentTime: '0:00',
 };
 
-const playerState = (playing = radioStreaming, action) => {
+const playerStateReducer = (playing = radioStreaming, action) => {
   switch (action.type) {
     case 'PROGRESS':
       return {
@@ -67,7 +67,7 @@ const playerState = (playing = radioStreaming, action) => {
   }
 };
 
-let store = createStore(playerState);
+let store = createStore(playerStateReducer);
 
 class App extends React.PureComponent {
   constructor (props) {
@@ -84,10 +84,8 @@ class App extends React.PureComponent {
       replaceList: props.replaceList,
       loading: false,
     };
-    this.player = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
     this.playNext = this.playNext.bind(this);
-    this.playRadio = this.playRadio.bind(this);
     this.updateState = this.updateState.bind(this);
   }
 
@@ -117,10 +115,6 @@ class App extends React.PureComponent {
         break;
     }
     this.setState(newState);
-  }
-
-  playRadio () {
-    this.togglePlay(radioStreaming);
   }
 
   togglePlay (episode) {
@@ -177,7 +171,6 @@ class App extends React.PureComponent {
             </div>
           </section>
           <Player
-            // ref={this.player}
             episode={this.state.playing}
             onUpdateState={this.updateState}
           />

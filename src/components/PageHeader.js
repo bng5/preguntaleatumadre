@@ -31,7 +31,6 @@ class PageHeader extends React.Component {
     this.copyText = this.copyText.bind(this);
     this.focusUrl = this.focusUrl.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.playRadio = this.playRadio.bind(this);
     this.setFormMessage = this.setFormMessage.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.togglePodcast = this.togglePodcast.bind(this);
@@ -134,10 +133,6 @@ class PageHeader extends React.Component {
 
   copyMouseOut () {
     this.setState({ copied: false });
-  }
-
-  playRadio () {
-    this.props.togglePlay(this.props.episode);
   }
 
   togglePodcast () {
