@@ -194,7 +194,7 @@ class PageHeader extends React.Component {
             <ul className="header-ctas-list">
               {/* <li><a type="button" onClick={this.togglePodcast} className={'btn header-ctas-list__item podcast' + (this.state.showPodcast ? ' active' : '')}>Podcast</a></li> */}
               <li><a type="button" onClick={this.openModal} className={'btn header-ctas-list__item podcast' + (this.state.showPodcast ? ' active' : '')}>Podcast</a></li>
-              <li><a type="button" onClick={this.playRadio} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li>
+              {/* <li><a type="button" onClick={this.playRadio} className={'btn header-ctas-list__item radio ' + (playerState !== null ? ['play', 'pause', 'play', 'loading'][playerState] : '')}>Radio en vivo</a></li> */}
             </ul>
           </div>
           <Modal open={modalIsOpen} onClose={this.closeModal} classNames={{ modal: 'podcast-subscription', closeIcon: 'podcast-subscription__close-icon' }} center showCloseIcon={true}>
